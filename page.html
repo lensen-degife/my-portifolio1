@@ -1,65 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal-Portifolio</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal-Portifolio</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <link rel="stylesheet" href="style.css">
+
 <body>
-  
-  <div class="black">
-    <div class="container">
-      <nav>
-      <div class="logo">Lensen</div>
-    
-        <div > 
-            <ul class="options">
-              <li><a href="#" class="active nav-link" onclick="home();">Home</a></li>
-              <li><a href="#" class="nav-link " onclick="about();">About</a></li>
-              <li><a href="#" class="nav-link " onclick="portifolio();">Portfolio</a></li>
-              <li><a href="#" class="nav-link"   onclick="contact();">Contact</a></li>
-            </ul>
-            
-           
-        </div>
-        </nav>
-  </div>
-        
+  <nav>
+    <div class="logo">LENSEN</div>
+    <ul class="options">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
 
-        
+  <section id="home">
+    <img class="home-img" src="profile.jpg" alt="here is my profile picture">
+    <div>
+      <h2>Hi, I'm <span>Lensen Degife</span></h2>
+      <h4><span>Web Developer</span></h4>
+      <p>
+        I really want to improve and reach a high level in the tech industry.
+        I bring ideas to life through clean code and thoughtful design.
+        Share your ideas with me and let's get in touch. 🙏
+      </p>
     </div>
-    <div class="discription">
-      <img class="home-img" src="profile.jpg" alt="">
-        
-        
-        <div class="discription-h"> 
-            <h2>Hi, I'm <span>Lensen Degife</span></h2>
-            <h4><span class="profession">Web developer</span></h4>
-            <p class="topic">
-             I really want to improve and get to high level in tech industry.<br> I bring ideas to life through clean <br>code and thoughtful design.<br> Share your ideas with me and let's get in touch.<br>Thank you! 🙏
-            </p>
-           
-            
-        </div>
-       
+  </section>
 
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate web developer who loves building clean and modern web applications.
+      I enjoy solving problems and continuously improving my skills.
+    </p>
+
+    <p><strong>University:</strong> Addis Ababa University</p>
+    <p><strong>Department:</strong> Computer Science</p>
+    <p><strong>Entrance Result:</strong> 545 / 600</p>
+  </section>
+
+
+
+
+  <section id="portfolio">
+    <h2>My Portfolio</h2>
+
+    <h3>Skills</h3>
+    <div class="skills">C++ <input type="range" value="70" disabled></div>
+    <div class="skills">JavaScript <input type="range" value="70" disabled></div>
+    <div class="skills">HTML & CSS <input type="range" value="80" disabled></div>
+
+    <h3>Certificates</h3>
+    <p>Udacity <a href="udacity.certificate.pdf" download>Download PDF</a></p>
+    <p>Simplilearn <a href="simplilearnCertificate.pdf" download>Download PDF</a></p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <div class="contact-container">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <textarea placeholder="Your message..."></textarea>
+      <button>Send</button>
     </div>
+
     <div class="social-media">
-       
-  <a href="" class="icon"><i class="fab fa-facebook-f"></i></a>
-  <a href=""  class="icon"><i class="fab fa-tiktok"></i></a>
-  <a href="" class="icon"><i class="fab fa-github"></i></a>
-  <a href=""  class="icon"><i class="fab fa-instagram"></i></a>
-    
+      <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
+      <a href="#" class="icon"><i class="fab fa-github"></i></a>
+      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
     </div>
-    
- 
+  </section>
 
-    
-    <script src="function.js"></script>
-    
+
+
+
+  <script src="function.js"></script>
+
 </body>
+
 </html>

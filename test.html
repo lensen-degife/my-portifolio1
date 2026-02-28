@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00f7ff;
+    }
+
+    .options {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .options a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .options a:hover,
+    .options a.active {
+      color: #00f7ff;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 50px 50px;
+    }
+
+    /* HOME */
+    #home {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .home-img {
+      width: 250px;
+      border-radius: 10px;
+    }
+
+    span {
+      color: #00f7ff;
+    }
+
+    /* ABOUT */
+    #about {
+      background: #1a1a1a;
+    }
+
+    /* PORTFOLIO */
+    #portfolio {
+      background: #141414;
+    }
+
+    .skills {
+      margin: 10px 0;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: #1a1a1a;
+    }
+
+    .contact-container {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      background: #00f7ff;
+      font-weight: bold;
+    }
+
+    .social-media {
+      margin-top: 20px;
+    }
+
+    .icon {
+      color: white;
+      margin-right: 15px;
+      font-size: 20px;
+    }
+
+    .icon:hover {
+      color: #00f7ff;
+    }
+
+    section h2 {
+  position: sticky;
+  top: 70px;
+  background: inherit;
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+
+  <!-- HOME -->
+  <section id="home">
+    <img class="home-img" src="profile.jpg" alt="">
+    <div>
+      <h2>Hi, I'm <span>Lensen Degife</span></h2>
+      <h4><span>Web Developer</span></h4>
+      <p>
+        I really want to improve and reach a high level in the tech industry.
+        I bring ideas to life through clean code and thoughtful design.
+        Share your ideas with me and let's get in touch. 🙏
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate web developer who loves building clean and modern web applications.
+      I enjoy solving problems and continuously improving my skills.
+    </p>
+
+    <p><strong>University:</strong> Addis Ababa University</p>
+    <p><strong>Department:</strong> Computer Science</p>
+    <p><strong>Entrance Result:</strong> 545 / 600</p>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2>My Portfolio</h2>
+
+    <h3>Skills</h3>
+    <div class="skills">C++ <input type="range" value="70" disabled></div>
+    <div class="skills">JavaScript <input type="range" value="70" disabled></div>
+    <div class="skills">HTML & CSS <input type="range" value="80" disabled></div>
+
+    <h3>Certificates</h3>
+    <p>Udacity <a href="udacity.certificate.pdf" download>Download PDF</a></p>
+    <p>Simplilearn <a href="simplilearnCertificate.pdf" download>Download PDF</a></p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <div class="contact-container">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <textarea placeholder="Your message..."></textarea>
+      <button>Send</button>
+    </div>
+
+    <div class="social-media">
+      <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
+      <a href="#" class="icon"><i class="fab fa-github"></i></a>
+      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- ACTIVE LINK SCRIPT -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
