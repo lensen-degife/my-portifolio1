@@ -3,24 +3,32 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: linear-gradient(-45deg, #0f2027, #1a1a2e, #16213e, #000000);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(-45deg, #0f2027, #1a1a2e, #16213e, #000000);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* NAVBAR */
 nav {
     position: fixed;
-    background:linear-gradient(to bottom right, #193947, #1c3951, #16213e, #0f3648);
+    background: linear-gradient(to bottom right, #193947, #1c3951, #16213e, #0f3648);
     height: 60px;
     top: 0;
     width: 100%;
@@ -54,24 +62,52 @@ nav {
 .options a:hover,
 .options a.active {
     color: #00f7ff;
+
 }
 
 section {
     min-height: 100vh;
-    padding: 120px 50px 50px;
+    padding: 60px 50px 120px 50px;
 }
 
-/* HOME */
+.general {
+    max-width: 700px;
+}
+
 #home {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    gap: 50px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px 10%;
 }
 
 .home-img {
+    margin-top: 20px ;
     width: 250px;
-    border-radius: 10px;
+    border-radius: 20px;
+}
+
+.general {
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.general h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.general h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.general p {
+    font-size: 1rem;
+    line-height: 30px;
 }
 
 span {
@@ -79,11 +115,23 @@ span {
 }
 
 /* ABOUT */
-#about {
-}
+#about {}
 
 /* PORTFOLIO */
-#portfolio {
+#portfolio {}
+
+.p-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.skills-p,
+.certificates-p {
+    background-color: #0f3648;
+    padding: 20px;
+    width: 250px;
+    border: solid 1px #00f7ff;
 }
 
 .skills {
@@ -91,8 +139,7 @@ span {
 }
 
 /* CONTACT */
-#contact {
-}
+#contact {}
 
 .contact-container {
     max-width: 400px;
@@ -119,9 +166,11 @@ button {
 .social-media {
     margin-top: 20px;
 }
+
 .social-media a {
     color: white;
-    transition: 0.3s;}
+    transition: 0.3s;
+}
 
 .icon {
     margin-right: 15px;
