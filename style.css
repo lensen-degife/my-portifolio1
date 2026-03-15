@@ -60,6 +60,11 @@ nav{
 
     z-index:1000;
 }
+.nav-link.active {
+  color: #00f7ff; /* matches your cyan theme */
+  font-weight: bold;
+  border-bottom: 2px solid #00f7ff; /* optional underline effect */
+}
 
 /* SIMPLE & MODERN LOGO */
 .logo {
@@ -197,7 +202,7 @@ span{
 
 /* ABOUT */
 
-#about{
+#about, #acheivments{
     text-align:center;
 }
 
@@ -236,6 +241,9 @@ span{
 .card p{
     line-height:1.6;
 }
+
+
+
 
 /* CONTACT */
 
