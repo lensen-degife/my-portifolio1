@@ -438,7 +438,9 @@ span{
 a{
    color: var(--accent);
 }
-
+.menu-toggle {
+    display: none;
+}
 /* Mobile styles */
 @media (max-width: 768px) {
 
