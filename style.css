@@ -262,7 +262,7 @@ span{
 
 .contact-container form{
     width:100%;
-    max-width:500px;
+    max-width:700px;
 
     display:flex;
     flex-direction:column;
@@ -278,13 +278,13 @@ span{
 
 .contact-container input,
 .contact-container textarea{
+    margin-top: 20px;
     padding:12px 15px;
     border-radius:8px;
     border:1px solid rgba(255,255,255,0.15);
-
     background:rgba(255,255,255,0.05);
     color:white;
-
+    width: 70%;
     font-size:15px;
     outline:none;
 }
@@ -302,14 +302,15 @@ span{
 /* BUTTON */
 
 .contact-container button{
-    padding:12px;
+    padding:15px;
     border:none;
     border-radius:8px;
 
     background:linear-gradient(45deg,#00c6ff,#0072ff);
 
     color:white;
-    font-size:16px;
+    font-size:18px;
+    font-weight: bold;
     cursor:pointer;
 
     transition:0.3s;
