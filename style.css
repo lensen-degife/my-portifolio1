@@ -278,7 +278,6 @@ span{
 
 .contact-container input,
 .contact-container textarea{
-    margin-top: 20px;
     padding:12px 15px;
     border-radius:8px;
     border:1px solid rgba(255,255,255,0.15);
