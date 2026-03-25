@@ -438,3 +438,81 @@ span{
 a{
    color: var(--accent);
 }
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+  /* Hamburger button visible */
+  .menu-toggle {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 1001;
+  }
+
+  /* Menu hidden by default */
+  .options {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 100%;
+    background: rgba(15,32,39,0.95); /* glassy */
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 0 12px 12px;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.35s ease;
+    z-index: 1000;
+  }
+
+  /* Show menu when active */
+  .options.active {
+    max-height: 400px; /* enough to show all items */
+    opacity: 1;
+  }
+
+  .options li {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  /* Animate items when menu is active */
+  .options.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered fade-in */
+  .options.active li:nth-child(1) { transition-delay: 0.05s; }
+  .options.active li:nth-child(2) { transition-delay: 0.1s; }
+  .options.active li:nth-child(3) { transition-delay: 0.15s; }
+  .options.active li:nth-child(4) { transition-delay: 0.2s; }
+
+  /* Menu links style */
+  .options a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .options a:hover {
+    color: var(--primary);
+  }
+}
+/* rotate bars when active */
+.menu-toggle.active i {
+  transform: rotate(90deg);
+  transition: 0.3s ease;
+}
