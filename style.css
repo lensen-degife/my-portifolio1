@@ -435,3 +435,6 @@ span{
 
   z-index:9999;
 }
+a{
+   color: var(--accent);
+}
