@@ -46,24 +46,32 @@ document.addEventListener("DOMContentLoaded", () => {
         link.classList.add("active");
       }
     });
-  });const toggle = document.getElementById("menu-toggle");
-const menu = document.getElementById("nav-menu");
-
-// Toggle menu on click
-toggle.addEventListener("click", () => {
-  menu.classList.toggle("active");
-
-  // optional: toggle hamburger rotation
-  toggle.classList.toggle("active");
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll(".nav-link").forEach(link => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("active");
-    toggle.classList.remove("active");
   });
-});
-  
+
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("nav-menu");
+
+  // Toggle menu on click
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+
+    // optional: toggle hamburger rotation
+    toggle.classList.toggle("active");
+  });
+
+  // Close menu when a link is clicked
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("active");
+      toggle.classList.remove("active");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove("active");
+      toggle.classList.remove("active");
+    }
+  });
 
 });
