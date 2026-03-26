@@ -435,7 +435,7 @@ span{
 
   z-index:9999;
 }
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 1024px) {
   .cursor {
     display: block;
   }
