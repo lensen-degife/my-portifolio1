@@ -445,7 +445,9 @@ a{
 @media (max-width: 768px) {
 
   /* Hamburger button visible */
- 
+  .cursor{
+    display: none;
+  }
   .menu-toggle {
     display: block;
     font-size: 26px;
