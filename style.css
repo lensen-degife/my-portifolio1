@@ -422,7 +422,7 @@ span{
   position:fixed;
   width:20px;
   height:20px;
-
+  
   background:#00f7ff;
 
   border-radius:50%;
@@ -445,6 +445,9 @@ a{
 @media (max-width: 768px) {
 
   /* Hamburger button visible */
+  .cursor{
+    display: none;
+  }
   .menu-toggle {
     display: block;
     font-size: 26px;
