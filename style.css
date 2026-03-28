@@ -13,6 +13,119 @@
 html{
     scroll-behavior:smooth;
 }
+
+body.preloader-active{
+    overflow:hidden;
+}
+
+/* Page preloader */
+.page-preloader{
+    position:fixed;
+    inset:0;
+    z-index:10050;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(-45deg,#0f2027,#1a1a2e,#16213e,#000000);
+    background-size:400% 400%;
+    animation:preloaderBg 12s ease infinite;
+
+    transition:opacity 0.65s ease,visibility 0.65s ease;
+}
+
+@keyframes preloaderBg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.page-preloader.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.page-preloader__content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+    text-align:center;
+    padding:24px;
+}
+
+.page-preloader__brand{
+    margin:0;
+    font-size:clamp(1.1rem,4vw,1.5rem);
+    font-weight:700;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    background:linear-gradient(90deg,#00f7ff,#0072ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:preloaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes preloaderPulse{
+    0%,100%{opacity:0.85;filter:brightness(1);}
+    50%{opacity:1;filter:brightness(1.15);}
+}
+
+.page-preloader__rings{
+    position:relative;
+    width:64px;
+    height:64px;
+}
+
+.page-preloader__ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:3px solid transparent;
+    border-top-color:#00f7ff;
+    border-right-color:rgba(0,247,255,0.25);
+    animation:preloaderSpin 1s linear infinite;
+}
+
+.page-preloader__ring--delay{
+    inset:8px;
+    border-top-color:#0072ff;
+    border-right-color:rgba(0,114,255,0.2);
+    animation-duration:1.35s;
+    animation-direction:reverse;
+}
+
+@keyframes preloaderSpin{
+    to{transform:rotate(360deg);}
+}
+
+.page-preloader__hint{
+    margin:0;
+    font-size:0.85rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.45);
+}
+
+@media (prefers-reduced-motion:reduce){
+    .page-preloader{
+        animation:none;
+        background-position:50% 50%;
+        transition-duration:0.25s;
+    }
+    .page-preloader__brand{
+        animation:none;
+        opacity:1;
+    }
+    .page-preloader__ring{
+        animation-duration:1.4s;
+    }
+    .page-preloader__ring--delay{
+        animation-duration:1.8s;
+    }
+}
 /* progress_bar */
 #progress-bar{
   position:fixed;

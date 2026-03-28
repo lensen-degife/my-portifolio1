@@ -1,3 +1,27 @@
+(function initPreloader() {
+  const preloader = document.getElementById("page-preloader");
+  if (!preloader) return;
+
+  function hidePreloader() {
+    preloader.classList.add("is-hidden");
+    document.body.classList.remove("preloader-active");
+    preloader.addEventListener(
+      "transitionend",
+      function onTransitionEnd(e) {
+        if (e.propertyName !== "opacity") return;
+        preloader.remove();
+      },
+      { once: true }
+    );
+  }
+
+  if (document.readyState === "complete") {
+    requestAnimationFrame(hidePreloader);
+  } else {
+    window.addEventListener("load", hidePreloader, { once: true });
+  }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Typed.js
