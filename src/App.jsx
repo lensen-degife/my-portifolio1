@@ -22,7 +22,6 @@ function App() {
 
       <Nav />
       <Home />
-      hello
       <About />
       <Acheivments />
       <Contact />
