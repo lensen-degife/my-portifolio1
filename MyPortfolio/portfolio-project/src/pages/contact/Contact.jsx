@@ -1,6 +1,9 @@
+import { Nav } from '../../components/Nav'
 import './Contact.css'
 export function Contact() {
     return (
+        <>
+        <Nav />
         <section id="contact">
             <h2><span>Contact Me</span></h2>
 
@@ -20,6 +23,7 @@ export function Contact() {
                     class="fab fa-linkedin-in"></i></a>
             </div>
         </section>
+        </>
 
     )
 }
