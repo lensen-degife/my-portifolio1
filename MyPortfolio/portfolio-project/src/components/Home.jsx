@@ -1,7 +1,8 @@
+import './Home.css'
+
 export function Home() {
     return (
         <section id="home">
-
             <div class="home-img">
                 <img src="pp.jpg" alt="profile" />
             </div>

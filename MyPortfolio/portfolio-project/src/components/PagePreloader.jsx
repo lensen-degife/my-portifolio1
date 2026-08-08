@@ -1,3 +1,4 @@
+import './PagePreloader.css'
 export function PagePreloader() {
     return (
         <div id="page-preloader" class="page-preloader" role="status" aria-live="polite" aria-label="Loading page">

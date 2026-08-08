@@ -1,0 +1,12 @@
+/* ABOUT */
+
+#about, #acheivments{
+    text-align:center;
+}
+
+.about-cards{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    justify-content:center;
+}
