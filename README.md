@@ -119,10 +119,10 @@ MyPortfolio/portfolio-project/
 ##  Preview
 
 <p align="center">
-  <img src="assets/portfolio-preview.png" width="800"/>
+  <img src="src/assets/portfolio-preview.png" width="800"/>
 </p>
 <p align="center">
-  <img src="assets/preview-2.png" width="800"/>
+  <img src="src/assets/preview-2.png" width="800"/>
 </p
 
 
