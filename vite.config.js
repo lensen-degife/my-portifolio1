@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  base: '/my-portifolio1'
+  base: '/my-portifolio1/'
 })
