@@ -1,18 +1,84 @@
-# React + Vite
+# Lensen Degife Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio website!
+This project showcases my skills, projects, and experience as a Computer Science student and aspiring software developer.
 
-Currently, two official plugins are available:
+🚀**Live Demo:**
+👉 https://lensen-degife.github.io/my-portifolio1/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+##  About Me
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+I am a Computer Science student with a strong passion for building modern, responsive, and user-friendly applications.
+I have experience working with both frontend and backend technologies and enjoy solving real-world problems through code.
 
-Note: This will impact Vite dev & build performances.
 
-## Expanding the ESLint configuration
+##  Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Languages:** Java, C++, JavaScript, Python
+* **Frontend:** HTML5, CSS3
+* **Database:** MySQL, SQLite3
+* **Tools:** Git, GitHub, IntelliJ IDEA
+
+---
+
+##  Features
+
+*  Responsive design (mobile & desktop)
+*  Clean and modern UI
+*  Projects showcase section
+*  About & contact sections
+*  Smooth user experience
+
+---
+
+##  Projects
+
+Some of the projects featured in this portfolio:
+
+*  **Shop Billing System** (C++)
+*  **Cafe Management System** (Java)
+*  **Personal Portfolio Website**
+
+ More projects on GitHub:
+https://github.com/lensen-degife
+
+---
+
+##  Preview
+
+<p align="center">
+  <img src="assets/portfolio-preview.png" width="800"/>
+</p>
+<p align="center">
+  <img src="assets/preview-2.png" width="800"/>
+</p
+
+
+## Installation & Usage
+
+To run this project locally:
+
+```bash
+git clone https://github.com/lensen-degife/my-portifolio1.git
+cd my-portifolio1
+```
+
+Then open `index.html` in your browser.
+
+## Contact
+
+* Email: [lensendegife@gmail.com](mailto:lensendegife@gmail.com)
+* Phone: +251 982 067 754
+*  GitHub: https://github.com/lensen-degife
+
+
+##  License
+
+This project is open-source and available under the MIT License.
+
+
+##  Author
+
+**Lensen Degife**
+Computer Science Student | Web Developer
