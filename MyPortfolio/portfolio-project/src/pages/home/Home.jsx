@@ -1,4 +1,3 @@
-import { Nav } from '../../components/Nav'
 import './Home.css'
 import pp from '../../assets/pp.jpg'
 import resume from '../../assets/LensenDegifeCV1.pdf'
@@ -6,7 +5,6 @@ import resume from '../../assets/LensenDegifeCV1.pdf'
 export function Home() {
     return (
         <>
-            <Nav />
             <section id="home">
                 <div class="home-img">
                     <img src={pp} alt="profile" />
