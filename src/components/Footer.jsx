@@ -1,26 +1,41 @@
-import './Footer.css'
-export function Footer() {
-    return (
-        <footer class="footer">
-            <div class="footer-content">
-                <p class="footer-text">
-                    © 2026 <span>Lensen Degife</span>. All rights reserved.
-                </p>
+import { Github, Linkedin, Mail, Send } from 'lucide-react';
 
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#acheivments">Acheivments</a>
-                    <a href="#contact">Contact</a>
-                </div>
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/lensen-degife', label: 'GitHub' },
+  {
+    icon: Linkedin,
+    href: 'https://www.linkedin.com/in/lensen-degife-60661b3b2/',
+    label: 'LinkedIn',
+  },
+  { icon: Mail, href: 'mailto:lensendegife@gmail.com', label: 'Email' },
+  { icon: Send, href: 'https://t.me/lensen_degife', label: 'Telegram' },
+];
 
-                <div class="footer-social">
-                    <a href="https://github.com/lensen-degife" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://leetcode.com/lensen-degife" target="_blank"><i class="fas fa-code"></i></a>
-                    <a href="https://www.linkedin.com/in/lensen-degife-60661b3b2/" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </footer>
-    )
+export default function Footer() {
+  return (
+    <footer className="py-8 border-t border-slate-200 dark:border-dark-border bg-white dark:bg-dark-surface">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-slate-500">
+            © {new Date().getFullYear()} Lensen Degife. Built with React &
+            Tailwind CSS.
+          </p>
+          <div className="flex items-center gap-4">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+                aria-label={link.label}
+              >
+                <link.icon size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
