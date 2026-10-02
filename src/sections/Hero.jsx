@@ -97,8 +97,8 @@ export default function Hero() {
               <img
                 src={profileImg}
                 alt="Lensen Degife"
-                className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white dark:border-dark-surface shadow-2xl"
-              />
+                className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full object-cover object-[center_15%] border-4 border-white dark:border-dark-surface shadow-2xl"
+                />
             </div>
           </motion.div>
         </div>
