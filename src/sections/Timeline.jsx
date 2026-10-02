@@ -6,7 +6,7 @@ const timelineItems = [
   {
     title: 'B.Sc. in Computer Science',
     organization: 'Addis Ababa University',
-    period: '2022 — Present',
+    period: '2024 — Present',
     description:
       'Studying core computer science fundamentals including data structures, algorithms, software engineering, databases, and systems programming. Actively participating in coding competitions and collaborative projects.',
     icon: GraduationCap,

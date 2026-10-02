@@ -33,7 +33,7 @@ const socialLinks = [
   },
   {
     icon: Send,
-    href: 'https://t.me/lensen_degife',
+    href: 'https://t.me/CipherLens',
     label: 'Telegram',
   },
 ];
