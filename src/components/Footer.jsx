@@ -10,7 +10,7 @@ const socialLinks = [
     label: 'LinkedIn',
   },
   { icon: Mail, href: 'mailto:lensendegife@gmail.com', label: 'Email' },
-  { icon: Send, href: 'https://t.me/lensen_degife', label: 'Telegram' },
+  { icon: Send, href: 'https://t.me/CipherLens', label: 'Telegram' },
 ];
 
 export default function Footer() {
