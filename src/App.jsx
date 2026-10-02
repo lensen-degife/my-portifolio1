@@ -6,6 +6,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
+import GitHub from './sections/GitHub';
 import Timeline from './sections/Timeline';
 import Achievements from './sections/Achievements';
 import Contact from './sections/Contact';
@@ -20,6 +21,7 @@ function App() {
           <About />
           <Skills />
           <Projects />
+          <GitHub />
           <Timeline />
           <Achievements />
           <Contact />
