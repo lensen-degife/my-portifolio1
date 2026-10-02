@@ -1,33 +1,34 @@
-import { Nav } from './components/Nav'
-import { Footer } from './components/Footer'
-import { PagePreloader } from './components/PagePreloader'
-import { ProgressBar } from './components/ProgressBar'
-import { Overlay } from './components/Overlay'
-import { Cursor } from './components/Cursor'
-import Interaction from './Interaction'
-
-import { Home } from './pages/home/Home'
-import { About } from './pages/about/About'
-import { Acheivments } from './pages/acheivment/Acheivments'
-import { Contact } from './pages/contact/Contact'
+import { ThemeProvider } from './context/ThemeContext';
+import Navbar from './components/Navbar';
+import BackToTop from './components/BackToTop';
+import Footer from './components/Footer';
+import Hero from './sections/Hero';
+import About from './sections/About';
+import Skills from './sections/Skills';
+import Projects from './sections/Projects';
+import Timeline from './sections/Timeline';
+import Achievements from './sections/Achievements';
+import Contact from './sections/Contact';
 
 function App() {
   return (
-    <>
-      <PagePreloader />
-      <ProgressBar />
-      <Overlay />
-      <Cursor />
-      <Interaction />
-
-      <Nav />
-      <Home />
-      <About />
-      <Acheivments />
-      <Contact />
-      <Footer />
-    </>
-  )
+    <ThemeProvider>
+      <div className="min-h-screen bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-200 transition-colors duration-300">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Timeline />
+          <Achievements />
+          <Contact />
+        </main>
+        <Footer />
+        <BackToTop />
+      </div>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

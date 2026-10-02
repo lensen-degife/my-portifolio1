@@ -1,9 +1,11 @@
-import { Github, Linkedin, Mail, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/lensen-degife', label: 'GitHub' },
+  { icon: SiGithub, href: 'https://github.com/lensen-degife', label: 'GitHub' },
   {
-    icon: Linkedin,
+    icon: FaLinkedin,
     href: 'https://www.linkedin.com/in/lensen-degife-60661b3b2/',
     label: 'LinkedIn',
   },
