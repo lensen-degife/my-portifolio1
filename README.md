@@ -139,18 +139,3 @@ Addis Ababa University
 This project is open-source and available under the [MIT License](LICENSE).
 ```
 
-### Key changes from the old README
-- Reflects the **React + Vite** migration (no more “just open `index.html`”).
-- Updated tech stack and features (custom cursor, preloader, Typed.js, etc.).
-- Correct installation path (`MyPortfolio/portfolio-project`).
-- Updated projects list from the live site.
-- Added proper build/dev commands and project structure.
-- Cleaner contact + author section.
-
-Would you like me to also:
-1. Make a shorter / more minimal version?
-2. Add badges (stars, forks, tech stack shields)?
-3. Include deployment instructions (GitHub Pages)?
-4. Fix any specific details (typos like “Acheivments”, phone number, etc.)?
-
-Just tell me what you want adjusted and I’ll refine it.
