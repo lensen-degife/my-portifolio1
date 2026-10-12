@@ -56,84 +56,84 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg shadow-sm border-b border-slate-200/50 dark:border-dark-border/50'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => handleLinkClick(e, '#hero')}
-            className="text-xl font-bold text-indigo-600 dark:text-indigo-400 hover:opacity-80 transition-opacity"
-          >
-            &lt;LD /&gt;
-          </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                  activeSection === link.href.slice(1)
-                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Right side */}
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <button
-              className="md:hidden p-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+    <>
+      {/* Theme Toggle - separate fixed element */}
+      <div className="fixed top-5 right-6 z-50">
+        <div className="bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg rounded-full p-1.5 shadow-md border border-slate-200/50 dark:border-dark-border/50">
+          <ThemeToggle />
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-white dark:bg-dark-surface border-b border-slate-200 dark:border-dark-border"
-          >
-            <div className="px-4 py-3 space-y-1">
+      <nav
+        className={`fixed top-4 left-4 right-4 z-50 max-w-5xl mx-auto rounded-2xl transition-all duration-300 backdrop-saturate-150 ${
+          scrolled
+            ? 'bg-white/40 dark:bg-dark-bg/40 backdrop-blur-2xl shadow-xl shadow-slate-200/30 dark:shadow-black/30 border border-white/50 dark:border-white/10'
+            : 'bg-white/30 dark:bg-dark-bg/30 backdrop-blur-xl shadow-lg shadow-slate-200/20 dark:shadow-black/20 border border-white/40 dark:border-white/5'
+        }`}
+      >
+        <div className="px-6">
+          <div className="relative flex items-center justify-center h-14">
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                     activeSection === link.href.slice(1)
                       ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
                   }`}
                 >
                   {link.name}
                 </a>
               ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+
+            {/* Mobile menu button */}
+            <div className="absolute right-0 flex items-center md:hidden">
+              <button
+                className="p-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Nav */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden overflow-hidden border-t border-slate-200/50 dark:border-dark-border/50"
+            >
+              <div className="px-4 py-3 space-y-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                      activeSection === link.href.slice(1)
+                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </>
   );
 }
