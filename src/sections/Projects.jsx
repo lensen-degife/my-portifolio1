@@ -5,11 +5,21 @@ import SectionHeading from '../components/SectionHeading';
 
 const projects = [
   {
+    title: 'Full Stack Stockflow Lite Inventory Management System',
+    description:
+      'A comprehensive inventory management system with features for tracking stock levels, managing suppliers, and generating reports, built with a full stack architecture.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS'],
+    github: 'https://github.com/lensen-degife/stockflow-frontend',
+    live: 'https://stockflow-frontend-lac.vercel.app',
+    gradient: 'from-green-500 to-teal-500',
+
+  },
+  {
     title: 'Full Stack E-commerce Web App',
     description:
       'A complete e-commerce platform featuring product browsing, cart management, user authentication, and a streamlined checkout process with responsive design.',
     tech: ['React', 'JavaScript', 'CSS', 'HTML'],
-    github: 'https://github.com/lensen-degife',
+    github: 'https://github.com/lensen-degife/ecommerce-frontend',
     live: null,
     gradient: 'from-indigo-500 to-blue-600',
   },
@@ -23,13 +33,13 @@ const projects = [
     gradient: 'from-purple-500 to-pink-500',
   },
   {
-    title: 'Library Management System',
+    title: 'Hydrolink Full Stack Android App',
     description:
-      'A robust system for managing book inventory, tracking borrowing and returns, with search and filter capabilities for efficient library operations.',
-    tech: ['Java', 'MySQL'],
-    github: 'https://github.com/lensen-degife',
+      'A full stack Android application for managing water resources, featuring real-time data visualization, online payment processing, user authentication, and cloud database integration.',
+    tech: ['React Native', 'Node.js', 'postgreSQL', 'Express'],
+    github: 'https://github.com/lensen-degife/hydrolink',
     live: null,
-    gradient: 'from-emerald-500 to-teal-500',
+    gradient: 'from-cyan-500 to-blue-500',
   },
   {
     title: 'Shop Billing System',
