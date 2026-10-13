@@ -42,22 +42,22 @@ const projects = [
     gradient: 'from-cyan-500 to-blue-500',
   },
   {
-    title: 'Shop Billing System',
+    title: 'Joblisting Full Stack Website',
     description:
-      'An automated billing application for retail shops featuring invoice generation, inventory tracking, and sales reporting functionality.',
-    tech: ['C++'],
-    github: 'https://github.com/lensen-degife',
+      'A full stack job listing website that allows users to browse and apply for job opportunities, featuring a user-friendly interface and robust backend functionality.',
+    tech: ['React', 'Spring Boot', 'MongoDB', 'vite', 'Tailwind CSS'],
+    github: 'https://github.com/lensen-degife/joblisting-frontend',
     live: null,
-    gradient: 'from-orange-500 to-amber-500',
+    gradient: 'from-yellow-500 to-orange-500',
   },
   {
-    title: 'Student Schedule Tracker',
-    description:
-      'A productivity tool helping students organize class schedules, track assignments, and manage deadlines with an intuitive interface.',
-    tech: ['Python', 'SQL'],
-    github: 'https://github.com/lensen-degife',
-    live: null,
-    gradient: 'from-cyan-500 to-blue-500',
+   title: 'makalla-ai-assistant Full Stack Website',
+   description:
+     'A full stack website for the Makalla-ai assistant, featuring a modern design and seamless user experience.',
+   tech: ['Java', 'Spring Boot', 'PostgreSQL', 'Typescript'],
+   github: 'https://github.com/lensen-degife/makalla-ai-assistant',
+   live: null,
+   gradient: 'from-purple-500 to-pink-500',
   },
 ];
 
