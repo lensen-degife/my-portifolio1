@@ -3,14 +3,11 @@ import { motion } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
 import { SiGithub } from 'react-icons/si';
 import { Flame, Trophy, Star, Activity, GitFork } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 import SectionHeading from '../components/SectionHeading';
+import { useTheme } from '../context/ThemeContext';
 
 const GITHUB_USERNAME = 'lensen-degife';
 
-// ---------------------------------------------------------------------------
-// Custom hook — fetches GitHub profile, repos, and contribution stats
-// ---------------------------------------------------------------------------
 function useGitHubData(username) {
   const [data, setData] = useState({ stats: null, loading: true, error: null });
 
@@ -39,18 +36,15 @@ function useGitHubData(username) {
           reposRes.json(),
         ]);
 
-        // --- Calculate streaks from contribution data ----------------------
         const contributions = contribData.contributions || [];
         const sortedAsc = [...contributions].sort(
           (a, b) => new Date(a.date) - new Date(b.date)
         );
 
-        // Current streak: walk backwards from today
         let currentStreak = 0;
         const today = new Date().toISOString().split('T')[0];
         let startIdx = sortedAsc.length - 1;
 
-        // If today has 0 contributions, start from yesterday (day isn't over)
         if (
           startIdx >= 0 &&
           sortedAsc[startIdx].date === today &&
@@ -67,7 +61,6 @@ function useGitHubData(username) {
           }
         }
 
-        // Longest streak
         let longestStreak = 0;
         let tempStreak = 0;
         for (const day of sortedAsc) {
@@ -79,7 +72,6 @@ function useGitHubData(username) {
           }
         }
 
-        // Total stars across all public repos
         const totalStars = Array.isArray(reposData)
           ? reposData.reduce(
               (sum, repo) => sum + (repo.stargazers_count || 0),
@@ -116,146 +108,137 @@ function useGitHubData(username) {
   return data;
 }
 
-// ---------------------------------------------------------------------------
-// Stat card definitions
-// ---------------------------------------------------------------------------
 const statItems = [
   {
     key: 'totalContributions',
     label: 'Contributions',
     sublabel: 'Past year',
     icon: Activity,
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50 dark:bg-emerald-500/10',
   },
   {
     key: 'currentStreak',
     label: 'Current Streak',
-    sublabel: 'days',
+    sublabel: 'days active',
     icon: Flame,
-    color: 'text-orange-500',
-    bg: 'bg-orange-50 dark:bg-orange-500/10',
   },
   {
     key: 'longestStreak',
     label: 'Longest Streak',
-    sublabel: 'days',
+    sublabel: 'best streak',
     icon: Trophy,
-    color: 'text-amber-500',
-    bg: 'bg-amber-50 dark:bg-amber-500/10',
   },
   {
     key: 'publicRepos',
     label: 'Repositories',
-    sublabel: 'public',
+    sublabel: 'public repos',
     icon: GitFork,
-    color: 'text-indigo-500',
-    bg: 'bg-indigo-50 dark:bg-indigo-500/10',
   },
   {
     key: 'totalStars',
     label: 'Stars Earned',
-    sublabel: 'total',
+    sublabel: 'community stars',
     icon: Star,
-    color: 'text-yellow-500',
-    bg: 'bg-yellow-50 dark:bg-yellow-500/10',
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
 export default function GitHub() {
-  const { theme } = useTheme();
   const { stats, loading } = useGitHubData(GITHUB_USERNAME);
+  const { theme } = useTheme();
 
-  // Indigo-tinted contribution graph to match the portfolio accent
+  // Contribution graph theme
   const calendarTheme = {
-    dark: ['#161b22', '#818cf8'],
-    light: ['#ebedf0', '#4338ca'],
+    dark: ['#160830', '#c084fc'],
+    light: ['#f3e8ff', '#9333ea'],
   };
 
   return (
-    <section id="github" className="py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="github" className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] opacity-60 dark:opacity-35 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="GitHub Activity"
-          subtitle="My open-source journey and coding consistency"
+          subtitle="My open-source track record, consistency, and repository milestones"
         />
 
-        {/* ---- Stats Grid ------------------------------------------------ */}
+        {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10"
         >
-          {statItems.map((item, index) => (
-            <motion.div
-              key={item.key}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="p-4 bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border text-center hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-colors duration-200"
-            >
-              <div
-                className={`inline-flex p-2.5 ${item.bg} rounded-lg mb-3`}
+          {statItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="p-5 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200"
               >
-                <item.icon size={20} className={item.color} />
-              </div>
+                <div className="inline-flex p-3 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl mb-3 text-purple-700 dark:text-purple-300 shadow-sm">
+                  <Icon size={20} />
+                </div>
 
-              <p className="text-2xl font-bold text-slate-900 dark:text-white">
-                {loading ? (
-                  <span className="inline-block w-10 h-7 bg-slate-200 dark:bg-dark-elevated rounded animate-pulse" />
-                ) : (
-                  (stats?.[item.key] ?? '—')
-                )}
-              </p>
+                <p className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  {loading ? (
+                    <span className="inline-block w-10 h-7 bg-purple-100 dark:bg-white/10 rounded animate-pulse" />
+                  ) : (
+                    (stats?.[item.key] ?? '—')
+                  )}
+                </p>
 
-              <p className="text-xs text-slate-500 mt-1 leading-tight">
-                {item.label}
-              </p>
-              <p className="text-[10px] text-slate-400 dark:text-slate-600">
-                {item.sublabel}
-              </p>
-            </motion.div>
-          ))}
+                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 mt-1 leading-tight">
+                  {item.label}
+                </p>
+                <p className="text-[11px] text-purple-600/80 dark:text-purple-300/70 font-light mt-0.5">
+                  {item.sublabel}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
-        {/* ---- Contribution Calendar ------------------------------------- */}
+        {/* Contribution Calendar Container */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
           viewport={{ once: true }}
-          className="p-5 sm:p-6 bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border"
+          className="p-6 sm:p-8 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2">
-              <SiGithub
-                size={20}
-                className="text-slate-700 dark:text-slate-300"
-              />
-              <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                @{GITHUB_USERNAME}
-              </h3>
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-purple-100 dark:border-purple-500/20">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300">
+                <SiGithub size={20} />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  @{GITHUB_USERNAME}
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-light">Contributions on GitHub</p>
+              </div>
             </div>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/5 dark:hover:bg-[#311166] dark:border-purple-500/30 text-xs sm:text-sm font-medium dark:text-purple-300 dark:hover:text-white transition-all duration-200"
             >
-              View profile →
+              <span>View Profile</span>
+              <span>→</span>
             </a>
           </div>
 
-          {/* Calendar — horizontally scrollable on small screens */}
-          <div className="overflow-x-auto pb-2 -mx-2 px-2">
-            <div className="min-w-[680px]">
+          {/* Calendar */}
+          <div className="overflow-x-auto pb-2 -mx-2 px-2 flex justify-center">
+            <div className="min-w-[680px] text-slate-800 dark:text-white">
               <GitHubCalendar
                 username={GITHUB_USERNAME}
                 colorScheme={theme === 'dark' ? 'dark' : 'light'}

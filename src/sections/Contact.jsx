@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin } from 'lucide-react';
+import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
-import SectionHeading from '../components/SectionHeading';
 
 const contactInfo = [
   {
@@ -76,167 +75,262 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-28 bg-slate-100/50 dark:bg-dark-surface/50"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Get In Touch"
-          subtitle="Have a question or want to work together? Let's connect!"
-        />
+      {/* --- BACKGROUND GLOWS --- */}
+      <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] opacity-60 dark:opacity-45 translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[110px] opacity-60 dark:opacity-50 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {/* Contact Form */}
-          <motion.form
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            onSubmit={handleSubmit}
-            className="space-y-4"
-          >
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 bg-white dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 bg-white dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200"
-                placeholder="your@email.com"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 bg-white dark:bg-dark-surface border border-slate-300 dark:border-dark-border rounded-lg text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
-                placeholder="Your message..."
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all duration-200 shadow-lg shadow-indigo-500/25 cursor-pointer"
-            >
-              <Send size={18} />
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-            {status === 'success' && (
-              <p className="text-emerald-600 dark:text-emerald-400 text-sm text-center">
-                Message sent successfully! I&apos;ll get back to you soon.
-              </p>
-            )}
-            {status === 'error' && (
-              <p className="text-red-600 dark:text-red-400 text-sm text-center">
-                Something went wrong. Please try again or email me directly.
-              </p>
-            )}
-          </motion.form>
+      {/* --- FLOATING HOLLOW RING --- */}
+      <motion.div
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
+        className="absolute top-28 left-[10%] w-10 h-10 md:w-12 md:h-12 rounded-full border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.25)] pointer-events-none z-10 hidden sm:block"
+      />
 
-          {/* Contact Info */}
+      {/* --- SECTION CONTENT --- */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+        {/* Header with Floating Diamond Star */}
+        <div className="relative flex flex-col items-center text-center mb-16 md:mb-20">
+          {/* Floating Diamond Star SVG near section title */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="space-y-6"
+            animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+            className="absolute -top-6 right-4 sm:right-16 md:right-28 lg:right-36 w-10 h-10 md:w-14 md:h-14 pointer-events-none z-10"
           >
-            <div>
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                Contact Information
-              </h3>
-              <div className="space-y-3">
-                {contactInfo.map((info) => (
-                  <div key={info.label} className="flex items-center gap-3">
-                    <div className="p-2 bg-indigo-50 dark:bg-indigo-500/10 rounded-lg">
-                      <info.icon
-                        size={18}
-                        className="text-indigo-600 dark:text-indigo-400"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-500">{info.label}</p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-sm text-slate-700 dark:text-slate-300">
-                          {info.value}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
+              <path
+                d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
+                fill="currentColor"
+                className="opacity-70 dark:opacity-90"
+              />
+            </svg>
+          </motion.div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                Connect With Me
-              </h3>
-              <div className="flex gap-3">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border rounded-lg text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-all duration-200"
-                    aria-label={link.label}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
+          >
+            <MessageSquare size={14} className="text-purple-600 dark:text-purple-300" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+              Get In Touch
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
+          >
+            Let&apos;s Build <span className="text-purple-600 dark:text-purple-300">Together</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
+          >
+            Have a project in mind, a potential collaboration, or simply want to connect? Reach out and I&apos;ll get back to you promptly.
+          </motion.p>
+        </div>
+
+        {/* 2-Column Contact Section */}
+        <div className="grid lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto">
+          {/* Left Column: Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-3xl p-6 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20"
+          >
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                >
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="e.g. Alex Johnson"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                >
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="alex@domain.com"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                >
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your idea, project, or inquiry..."
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-2">
+                <div className="w-full bg-purple-50/80 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 rounded-full p-2 flex flex-col sm:flex-row items-center justify-between shadow-sm dark:shadow-2xl transition-all duration-200 hover:shadow-md dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white px-8 py-3.5 rounded-full font-semibold text-[15px] flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-50"
                   >
-                    <link.icon size={20} />
-                  </a>
-                ))}
+                    <Send size={18} />
+                    <span>{status === 'sending' ? 'Sending Message...' : 'Send Message'}</span>
+                  </button>
+                  <span className="text-purple-900 dark:text-slate-200 font-medium text-sm sm:text-[15px] sm:pr-6 truncate pt-2 sm:pt-0">
+                    lensendegife@gmail.com
+                  </span>
+                </div>
+              </div>
+
+              {/* Status Feedback Alerts */}
+              {status === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2.5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-sm"
+                >
+                  <CheckCircle2 size={18} className="flex-shrink-0" />
+                  <span>Thank you! Your message was sent successfully. I will get back to you soon.</span>
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2.5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-sm"
+                >
+                  <AlertCircle size={18} className="flex-shrink-0" />
+                  <span>Oops! Something went wrong. Please try again or email me directly at lensendegife@gmail.com.</span>
+                </motion.div>
+              )}
+            </form>
+          </motion.div>
+
+          {/* Right Column: Contact Details & Socials */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5 flex flex-col space-y-6"
+          >
+            {/* Direct Info Card */}
+            <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-3xl p-6 sm:p-8 shadow-xl shadow-purple-500/5">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2.5">
+                <Sparkles size={20} className="text-purple-600 dark:text-purple-300" />
+                Contact Details
+              </h3>
+
+              <div className="space-y-4">
+                {contactInfo.map((info) => {
+                  const Icon = info.icon;
+                  return (
+                    <div
+                      key={info.label}
+                      className="flex items-center gap-4 p-4 rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/70 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-all duration-200"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                        <Icon size={20} />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                          {info.label}
+                        </p>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            className="text-sm sm:text-base font-medium text-slate-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-sm sm:text-base font-medium text-slate-900 dark:text-white">
+                            {info.value}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Social Channels (Pill UI Buttons) */}
+              <div className="mt-8 pt-6 border-t border-purple-100 dark:border-purple-500/20">
+                <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-4">
+                  Connect on Social Media
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {socialLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-purple-50 dark:bg-white/5 hover:bg-purple-100 dark:hover:bg-[#311166] border border-purple-200 dark:border-purple-500/30 hover:border-purple-300 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-white text-sm font-medium transition-all duration-200 shadow-sm dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)] hover:-translate-y-0.5"
+                        aria-label={link.label}
+                      >
+                        <Icon size={16} className="text-purple-600 dark:text-purple-300" />
+                        <span>{link.label}</span>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            {/* CTA card */}
-            <div className="p-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white">
-              <h4 className="font-semibold mb-2">
-                Let&apos;s Build Something Together
+            {/* Collaboration Callout */}
+            <div className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#290a59]/80 dark:to-[#1d0642]/80 dark:border-purple-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl">
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                Open to Opportunities
               </h4>
-              <p className="text-sm text-indigo-100 leading-relaxed">
-                I&apos;m always open to discussing new projects, creative ideas,
-                or opportunities to be part of your vision.
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+                Whether you have an internship opportunity, freelance project, full-stack opening, or open-source collaboration in mind, I&apos;m always glad to talk!
               </p>
             </div>
           </motion.div>

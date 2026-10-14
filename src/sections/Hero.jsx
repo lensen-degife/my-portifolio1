@@ -1,9 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Mail } from 'lucide-react';
+import { ArrowDown, Download, Mail, Sparkles, Code2, Terminal } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
 import Typed from 'typed.js';
-import profileImg from '../assets/pp.jpg';
+
+// Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
+import profileImage from '../assets/image.png';
 
 export default function Hero() {
   const typedRef = useRef(null);
@@ -11,9 +15,12 @@ export default function Hero() {
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
       strings: [
-        'Software Developer',
-        'CS Student',
-        'Problem Solver',
+        'Software Engineer',
+        'Full-Stack Developer',
+        'Backend & Systems Builder',
+        'Mobile App Developer',
+        'CS Student @ Addis Ababa University',
+        'Problem Solver & LeetCoder',
         'Open Source Contributor',
       ],
       typeSpeed: 50,
@@ -27,97 +34,205 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans pt-28 pb-16 lg:py-0 transition-colors duration-300"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-slate-50 to-purple-50 dark:from-dark-bg dark:via-[#0f0f1a] dark:to-dark-bg" />
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl" />
+      {/* --- BACKGROUND DECORATIONS --- */}
+      
+      {/* Subtle Purple Base Glows */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[120px] opacity-70 dark:opacity-50 translate-y-1/2 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[100px] opacity-60 dark:opacity-40 -translate-y-1/4 translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
-          >
-            <p className="text-indigo-600 dark:text-indigo-400 font-medium mb-2 text-sm tracking-wide uppercase">
-              Welcome to my portfolio
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 leading-tight">
-              Hi, I&apos;m{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
-                Lensen Degife
-              </span>
-            </h1>
-            <div className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 mb-6 h-9">
-              <span ref={typedRef} />
-            </div>
-            <p className="text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Computer Science student at Addis Ababa University, passionate
-              about building elegant solutions through clean code and continuous
-              learning.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <a
-                href={resumePdf}
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5"
-              >
-                <Download size={18} />
-                Download Resume
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .querySelector('#contact')
-                    ?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-indigo-600 dark:border-indigo-500 text-indigo-600 dark:text-indigo-400 font-medium rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all duration-200 hover:-translate-y-0.5"
-              >
-                <Mail size={18} />
-                Contact Me
-              </a>
-            </div>
-          </motion.div>
+      {/* Top Left Network Lines */}
+      <svg className="absolute top-0 left-0 w-64 h-64 text-purple-600/15 dark:text-purple-400/20 pointer-events-none hidden md:block" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0L50 50L20 100L0 80" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M50 50L120 20L150 0" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M50 50L100 90L180 80" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="50" cy="50" r="3" fill="currentColor" />
+        <circle cx="20" cy="100" r="3" fill="currentColor" />
+        <circle cx="120" cy="20" r="3" fill="currentColor" />
+        <circle cx="100" cy="90" r="3" fill="currentColor" />
+        <circle cx="180" cy="80" r="3" fill="currentColor" />
+      </svg>
 
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0"
-          >
-            <div className="relative group">
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-              <img
-                src={profileImg}
-                alt="Lensen Degife"
-                className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full object-cover object-[center_15%] border-4 border-white dark:border-dark-surface shadow-2xl"
-                />
-            </div>
-          </motion.div>
-        </div>
+      {/* Top Right Network Lines */}
+      <svg className="absolute top-0 right-0 w-80 h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 hidden md:block" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M200 0L150 60L180 120L200 100" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M150 60L70 30L40 0" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M150 60L100 110L20 90" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="150" cy="60" r="3" fill="currentColor" />
+        <circle cx="180" cy="120" r="3" fill="currentColor" />
+        <circle cx="70" cy="30" r="3" fill="currentColor" />
+        <circle cx="100" cy="110" r="3" fill="currentColor" />
+        <circle cx="20" cy="90" r="3" fill="currentColor" />
+      </svg>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
+      {/* Floating Hollow Ring */}
+      <motion.div 
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+        className="absolute top-[18%] left-[10%] md:left-[35%] w-10 h-10 md:w-14 md:h-14 rounded-full border-[6px] md:border-[8px] border-purple-500/40 dark:border-white/90 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
+      />
+
+      {/* Floating Diamond Star */}
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
+        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        className="absolute top-[40%] right-[8%] w-14 h-14 md:w-20 md:h-20 pointer-events-none z-10 hidden md:block"
+      >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
+          <path d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z" fill="currentColor" className="opacity-70 dark:opacity-90" />
+        </svg>
+      </motion.div>
+
+      {/* --- MAIN CONTENT --- */}
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 z-20 w-full">
+        
+        {/* Left Column: Portrait Image */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:w-1/2 h-[420px] sm:h-[520px] lg:h-[680px] flex justify-center lg:justify-start items-end relative"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            <ArrowDown size={20} className="text-slate-400" />
-          </motion.div>
+          {/* Deep purple circle directly behind the person */}
+          <div className="absolute bottom-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-[480px] lg:h-[480px] bg-purple-300/40 dark:bg-[#3a1078] rounded-full blur-3xl opacity-70 dark:opacity-60 -z-10 translate-y-1/4 transition-colors duration-300" />
+          
+          <img 
+            src={profileImage} 
+            alt="Lensen Degife" 
+            className="w-[85%] max-w-[460px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_0_40px_rgba(0,0,0,0.6)] z-10 relative"
+          />
         </motion.div>
+
+        {/* Right Column: Text Content & Actions */}
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
+        >
+          {/* Section Pill Badge - Matching other pages */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
+          >
+            <Sparkles size={14} className="text-purple-600 dark:text-purple-300" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+              Welcome to my portfolio
+            </span>
+          </motion.div>
+
+          {/* Heading - Balanced font size & purple accent */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-4">
+            Hi, I&apos;m <span className="text-purple-600 dark:text-purple-300">Lensen Degife</span>
+          </h1>
+          
+          {/* Typed.js Container with Terminal Icon */}
+          <div className="text-lg sm:text-xl md:text-2xl text-purple-700 dark:text-purple-300 mb-5 h-8 sm:h-9 font-medium tracking-wide flex items-center justify-center lg:justify-start gap-2.5">
+            <Terminal size={20} className="text-purple-600 dark:text-purple-400 flex-shrink-0" />
+            <span ref={typedRef} />
+          </div>
+          
+          {/* Description Paragraph - Aligned font size & rhythm */}
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed font-light mb-8">
+            Computer Science student at Addis Ababa University. I engineer scalable backend systems, responsive web & mobile applications, and high-performance solutions with clean code.
+          </p>
+          
+          {/* Engineering Scope & Status Bar (Light/Dark Glassmorphic) */}
+          <div className="w-full max-w-xl p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-200/80 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg shadow-purple-500/5 dark:shadow-purple-950/20 mb-8">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/90 dark:bg-[#311166]/80 border border-purple-200 dark:border-purple-500/30 text-purple-900 dark:text-white text-xs sm:text-sm font-semibold shadow-sm">
+              <Code2 size={15} className="text-purple-600 dark:text-purple-300" />
+              <span>Full-Stack & Systems Developer</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1 sm:pr-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="font-medium text-slate-700 dark:text-slate-300">Open to Opportunities</span>
+            </div>
+          </div>
+
+          {/* Action Buttons & Social Links */}
+          <div className="flex flex-wrap gap-4 items-center justify-center lg:justify-start w-full">
+            <a
+              href={resumePdf}
+              download
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white font-semibold text-sm sm:text-base border border-purple-600 dark:border-purple-500/40 shadow-lg shadow-purple-600/20 dark:shadow-purple-950/50 hover:shadow-purple-600/30 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.6)] hover:border-purple-500 dark:hover:border-purple-400 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <Download size={18} className="text-white dark:text-purple-300" />
+              <span>Download Resume</span>
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector('#contact')
+                  ?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-purple-50/80 dark:bg-white/5 dark:hover:bg-white/10 text-purple-700 hover:text-purple-900 dark:text-purple-200 dark:hover:text-white font-semibold text-sm sm:text-base border border-purple-200 hover:border-purple-300 dark:border-purple-500/30 dark:hover:border-purple-400 shadow-sm hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <Mail size={18} className="text-purple-600 dark:text-purple-300" />
+              <span>Contact Me</span>
+            </a>
+
+            {/* Quick Social Icon Links */}
+            <div className="flex items-center gap-2.5">
+              <a
+                href="https://github.com/lensen-degife"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white hover:bg-purple-50 dark:bg-white/5 dark:hover:bg-[#311166] border border-purple-200 hover:border-purple-300 dark:border-purple-500/30 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)] hover:-translate-y-0.5"
+                aria-label="GitHub Profile"
+              >
+                <SiGithub size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/lensen-degife-60661b3b2/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white hover:bg-purple-50 dark:bg-white/5 dark:hover:bg-[#311166] border border-purple-200 hover:border-purple-300 dark:border-purple-500/30 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)] hover:-translate-y-0.5"
+                aria-label="LinkedIn Profile"
+              >
+                <FaLinkedin size={18} />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 z-30"
+      >
+        <a
+          href="#about"
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .querySelector('#about')
+              ?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="flex flex-col items-center gap-1.5 text-xs text-purple-600/70 hover:text-purple-700 dark:text-purple-300/60 dark:hover:text-purple-300 transition-colors"
+          aria-label="Scroll to about section"
+        >
+          <span className="tracking-widest uppercase font-semibold text-[10px]">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <ArrowDown size={18} className="text-purple-600 dark:text-purple-400/80" />
+          </motion.div>
+        </a>
+      </motion.div>
     </section>
   );
 }

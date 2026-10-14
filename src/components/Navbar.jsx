@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import resumePdf from '../assets/LensenDegifeCV1.pdf';
 
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Github', href: '#github' },
+  { name: 'GitHub', href: '#github' },
   { name: 'Education', href: '#timeline' },
   { name: 'Achievements', href: '#achievements' },
   { name: 'Contact', href: '#contact' },
@@ -20,7 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -35,7 +36,7 @@ export default function Navbar() {
           }
         });
       },
-      { rootMargin: '-20% 0px -80% 0px' }
+      { rootMargin: '-20% 0px -70% 0px' }
     );
 
     const sections = document.querySelectorAll('section[id]');
@@ -56,91 +57,125 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      {/* Top right actions: Theme Toggle + Mobile Menu Hamburger */}
-      <div className="fixed top-4 right-4 md:top-5 md:right-6 z-50 flex items-center gap-2">
-        <div className="bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg rounded-full p-1.5 shadow-md border border-slate-200/50 dark:border-dark-border/50">
-          <ThemeToggle />
-        </div>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/85 dark:bg-[#070214]/80 backdrop-blur-md border-b border-purple-100 dark:border-purple-500/20 py-3 shadow-md shadow-slate-200/50 dark:shadow-[#070214]/60'
+          : 'bg-transparent border-b border-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href="#hero"
+            onClick={(e) => handleLinkClick(e, '#hero')}
+            className="flex items-center gap-2 group text-slate-900 dark:text-white font-bold text-xl tracking-tight transition-colors"
+          >
+            <span className="w-9 h-9 rounded-full bg-purple-600 dark:bg-[#311166] border border-purple-400/40 dark:border-purple-500/40 flex items-center justify-center text-sm font-semibold text-white shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.6)] group-hover:border-purple-400 group-hover:scale-105 transition-all">
+              LD
+            </span>
+            <span>
+              Lensen<span className="text-purple-600 dark:text-purple-400">.</span>
+            </span>
+          </a>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          className="md:hidden p-2 text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg rounded-full shadow-md border border-slate-200/50 dark:border-dark-border/50 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors flex items-center justify-center"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'text-purple-700 dark:text-purple-300 bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-purple-500/30 shadow-sm dark:shadow-[0_0_12px_rgba(49,17,102,0.4)]'
+                      : 'text-slate-600 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50/60 dark:hover:bg-white/5'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
+          </nav>
 
-      {/* Desktop Floating Nav */}
-      <nav
-        className={`hidden md:block fixed top-4 left-4 right-4 z-40 max-w-5xl mx-auto rounded-2xl transition-all duration-300 backdrop-saturate-150 ${
-          scrolled
-            ? 'bg-white/40 dark:bg-dark-bg/40 backdrop-blur-2xl shadow-xl shadow-slate-200/30 dark:shadow-black/30 border border-white/50 dark:border-white/10'
-            : 'bg-white/30 dark:bg-dark-bg/30 backdrop-blur-xl shadow-lg shadow-slate-200/20 dark:shadow-black/20 border border-white/40 dark:border-white/5'
-        }`}
-      >
-        <div className="px-6 flex items-center justify-center h-14">
-          <div className="flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                  activeSection === link.href.slice(1)
-                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
+          {/* Desktop Right Action: Pill Resume Button + Theme Toggle */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={resumePdf}
+              download
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-md shadow-purple-600/20 dark:shadow-none hover:shadow-purple-600/30 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.6)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <Download size={15} className="text-white dark:text-purple-300" />
+              <span>Resume</span>
+            </a>
+            <div className="bg-purple-50 dark:bg-white/5 backdrop-blur-md rounded-full p-1 border border-purple-200 dark:border-purple-500/20">
+              <ThemeToggle />
+            </div>
+          </div>
+
+          {/* Mobile Right Action: Hamburger + Theme Toggle */}
+          <div className="flex md:hidden items-center gap-2">
+            <div className="bg-purple-50 dark:bg-white/5 backdrop-blur-md rounded-full p-1 border border-purple-200 dark:border-purple-500/20">
+              <ThemeToggle />
+            </div>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-slate-700 dark:text-white bg-purple-50 dark:bg-white/5 backdrop-blur-md rounded-full border border-purple-200 dark:border-purple-500/20 hover:bg-purple-100 dark:hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Nav Dropdown & Backdrop */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/20 dark:bg-black/50 backdrop-blur-xs md:hidden"
-              onClick={() => setIsOpen(false)}
-            />
-
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="fixed top-16 left-4 right-4 max-w-xs ml-auto md:hidden z-50 rounded-2xl bg-white/90 dark:bg-dark-bg/90 backdrop-blur-2xl shadow-xl shadow-slate-200/30 dark:shadow-black/30 border border-white/60 dark:border-white/10 p-3"
-            >
-              <div className="space-y-1">
-                {navLinks.map((link) => (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden border-b border-purple-100 dark:border-purple-500/20 bg-white/95 dark:bg-[#070214]/95 backdrop-blur-xl px-4 pt-3 pb-6 shadow-2xl overflow-hidden"
+          >
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`block px-3 py-2 text-sm font-medium rounded-xl transition-colors duration-200 ${
-                      activeSection === link.href.slice(1)
-                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
+                    className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                      isActive
+                        ? 'text-purple-700 dark:text-purple-300 bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-purple-500/30 font-semibold'
+                        : 'text-slate-700 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50/60 dark:hover:bg-white/5'
                     }`}
                   >
                     {link.name}
                   </a>
-                ))}
+                );
+              })}
+
+              <div className="pt-3 mt-1 border-t border-purple-100 dark:border-purple-500/20">
+                <a
+                  href={resumePdf}
+                  download
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] text-white text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-md hover:bg-purple-700 dark:hover:bg-[#3a1078] transition-colors"
+                >
+                  <Download size={16} className="text-white dark:text-purple-300" />
+                  <span>Download Resume</span>
+                </a>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }

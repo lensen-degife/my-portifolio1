@@ -1,63 +1,67 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Folder } from 'lucide-react';
+import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-import SectionHeading from '../components/SectionHeading';
 
 const projects = [
   {
-    title: 'Full Stack Stockflow Lite Inventory Management System',
+    title: 'HydroLink',
+    category: 'Mobile & IoT Solution',
     description:
-      'A comprehensive inventory management system with features for tracking stock levels, managing suppliers, and generating reports, built with a full stack architecture.',
+      'A full-stack Android application built for municipal water resource management. Features real-time utility telemetry, community leak incident reporting, online bill payments, and cloud database integration.',
+    tech: ['React Native', 'Expo', 'Node.js', 'Express', 'PostgreSQL'],
+    github: 'https://github.com/lensen-degife/hydrolink',
+    live: null,
+    highlight: 'Featured Project',
+  },
+  {
+    title: 'StockFlow Lite',
+    category: 'Full Stack Web Platform',
+    description:
+      'A comprehensive inventory management system with real-time stock tracking, automated supplier procurement workflows, low-stock alerts, and dynamic analytics reporting.',
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS'],
     github: 'https://github.com/lensen-degife/stockflow-frontend',
     live: 'https://stockflow-frontend-lac.vercel.app',
-    gradient: 'from-green-500 to-teal-500',
-
+    highlight: 'Live Deployment',
   },
   {
-    title: 'Full Stack E-commerce Web App',
+    title: 'Product Service API',
+    category: 'Backend Microservice',
     description:
-      'A complete e-commerce platform featuring product browsing, cart management, user authentication, and a streamlined checkout process with responsive design.',
-    tech: ['React', 'JavaScript', 'CSS', 'HTML'],
-    github: 'https://github.com/lensen-degife/ecommerce-frontend',
+      'A robust, high-performance backend microservice engineered with Spring Boot. Features RESTful catalog endpoints, relational schema design, input validation, and containerized deployment.',
+    tech: ['Spring Boot', 'Java', 'PostgreSQL', 'Docker', 'Swagger'],
+    github: 'https://github.com/lensen-degife',
     live: null,
-    gradient: 'from-indigo-500 to-blue-600',
+    highlight: 'Backend System',
   },
   {
-    title: 'Personal Portfolio Website',
+    title: 'Makalla AI Assistant',
+    category: 'AI Web Platform',
     description:
-      'A modern, responsive portfolio showcasing projects, skills, and achievements with dark/light theme support and smooth animations.',
-    tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/lensen-degife/my-portifolio1',
-    live: 'https://lensen-degife.github.io/my-portifolio1/',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    title: 'Hydrolink Full Stack Android App',
-    description:
-      'A full stack Android application for managing water resources, featuring real-time data visualization, online payment processing, user authentication, and cloud database integration.',
-    tech: ['React Native', 'Node.js', 'postgreSQL', 'Express'],
-    github: 'https://github.com/lensen-degife/hydrolink',
+      'Full-stack intelligent assistant application providing conversational AI capabilities, query processing, contextual dialogue persistence, and modern frontend design.',
+    tech: ['Java', 'Spring Boot', 'PostgreSQL', 'TypeScript', 'React'],
+    github: 'https://github.com/lensen-degife/makalla-ai-assistant',
     live: null,
-    gradient: 'from-cyan-500 to-blue-500',
+    highlight: null,
   },
   {
-    title: 'Joblisting Full Stack Website',
+    title: 'JobListing Web Application',
+    category: 'Full Stack Portal',
     description:
-      'A full stack job listing website that allows users to browse and apply for job opportunities, featuring a user-friendly interface and robust backend functionality.',
-    tech: ['React', 'Spring Boot', 'MongoDB', 'vite', 'Tailwind CSS'],
+      'Interactive job board platform allowing professionals to browse postings, submit resumes, and track applications, complete with an administrative dashboard.',
+    tech: ['React', 'Spring Boot', 'MongoDB', 'Vite', 'Tailwind CSS'],
     github: 'https://github.com/lensen-degife/joblisting-frontend',
     live: null,
-    gradient: 'from-yellow-500 to-orange-500',
+    highlight: null,
   },
   {
-   title: 'makalla-ai-assistant Full Stack Website',
-   description:
-     'A full stack website for the Makalla-ai assistant, featuring a modern design and seamless user experience.',
-   tech: ['Java', 'Spring Boot', 'PostgreSQL', 'Typescript'],
-   github: 'https://github.com/lensen-degife/makalla-ai-assistant',
-   live: null,
-   gradient: 'from-purple-500 to-pink-500',
+    title: 'Full Stack E-Commerce',
+    category: 'Digital Storefront',
+    description:
+      'Modern online storefront featuring intuitive product browsing, responsive cart management, customer authentication, and seamless checkout flows.',
+    tech: ['React', 'JavaScript', 'Node.js', 'Tailwind CSS'],
+    github: 'https://github.com/lensen-degife/ecommerce-frontend',
+    live: null,
+    highlight: null,
   },
 ];
 
@@ -70,84 +74,180 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
 };
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Featured Projects"
-          subtitle="A selection of projects that showcase my skills and passion"
-        />
+    <section
+      id="projects"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
+    >
+      {/* --- BACKGROUND GLOWS --- */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] opacity-60 dark:opacity-40 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-50 translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
+      {/* --- TOP RIGHT NETWORK LINES SVG --- */}
+      <svg
+        className="absolute top-0 right-0 w-80 h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 hidden md:block"
+        viewBox="0 0 200 200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M200 0L150 60L180 120L200 100" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M150 60L70 30L40 0" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M150 60L100 110L20 90" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="150" cy="60" r="3" fill="currentColor" />
+        <circle cx="180" cy="120" r="3" fill="currentColor" />
+        <circle cx="70" cy="30" r="3" fill="currentColor" />
+        <circle cx="100" cy="110" r="3" fill="currentColor" />
+        <circle cx="20" cy="90" r="3" fill="currentColor" />
+      </svg>
+
+      {/* --- FLOATING GEOMETRIC SHAPES --- */}
+      {/* Floating Hollow Ring */}
+      <motion.div
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+        className="absolute top-[18%] left-[7%] w-12 h-12 rounded-full border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10 hidden lg:block"
+      />
+
+      {/* Floating Diamond Star */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+        transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+        className="absolute bottom-20 left-[12%] w-12 h-12 pointer-events-none z-10 hidden md:block"
+      >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
+          <path
+            d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
+            fill="currentColor"
+            className="opacity-70 dark:opacity-90"
+          />
+        </svg>
+      </motion.div>
+
+      {/* --- SECTION CONTENT --- */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+        {/* Header */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
+          >
+            <Layers size={14} className="text-purple-600 dark:text-purple-300" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+              Selected Works
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
+          >
+            Featured <span className="text-purple-600 dark:text-purple-300">Projects</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
+          >
+            A curated collection of full-stack systems, backend microservices, and mobile applications engineered with clean code.
+          </motion.p>
+        </div>
+
+        {/* Projects Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
-              className="group relative bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border overflow-hidden hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl overflow-hidden hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_30px_rgba(49,17,102,0.5)] transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Gradient header */}
-              <div
-                className={`h-32 bg-gradient-to-r ${project.gradient} flex items-center justify-center`}
-              >
-                <Folder
-                  size={40}
-                  className="text-white/80 group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
+              {/* Card Top Banner / Accent */}
+              <div className="p-6 pb-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:border-purple-400 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.4)]">
+                    <Folder size={22} />
+                  </div>
 
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                  {project.highlight && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-100/90 dark:bg-white/10 text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-purple-400/40 shadow-sm">
+                      <Sparkles size={11} className="text-purple-600 dark:text-purple-300" />
+                      {project.highlight}
+                    </span>
+                  )}
+                </div>
+
+                <div className="text-xs uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                  {project.category}
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors mb-3">
                   {project.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed line-clamp-3">
+
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-6">
                   {project.description}
                 </p>
+              </div>
 
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
+              {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
+              <div className="p-6 pt-0 mt-auto">
+                {/* Tech Pills */}
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 text-xs font-medium bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-md"
+                      className="px-3 py-1 text-xs font-medium bg-purple-50 dark:bg-[#311166]/60 text-purple-800 dark:text-purple-200 border border-purple-200/80 dark:border-purple-500/30 rounded-full"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
 
-                {/* Action buttons */}
-                <div className="flex items-center gap-4 pt-3 border-t border-slate-100 dark:border-dark-border">
+                {/* Action Links */}
+                <div className="flex items-center gap-4 pt-4 border-t border-purple-100 dark:border-purple-500/20">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-purple-700 dark:text-slate-300 dark:hover:text-white transition-colors group/link"
                     >
-                      <SiGithub size={16} />
-                      Code
+                      <SiGithub size={16} className="text-purple-600 dark:text-purple-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
+                      <span>Source Code</span>
                     </a>
                   )}
+
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white transition-colors ml-auto group/link"
                     >
-                      <ExternalLink size={16} />
-                      Live Demo
+                      <span>Live Preview</span>
+                      <ArrowUpRight size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                     </a>
                   )}
                 </div>

@@ -7,10 +7,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-slate-200 dark:bg-dark-elevated text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-200"
+      className="p-1.5 rounded-full text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-300 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-colors duration-200 cursor-pointer flex items-center justify-center"
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
-      {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+      {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
     </button>
   );
 }

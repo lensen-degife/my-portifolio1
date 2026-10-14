@@ -7,17 +7,17 @@ export default function SectionHeading({ title, subtitle }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="text-center mb-12 md:mb-16"
+      className="text-center mb-12 md:mb-16 relative z-10"
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+      <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+        <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
           {subtitle}
         </p>
       )}
-      <div className="mt-4 w-20 h-1 bg-indigo-500 mx-auto rounded-full" />
+      <div className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-[#311166] mx-auto rounded-full" />
     </motion.div>
   );
 }

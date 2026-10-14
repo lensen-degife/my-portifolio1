@@ -9,39 +9,52 @@ import {
   SiMysql,
   SiGit,
   SiGithub,
+  SiPostgresql,
+  SiSpringboot,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiDocker,
+  SiTypescript,
 } from 'react-icons/si';
-import { FaJava, FaDatabase, FaServer } from 'react-icons/fa';
+import { FaJava, FaDatabase } from 'react-icons/fa';
 import SectionHeading from '../components/SectionHeading';
 
 const skillCategories = [
   {
     title: 'Languages',
     skills: [
-      { name: 'C++', icon: SiCplusplus, color: '#00599C' },
-      { name: 'Java', icon: FaJava, color: '#ED8B00' },
-      { name: 'Python', icon: SiPython, color: '#3776AB' },
-      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-      { name: 'SQL', icon: FaDatabase, color: '#336791' },
-      { name: 'HTML', icon: SiHtml5, color: '#E34F26' },
-      { name: 'CSS', icon: SiCss, color: '#1572B6' },
+      { name: 'Java', icon: FaJava, color: '#f89820' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
+      { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
+      { name: 'Python', icon: SiPython, color: '#3776ab' },
+      { name: 'C++', icon: SiCplusplus, color: '#00599c' },
+      { name: 'SQL', icon: FaDatabase, color: '#00758f' },
+      { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
+      { name: 'CSS3', icon: SiCss, color: '#1572b6' },
     ],
   },
   {
     title: 'Frameworks & Libraries',
-    skills: [{ name: 'React', icon: SiReact, color: '#61DAFB' }],
+    skills: [
+      { name: 'React', icon: SiReact, color: '#61dafb' },
+      { name: 'Spring Boot', icon: SiSpringboot, color: '#6db33f' },
+      { name: 'Node.js', icon: SiNodedotjs, color: '#68a063' },
+      { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38bdf8' },
+    ],
   },
   {
     title: 'Databases',
     skills: [
-      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
-      { name: 'MS SQL Server', icon: FaServer, color: '#CC2927' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
+      { name: 'MySQL', icon: SiMysql, color: '#00758f' },
     ],
   },
   {
-    title: 'Tools',
+    title: 'Tools & DevOps',
     skills: [
-      { name: 'Git', icon: SiGit, color: '#F05032' },
-      { name: 'GitHub', icon: SiGithub, color: '#8b949e' },
+      { name: 'Docker', icon: SiDocker, color: '#2496ed' },
+      { name: 'Git', icon: SiGit, color: '#f05032' },
+      { name: 'GitHub', icon: SiGithub, color: '#e6edf3' },
     ],
   },
 ];
@@ -63,18 +76,22 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 md:py-28 bg-slate-100/50 dark:bg-dark-surface/50"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background glow */}
+      <div className="absolute top-1/2 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-40 translate-x-1/4 pointer-events-none transition-colors duration-300" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="Skills & Technologies"
-          subtitle="Technologies I work with to bring ideas to life"
+          subtitle="A comprehensive toolkit of languages, frameworks, and modern developer technologies"
         />
 
-        <div className="space-y-10">
+        <div className="space-y-12">
           {skillCategories.map((category) => (
             <div key={category.title}>
-              <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-4">
+              <h3 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-5 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400" />
                 {category.title}
               </h3>
               <motion.div
@@ -82,20 +99,20 @@ export default function Skills() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5"
               >
                 {category.skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}
-                    className="group flex items-center gap-3 p-3.5 bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:shadow-md transition-all duration-200"
+                    className="group flex items-center gap-3.5 p-4 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-md shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.5)] transition-all duration-200 hover:-translate-y-1 cursor-default"
                   >
                     <skill.icon
-                      size={22}
+                      size={24}
                       className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
                       style={{ color: skill.color }}
                     />
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <span className="text-sm font-medium text-slate-800 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors">
                       {skill.name}
                     </span>
                   </motion.div>

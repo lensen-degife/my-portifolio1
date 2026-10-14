@@ -7,19 +7,15 @@ import simplilearnCert from '../assets/simplilearnCertificate.pdf';
 const achievements = [
   {
     icon: Trophy,
-    title: '100+ LeetCode Problems',
+    title: '100+ LeetCode Problems Solved',
     description:
-      'Successfully solved over 100 coding challenges on LeetCode, strengthening problem-solving skills across data structures and algorithms.',
-    color: 'text-amber-500',
-    bg: 'bg-amber-50 dark:bg-amber-500/10',
+      'Consistently solving algorithms and data structures challenges on LeetCode, advancing algorithmic thinking and computational problem-solving.',
   },
   {
     icon: GitBranch,
     title: 'Open Source Contributor',
     description:
-      'Actively contributed to open-source projects on GitHub, collaborating with developers worldwide and gaining real-world development experience.',
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50 dark:bg-emerald-500/10',
+      'Active contributions across open-source repositories and collaborative GitHub projects, demonstrating modular code practices and version control.',
   },
 ];
 
@@ -35,40 +31,46 @@ const certificates = [
     file: simplilearnCert,
   },
   {
-    title: 'SQL Certificate',
-    issuer: 'Online Platform',
+    title: 'SQL & Database Design',
+    issuer: 'Online Certification',
     file: simplilearnCert,
   },
 ];
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-20 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="achievements"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
+    >
+      {/* Background glow */}
+      <div className="absolute top-1/3 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-40 translate-x-1/4 pointer-events-none transition-colors duration-300" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
-          title="Achievements & Certificates"
-          subtitle="Milestones and recognitions along my journey"
+          title="Achievements & Certifications"
+          subtitle="Key milestones and recognitions earned through continuous technical pursuit"
         />
 
-        {/* Achievements */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        {/* Achievements Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-14">
           {achievements.map((item, index) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="flex gap-4 p-6 bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-colors duration-200"
+              className="flex gap-5 p-6 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.4)] transition-all duration-300 hover:-translate-y-1"
             >
-              <div className={`p-3 ${item.bg} rounded-lg h-fit flex-shrink-0`}>
-                <item.icon size={24} className={item.color} />
+              <div className="p-3.5 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl h-fit flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                <item.icon size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
                   {item.description}
                 </p>
               </div>
@@ -76,18 +78,19 @@ export default function Achievements() {
           ))}
         </div>
 
-        {/* Certificates */}
+        {/* Certificates Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-            <Award size={22} className="text-indigo-500" />
-            Certificates
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+            <Award size={22} className="text-purple-600 dark:text-purple-400" />
+            <span>Verified Certifications</span>
           </h3>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.title}
@@ -95,14 +98,14 @@ export default function Achievements() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group p-4 bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-colors duration-200"
+                className="group p-5 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 hover:-translate-y-1"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4 className="font-medium text-slate-900 dark:text-white text-sm">
+                    <h4 className="font-semibold text-slate-900 dark:text-white text-base group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors">
                       {cert.title}
                     </h4>
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-purple-700/80 dark:text-purple-300/80 mt-1">
                       Issued by {cert.issuer}
                     </p>
                   </div>
@@ -111,10 +114,10 @@ export default function Achievements() {
                       href={cert.file}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-indigo-500 transition-colors p-1"
+                      className="text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white bg-purple-50 hover:bg-purple-100 dark:bg-white/5 dark:hover:bg-[#311166] p-2 rounded-lg border border-purple-200 dark:border-purple-500/20 transition-all duration-200 shadow-sm"
                       title="View certificate"
                     >
-                      <ExternalLink size={16} />
+                      <ExternalLink size={15} />
                     </a>
                   )}
                 </div>

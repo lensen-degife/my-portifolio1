@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Calendar } from 'lucide-react';
+import { GraduationCap, Calendar, Sparkles } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 
 const timelineItems = [
   {
     title: 'B.Sc. in Computer Science',
     organization: 'Addis Ababa University',
-    period: '2024 — Present',
+    period: '2022 — Present (3rd Year)',
     description:
-      'Studying core computer science fundamentals including data structures, algorithms, software engineering, databases, and systems programming. Actively participating in coding competitions and collaborative projects.',
+      'Pursuing an in-depth computer science curriculum covering data structures, algorithms, operating systems, database management, software engineering, and web systems development.',
     icon: GraduationCap,
   },
 ];
@@ -17,50 +17,53 @@ export default function Timeline() {
   return (
     <section
       id="timeline"
-      className="py-20 md:py-28 bg-slate-100/50 dark:bg-dark-surface/50"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[120px] opacity-60 dark:opacity-35 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
-          title="Education"
-          subtitle="My academic journey and learning path"
+          title="Education & Journey"
+          subtitle="Academic milestones shaping my engineering fundamentals"
         />
 
-        <div className="max-w-3xl mx-auto">
+        <div className="relative">
           {timelineItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative pl-10 pb-10 last:pb-0"
+              className="relative pl-10 sm:pl-12 pb-10 last:pb-0"
             >
-              {/* Timeline line */}
-              {index < timelineItems.length - 1 && (
-                <div className="absolute left-[15px] top-10 bottom-0 w-px bg-slate-200 dark:bg-dark-border" />
-              )}
-
               {/* Timeline dot */}
-              <div className="absolute left-0 top-1 w-8 h-8 bg-indigo-100 dark:bg-indigo-500/10 rounded-full flex items-center justify-center border-2 border-indigo-500">
+              <div className="absolute left-0 top-1 w-9 h-9 bg-purple-600 dark:bg-[#311166] rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-[0_0_15px_rgba(49,17,102,0.8)]">
                 <item.icon
-                  size={14}
-                  className="text-indigo-600 dark:text-indigo-400"
+                  size={16}
+                  className="text-white"
                 />
               </div>
 
               {/* Content card */}
-              <div className="bg-white dark:bg-dark-surface rounded-xl border border-slate-200 dark:border-dark-border p-6">
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-indigo-600 dark:text-indigo-400 font-medium text-sm mb-2">
+              <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-6 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 text-xs font-medium text-purple-700 dark:text-purple-300">
+                    <Calendar size={13} />
+                    {item.period}
+                  </div>
+                </div>
+
+                <p className="text-purple-700 dark:text-purple-300 font-medium text-base mb-3 flex items-center gap-2">
+                  <Sparkles size={16} className="text-purple-600 dark:text-purple-400" />
                   {item.organization}
                 </p>
-                <div className="flex items-center gap-1.5 text-sm text-slate-500 mb-3">
-                  <Calendar size={14} />
-                  {item.period}
-                </div>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+
+                <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-light">
                   {item.description}
                 </p>
               </div>
