@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans pt-28 pb-16 lg:py-0 transition-colors duration-300"
+      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans pt-28 pb-16 lg:pt-28 lg:pb-16 transition-colors duration-300"
     >
       {/* --- BACKGROUND DECORATIONS --- */}
       
@@ -70,7 +70,7 @@ export default function Hero() {
       <motion.div 
         animate={{ y: [-10, 10, -10] }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        className="absolute top-[18%] left-[10%] md:left-[35%] w-10 h-10 md:w-14 md:h-14 rounded-full border-[6px] md:border-[8px] border-purple-500/40 dark:border-white/90 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
+        className="absolute top-[18%] left-[6%] md:left-[10%] lg:left-[6%] w-10 h-10 md:w-14 md:h-14 rounded-full border-[6px] md:border-[8px] border-purple-500/40 dark:border-white/90 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
       />
 
       {/* Floating Diamond Star */}
@@ -88,20 +88,20 @@ export default function Hero() {
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8 z-20 w-full">
         
-        {/* Left Column: Portrait Image */}
+        {/* Left Column: Portrait Sticker Image */}
         <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full lg:w-1/2 h-[420px] sm:h-[520px] lg:h-[680px] flex justify-center lg:justify-start items-end relative"
+          className="w-full lg:w-1/2 flex justify-center items-end relative isolate min-h-[400px] sm:min-h-[500px] lg:min-h-[620px]"
         >
-          {/* Deep purple circle directly behind the person */}
-          <div className="absolute bottom-0 w-64 h-64 sm:w-80 sm:h-80 lg:w-[480px] lg:h-[480px] bg-purple-300/40 dark:bg-[#3a1078] rounded-full blur-3xl opacity-70 dark:opacity-60 -z-10 translate-y-1/4 transition-colors duration-300" />
+          {/* Deep purple ambient glow circle directly behind the sticker */}
+          <div className="absolute bottom-6 w-64 h-64 sm:w-80 sm:h-80 lg:w-[460px] lg:h-[460px] bg-purple-300/40 dark:bg-[#3a1078] rounded-full blur-3xl opacity-75 dark:opacity-60 -z-10 transition-colors duration-300 pointer-events-none" />
           
           <img 
             src={profileImage} 
             alt="Lensen Degife" 
-            className="w-[85%] max-w-[460px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_0_40px_rgba(0,0,0,0.6)] z-10 relative"
+            className="w-auto h-auto max-h-[400px] sm:max-h-[500px] lg:max-h-[620px] xl:max-h-[660px] max-w-[90%] sm:max-w-[420px] lg:max-w-[480px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.18)] dark:drop-shadow-[0_0_45px_rgba(147,51,234,0.45)] z-10 relative select-none"
           />
         </motion.div>
 
