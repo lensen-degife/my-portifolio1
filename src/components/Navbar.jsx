@@ -28,6 +28,25 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -140,7 +159,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden border-b border-purple-100 dark:border-purple-500/20 bg-white/95 dark:bg-[#070214]/95 backdrop-blur-xl px-4 pt-3 pb-6 shadow-2xl overflow-hidden"
+            className="md:hidden border-b border-purple-100 dark:border-purple-500/20 bg-white/95 dark:bg-[#070214]/95 backdrop-blur-xl px-4 pt-3 pb-6 shadow-2xl max-h-[calc(100dvh-4.5rem)] overflow-y-auto"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => {

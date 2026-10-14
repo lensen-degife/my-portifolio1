@@ -168,7 +168,7 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           {statItems.map((item, index) => {
             const Icon = item.icon;
@@ -179,13 +179,15 @@ export default function GitHub() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="p-5 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200"
+                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 ${
+                  index === 4 ? 'col-span-2 sm:col-span-1' : ''
+                }`}
               >
-                <div className="inline-flex p-3 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl mb-3 text-purple-700 dark:text-purple-300 shadow-sm">
-                  <Icon size={20} />
+                <div className="inline-flex p-2.5 sm:p-3 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl mb-2 sm:mb-3 text-purple-700 dark:text-purple-300 shadow-sm">
+                  <Icon size={18} />
                 </div>
 
-                <p className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {loading ? (
                     <span className="inline-block w-10 h-7 bg-purple-100 dark:bg-white/10 rounded animate-pulse" />
                   ) : (
@@ -196,7 +198,7 @@ export default function GitHub() {
                 <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 mt-1 leading-tight">
                   {item.label}
                 </p>
-                <p className="text-[11px] text-purple-600/80 dark:text-purple-300/70 font-light mt-0.5">
+                <p className="text-[10px] sm:text-[11px] text-purple-600/80 dark:text-purple-300/70 font-light mt-0.5">
                   {item.sublabel}
                 </p>
               </motion.div>
@@ -210,34 +212,34 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
           viewport={{ once: true }}
-          className="p-6 sm:p-8 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
+          className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-purple-100 dark:border-purple-500/20">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-purple-100 dark:border-purple-500/20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300">
-                <SiGithub size={20} />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 flex-shrink-0">
+                <SiGithub size={18} />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
                   @{GITHUB_USERNAME}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-light">Contributions on GitHub</p>
+                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-light">Contributions on GitHub</p>
               </div>
             </div>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/5 dark:hover:bg-[#311166] dark:border-purple-500/30 text-xs sm:text-sm font-medium dark:text-purple-300 dark:hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/5 dark:hover:bg-[#311166] dark:border-purple-500/30 text-xs sm:text-sm font-medium dark:text-purple-300 dark:hover:text-white transition-all duration-200"
             >
               <span>View Profile</span>
               <span>→</span>
             </a>
           </div>
 
-          {/* Calendar */}
-          <div className="overflow-x-auto pb-2 -mx-2 px-2 flex justify-center">
+          {/* Calendar - lg:flex lg:justify-center fixes mobile left-clipping overflow */}
+          <div className="overflow-x-auto pb-3 -mx-2 px-2 lg:flex lg:justify-center">
             <div className="min-w-[680px] text-slate-800 dark:text-white">
               <GitHubCalendar
                 username={GITHUB_USERNAME}
@@ -249,6 +251,9 @@ export default function GitHub() {
               />
             </div>
           </div>
+          <p className="text-[11px] text-purple-600/70 dark:text-purple-300/60 text-center mt-2.5 block lg:hidden font-light">
+            ← Scroll horizontally to explore full year activity →
+          </p>
         </motion.div>
       </div>
     </section>

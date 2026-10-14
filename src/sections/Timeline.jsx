@@ -6,7 +6,7 @@ const timelineItems = [
   {
     title: 'B.Sc. in Computer Science',
     organization: 'Addis Ababa University',
-    period: '2022 — Present (3rd Year)',
+    period: '2024 — Present (3rd Year)',
     description:
       'Pursuing an in-depth computer science curriculum covering data structures, algorithms, operating systems, database management, software engineering, and web systems development.',
     icon: GraduationCap,
@@ -36,34 +36,34 @@ export default function Timeline() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative pl-10 sm:pl-12 pb-10 last:pb-0"
+              className="relative pl-9 sm:pl-12 pb-8 sm:pb-10 last:pb-0"
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 top-1 w-9 h-9 bg-purple-600 dark:bg-[#311166] rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-[0_0_15px_rgba(49,17,102,0.8)]">
+              <div className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-purple-600 dark:bg-[#311166] rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-[0_0_15px_rgba(49,17,102,0.8)]">
                 <item.icon
-                  size={16}
+                  size={15}
                   className="text-white"
                 />
               </div>
 
               {/* Content card */}
-              <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-6 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300">
+              <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-4 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                     {item.title}
                   </h3>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 text-xs font-medium text-purple-700 dark:text-purple-300">
-                    <Calendar size={13} />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-purple-50 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 text-[11px] sm:text-xs font-medium text-purple-700 dark:text-purple-300">
+                    <Calendar size={12} />
                     {item.period}
                   </div>
                 </div>
 
-                <p className="text-purple-700 dark:text-purple-300 font-medium text-base mb-3 flex items-center gap-2">
-                  <Sparkles size={16} className="text-purple-600 dark:text-purple-400" />
-                  {item.organization}
+                <p className="text-purple-700 dark:text-purple-300 font-medium text-sm sm:text-base mb-2.5 sm:mb-3 flex items-center gap-2">
+                  <Sparkles size={15} className="text-purple-600 dark:text-purple-400 flex-shrink-0" />
+                  <span>{item.organization}</span>
                 </p>
 
-                <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-base leading-relaxed font-light">
                   {item.description}
                 </p>
               </div>

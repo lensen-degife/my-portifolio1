@@ -148,9 +148,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-3xl p-6 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20"
+            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20"
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
                 <label
                   htmlFor="name"
@@ -165,7 +165,7 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="e.g. Alex Johnson"
+                  placeholder="e.g. Alex Yonas"
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
@@ -184,7 +184,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="alex@domain.com"
+                  placeholder="alex@gmail.com"
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
@@ -256,39 +256,39 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col space-y-6"
+            className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >
             {/* Direct Info Card */}
-            <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-3xl p-6 sm:p-8 shadow-xl shadow-purple-500/5">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2.5">
-                <Sparkles size={20} className="text-purple-600 dark:text-purple-300" />
+            <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
+                <Sparkles size={18} className="text-purple-600 dark:text-purple-300" />
                 Contact Details
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-3.5 sm:space-y-4">
                 {contactInfo.map((info) => {
                   const Icon = info.icon;
                   return (
                     <div
                       key={info.label}
-                      className="flex items-center gap-4 p-4 rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/70 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-all duration-200"
+                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/70 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-all duration-200"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
-                        <Icon size={20} />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                        <Icon size={18} />
                       </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
                           {info.label}
                         </p>
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-sm sm:text-base font-medium text-slate-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                            className="text-xs sm:text-base font-medium text-slate-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors break-all sm:break-normal block"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-sm sm:text-base font-medium text-slate-900 dark:text-white">
+                          <p className="text-xs sm:text-base font-medium text-slate-900 dark:text-white break-words">
                             {info.value}
                           </p>
                         )}
@@ -299,11 +299,11 @@ export default function Contact() {
               </div>
 
               {/* Social Channels (Pill UI Buttons) */}
-              <div className="mt-8 pt-6 border-t border-purple-100 dark:border-purple-500/20">
-                <p className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-4">
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-purple-100 dark:border-purple-500/20">
+                <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-3 sm:mb-4">
                   Connect on Social Media
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {socialLinks.map((link) => {
                     const Icon = link.icon;
                     return (
@@ -312,10 +312,10 @@ export default function Contact() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-purple-50 dark:bg-white/5 hover:bg-purple-100 dark:hover:bg-[#311166] border border-purple-200 dark:border-purple-500/30 hover:border-purple-300 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-white text-sm font-medium transition-all duration-200 shadow-sm dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)] hover:-translate-y-0.5"
+                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-purple-50 dark:bg-white/5 hover:bg-purple-100 dark:hover:bg-[#311166] border border-purple-200 dark:border-purple-500/30 hover:border-purple-300 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-white text-xs sm:text-sm font-medium transition-all duration-200 shadow-sm dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)] hover:-translate-y-0.5"
                         aria-label={link.label}
                       >
-                        <Icon size={16} className="text-purple-600 dark:text-purple-300" />
+                        <Icon size={15} className="text-purple-600 dark:text-purple-300 flex-shrink-0" />
                         <span>{link.label}</span>
                       </a>
                     );
@@ -325,11 +325,11 @@ export default function Contact() {
             </div>
 
             {/* Collaboration Callout */}
-            <div className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#290a59]/80 dark:to-[#1d0642]/80 dark:border-purple-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl">
-              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+            <div className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#290a59]/80 dark:to-[#1d0642]/80 dark:border-purple-500/30 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl">
+              <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
                 Open to Opportunities
               </h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
                 Whether you have an internship opportunity, freelance project, full-stack opening, or open-source collaboration in mind, I&apos;m always glad to talk!
               </p>
             </div>

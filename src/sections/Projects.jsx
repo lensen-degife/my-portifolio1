@@ -184,41 +184,41 @@ export default function Projects() {
               className="group relative bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl overflow-hidden hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_30px_rgba(49,17,102,0.5)] transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Top Banner / Accent */}
-              <div className="p-6 pb-4">
+              <div className="p-5 sm:p-6 pb-3 sm:pb-4">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:border-purple-400 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.4)]">
-                    <Folder size={22} />
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:border-purple-400 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.4)]">
+                    <Folder size={20} />
                   </div>
 
                   {project.highlight && (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-100/90 dark:bg-white/10 text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-purple-400/40 shadow-sm">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-purple-100/90 dark:bg-white/10 text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-purple-400/40 shadow-sm">
                       <Sparkles size={11} className="text-purple-600 dark:text-purple-300" />
                       {project.highlight}
                     </span>
                   )}
                 </div>
 
-                <div className="text-xs uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400 mb-1">
                   {project.category}
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors mb-2.5 sm:mb-3">
                   {project.title}
                 </h3>
 
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-6">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-4 sm:mb-6">
                   {project.description}
                 </p>
               </div>
 
               {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
-              <div className="p-6 pt-0 mt-auto">
+              <div className="p-5 sm:p-6 pt-0 mt-auto">
                 {/* Tech Pills */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 text-xs font-medium bg-purple-50 dark:bg-[#311166]/60 text-purple-800 dark:text-purple-200 border border-purple-200/80 dark:border-purple-500/30 rounded-full"
+                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-purple-50 dark:bg-[#311166]/60 text-purple-800 dark:text-purple-200 border border-purple-200/80 dark:border-purple-500/30 rounded-full"
                     >
                       {t}
                     </span>
@@ -226,15 +226,15 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex items-center gap-4 pt-4 border-t border-purple-100 dark:border-purple-500/20">
+                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-purple-100 dark:border-purple-500/20">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-purple-700 dark:text-slate-300 dark:hover:text-white transition-colors group/link"
+                      className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-600 hover:text-purple-700 dark:text-slate-300 dark:hover:text-white transition-colors group/link"
                     >
-                      <SiGithub size={16} className="text-purple-600 dark:text-purple-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
+                      <SiGithub size={15} className="text-purple-600 dark:text-purple-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
                       <span>Source Code</span>
                     </a>
                   )}
@@ -244,10 +244,10 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white transition-colors ml-auto group/link"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white transition-colors ml-auto group/link"
                     >
                       <span>Live Preview</span>
-                      <ArrowUpRight size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                      <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                     </a>
                   )}
                 </div>

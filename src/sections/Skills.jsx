@@ -15,6 +15,8 @@ import {
   SiTailwindcss,
   SiDocker,
   SiTypescript,
+  SiExpo,
+  SiFigma,
 } from 'react-icons/si';
 import { FaJava, FaDatabase } from 'react-icons/fa';
 import SectionHeading from '../components/SectionHeading';
@@ -47,6 +49,8 @@ const skillCategories = [
     skills: [
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
       { name: 'MySQL', icon: SiMysql, color: '#00758f' },
+      { name: 'MongoDB', icon: FaDatabase, color: '#47a248' },
+      { name: 'SQLite', icon: FaDatabase, color: '#003b57' }
     ],
   },
   {
@@ -55,6 +59,8 @@ const skillCategories = [
       { name: 'Docker', icon: SiDocker, color: '#2496ed' },
       { name: 'Git', icon: SiGit, color: '#f05032' },
       { name: 'GitHub', icon: SiGithub, color: '#e6edf3' },
+      { name: 'Expo', icon: SiExpo, color: '#316ca7' },
+      { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
     ],
   },
 ];
@@ -99,20 +105,20 @@ export default function Skills() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3.5"
               >
                 {category.skills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}
-                    className="group flex items-center gap-3.5 p-4 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-md shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.5)] transition-all duration-200 hover:-translate-y-1 cursor-default"
+                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-xl sm:rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-md shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.5)] transition-all duration-200 hover:-translate-y-1 cursor-default"
                   >
                     <skill.icon
-                      size={24}
+                      size={22}
                       className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
                       style={{ color: skill.color }}
                     />
-                    <span className="text-sm font-medium text-slate-800 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors">
+                    <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors leading-snug">
                       {skill.name}
                     </span>
                   </motion.div>
