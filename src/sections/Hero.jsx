@@ -7,7 +7,7 @@ import Typed from 'typed.js';
 
 // Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
-import profileImage from '../assets/image.png';
+import profileImage from '../assets/img3.png';
 
 export default function Hero() {
   const typedRef = useRef(null);
@@ -95,9 +95,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="w-full lg:w-1/2 flex justify-center items-end relative isolate min-h-[400px] sm:min-h-[500px] lg:min-h-[620px]"
         >
-          {/* Deep purple ambient glow circle directly behind the sticker */}
-          <div className="absolute bottom-6 w-64 h-64 sm:w-80 sm:h-80 lg:w-[460px] lg:h-[460px] bg-purple-300/40 dark:bg-[#3a1078] rounded-full blur-3xl opacity-75 dark:opacity-60 -z-10 transition-colors duration-300 pointer-events-none" />
-          
+         
           <img 
             src={profileImage} 
             alt="Lensen Degife" 
