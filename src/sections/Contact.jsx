@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 
@@ -208,20 +208,40 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Submit Button */}
+              {/* Submit Button & Direct Contact Line */}
               <div className="pt-2">
-                <div className="w-full bg-purple-50/80 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 rounded-full p-2 flex flex-col sm:flex-row items-center justify-between shadow-sm dark:shadow-2xl transition-all duration-200 hover:shadow-md dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                <div className="w-full sm:bg-purple-50/80 sm:dark:bg-white/5 sm:border sm:border-purple-200 sm:dark:border-purple-500/30 sm:rounded-full sm:p-1.5 flex flex-col sm:flex-row items-center justify-between sm:shadow-sm sm:dark:shadow-2xl transition-all duration-200 sm:hover:shadow-md sm:dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white px-8 py-3.5 rounded-full font-semibold text-[15px] flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-50"
+                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white px-7 py-3.5 rounded-xl sm:rounded-full font-semibold text-sm sm:text-[15px] flex items-center justify-center gap-2.5 shadow-lg shadow-purple-600/25 dark:shadow-[0_0_20px_rgba(49,17,102,0.6)] hover:shadow-purple-600/35 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.8)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
                   >
-                    <Send size={18} />
-                    <span>{status === 'sending' ? 'Sending Message...' : 'Send Message'}</span>
+                    {status === 'sending' ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin text-white" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 text-purple-200 dark:text-purple-300" />
+                      </>
+                    )}
                   </button>
-                  <span className="text-purple-900 dark:text-slate-200 font-medium text-sm sm:text-[15px] sm:pr-6 truncate pt-2 sm:pt-0">
+                  <span className="hidden sm:inline-block text-purple-900 dark:text-slate-200 font-medium text-sm sm:text-[15px] sm:pr-6 truncate">
                     lensendegife@gmail.com
                   </span>
+                </div>
+
+                {/* Mobile direct email link */}
+                <div className="flex sm:hidden items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-2.5">
+                  <span>Direct email:</span>
+                  <a
+                    href="mailto:lensendegife@gmail.com"
+                    className="text-purple-600 dark:text-purple-400 font-medium hover:underline"
+                  >
+                    lensendegife@gmail.com
+                  </a>
                 </div>
               </div>
 
