@@ -181,7 +181,7 @@ export default function Projects() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              className="group relative bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl overflow-hidden hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_30px_rgba(49,17,102,0.5)] transition-all duration-300 flex flex-col justify-between"
+              className="group relative bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl overflow-hidden hover:-translate-y-2 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_30px_rgba(49,17,102,0.5)] transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Top Banner / Accent */}
               <div className="p-5 sm:p-6 pb-3 sm:pb-4">

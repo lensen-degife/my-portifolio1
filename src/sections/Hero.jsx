@@ -98,7 +98,7 @@ export default function Hero() {
           <img 
             src={profileImage} 
             alt="Lensen Degife" 
-            className="w-auto h-auto max-h-[320px] sm:max-h-[460px] lg:max-h-[620px] xl:max-h-[660px] max-w-[85%] sm:max-w-[420px] lg:max-w-[480px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.18)] dark:drop-shadow-[0_0_45px_rgba(147,51,234,0.45)] z-10 relative select-none"
+            className="w-auto h-auto max-h-[320px] sm:max-h-[460px] lg:max-h-[620px] xl:max-h-[660px] max-w-[85%] sm:max-w-[420px] lg:max-w-[480px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.18)] dark:drop-shadow-[0_0_45px_rgba(147,51,234,0.2)] z-10 relative select-none"
           />
         </motion.div>
 
