@@ -179,7 +179,7 @@ export default function GitHub() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 ${
+                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 ${
                   index === 4 ? 'col-span-2 sm:col-span-1' : ''
                 }`}
               >
@@ -212,12 +212,12 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
           viewport={{ once: true }}
-          className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
+          className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
         >
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-purple-100 dark:border-purple-500/20">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 flex-shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 flex-shrink-0">
                 <SiGithub size={18} />
               </div>
               <div>

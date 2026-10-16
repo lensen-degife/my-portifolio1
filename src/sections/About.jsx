@@ -110,7 +110,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7 flex flex-col space-y-6"
           >
-            <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/80 dark:bg-[#1d0642]/20 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-purple-950/20">
+            <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-purple-950/20">
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2.5 sm:gap-3">
                 <Terminal size={22} className="text-purple-600 dark:text-purple-400 flex-shrink-0" />
                 Engineering with Purpose
@@ -152,7 +152,7 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * index }}
                   whileHover={{ y: -4 }}
-                  className="p-4 sm:p-6 rounded-2xl bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/60 shadow-lg shadow-purple-500/5 dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.4)] transition-all duration-300 flex items-center gap-3.5 sm:gap-5 group"
+                  className="p-4 sm:p-6 rounded-2xl bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/60 shadow-lg shadow-purple-500/5 dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.4)] transition-all duration-300 flex items-center gap-3.5 sm:gap-5 group"
                 >
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-purple-400 transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.3)]">
                     <Icon size={24} className="text-purple-600 dark:text-purple-300" />

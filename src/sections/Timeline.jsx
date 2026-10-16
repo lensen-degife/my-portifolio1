@@ -47,7 +47,7 @@ export default function Timeline() {
               </div>
 
               {/* Content card */}
-              <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-4 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300">
+              <div className="bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-4 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                     {item.title}

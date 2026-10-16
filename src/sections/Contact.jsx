@@ -148,7 +148,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20"
+            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20"
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
@@ -279,7 +279,7 @@ export default function Contact() {
             className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >
             {/* Direct Info Card */}
-            <div className="bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
+            <div className="bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
                 <Sparkles size={18} className="text-purple-600 dark:text-purple-300" />
                 Contact Details
@@ -293,7 +293,7 @@ export default function Contact() {
                       key={info.label}
                       className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/70 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-all duration-200"
                     >
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/70 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
                         <Icon size={18} />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -345,7 +345,7 @@ export default function Contact() {
             </div>
 
             {/* Collaboration Callout */}
-            <div className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#290a59]/80 dark:to-[#1d0642]/80 dark:border-purple-500/30 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl">
+            <div className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#1d0642]/20 dark:to-[#070214]/60 dark:border-purple-500/30 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl">
               <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
                 Open to Opportunities
               </h4>

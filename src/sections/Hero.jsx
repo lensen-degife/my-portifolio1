@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans pt-28 pb-16 lg:pt-28 lg:pb-16 transition-colors duration-300"
+      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 transition-colors duration-300"
     >
       {/* --- BACKGROUND DECORATIONS --- */}
       
@@ -139,8 +139,8 @@ export default function Hero() {
           </p>
           
           {/* Engineering Scope & Status Bar (Light/Dark Glassmorphic) */}
-          <div className="w-full max-w-xl p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md border border-purple-200/80 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shadow-lg shadow-purple-500/5 dark:shadow-purple-950/20 mb-6 sm:mb-8">
-            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-100/90 dark:bg-[#311166]/80 border border-purple-200 dark:border-purple-500/30 text-purple-900 dark:text-white text-xs sm:text-sm font-semibold shadow-sm">
+          <div className="w-full max-w-xl p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-200/80 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shadow-lg shadow-purple-500/5 dark:shadow-purple-950/20 mb-6 sm:mb-8">
+            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-100/90 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 text-purple-900 dark:text-white text-xs sm:text-sm font-semibold shadow-sm">
               <Code2 size={14} className="text-purple-600 dark:text-purple-300" />
               <span>Full-Stack & Systems Developer</span>
             </div>

@@ -111,7 +111,7 @@ export default function Skills() {
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}
-                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-white/80 dark:bg-[#1d0642]/30 backdrop-blur-md rounded-xl sm:rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-md shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.5)] transition-all duration-200 hover:-translate-y-1 cursor-default"
+                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-xl sm:rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-md shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.5)] transition-all duration-200 hover:-translate-y-1 cursor-default"
                   >
                     <skill.icon
                       size={22}
