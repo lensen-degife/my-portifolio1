@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
 
@@ -18,12 +18,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -55,7 +56,7 @@ export default function Navbar() {
           }
         });
       },
-      { rootMargin: '-20% 0px -70% 0px' }
+      { rootMargin: '-20% 0px -65% 0px' }
     );
 
     const sections = document.querySelectorAll('section[id]');
@@ -71,12 +72,22 @@ export default function Navbar() {
     setIsOpen(false);
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 80; // Accounting for floating pill height and comfortable padding
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, targetPosition),
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <motion.header
+      initial={shouldReduceMotion ? false : { y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+    >
       <div className="w-full px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
         <div className="flex items-center justify-end md:justify-center">
           {/* Desktop Floating Pill Navbar: Sized to components with glassmorphism */}
@@ -96,13 +107,24 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all duration-200 ${
+                    className={`relative px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-colors duration-200 ${
                       isActive
-                        ? 'text-purple-700 dark:text-purple-300 bg-purple-100/80 dark:bg-white/15 border border-purple-200/80 dark:border-white/20 shadow-xs dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] font-semibold'
-                        : 'text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10'
+                        ? 'text-purple-700 dark:text-purple-300 font-semibold'
+                        : 'text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-white'
                     }`}
                   >
-                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNavPill"
+                        className="absolute inset-0 rounded-full bg-purple-100/90 dark:bg-white/15 border border-purple-200/80 dark:border-white/20 shadow-xs dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]"
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0 }
+                            : { type: 'spring', stiffness: 380, damping: 30 }
+                        }
+                      />
+                    )}
+                    <span className="relative z-10">{link.name}</span>
                   </a>
                 );
               })}
@@ -110,14 +132,16 @@ export default function Navbar() {
 
             {/* Resume Button + Theme Toggle inside floating pill */}
             <div className="flex items-center gap-2 pl-1.5 border-l border-slate-200/60 dark:border-white/10">
-              <a
+              <motion.a
                 href={resumePdf}
                 download
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white text-xs lg:text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-sm shadow-purple-600/20 dark:shadow-none hover:shadow-purple-600/30 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.4)] transition-all duration-200"
               >
                 <Download size={14} className="text-white dark:text-purple-300" />
                 <span>Resume</span>
-              </a>
+              </motion.a>
               <ThemeToggle />
             </div>
           </div>
@@ -140,19 +164,22 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden pointer-events-auto mx-4 mt-2 border border-white/60 dark:border-white/10 bg-white/80 dark:bg-[#070214]/80 backdrop-blur-2xl backdrop-saturate-150 px-4 pt-3 pb-6 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_12px_40px_rgba(0,0,0,0.25)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
           >
             <div className="flex flex-col gap-2">
-              {navLinks.map((link) => {
+              {navLinks.map((link, index) => {
                 const isActive = activeSection === link.href.slice(1);
                 return (
-                  <a
+                  <motion.a
                     key={link.name}
                     href={link.href}
+                    initial={shouldReduceMotion ? false : { opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.2 }}
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
@@ -161,7 +188,7 @@ export default function Navbar() {
                     }`}
                   >
                     {link.name}
-                  </a>
+                  </motion.a>
                 );
               })}
 
@@ -180,6 +207,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
+

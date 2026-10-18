@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
 import { SiGithub } from 'react-icons/si';
 import { Flame, Trophy, Star, Activity, GitFork } from 'lucide-react';
@@ -144,6 +144,7 @@ const statItems = [
 export default function GitHub() {
   const { stats, loading } = useGitHubData(GITHUB_USERNAME);
   const { theme } = useTheme();
+  const shouldReduceMotion = useReducedMotion();
 
   // Contribution graph theme
   const calendarTheme = {
@@ -151,10 +152,38 @@ export default function GitHub() {
     light: ['#f3e8ff', '#9333ea'],
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const statItemVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20, scale: 0.96 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section id="github" className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] opacity-60 dark:opacity-35 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      {/* Background glow with breathing animation */}
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? false
+            : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
+        }
+        transition={{ repeat: Infinity, duration: 8.5, ease: 'easeInOut' }}
+        className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
+      />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
@@ -162,12 +191,12 @@ export default function GitHub() {
           subtitle="My open-source track record, consistency, and repository milestones"
         />
 
-        {/* Stats Grid */}
+        {/* Stats Grid with Sequential Stagger */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           {statItems.map((item, index) => {
@@ -175,11 +204,14 @@ export default function GitHub() {
             return (
               <motion.div
                 key={item.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 ${
+                variants={statItemVariants}
+                whileHover={
+                  shouldReduceMotion
+                    ? false
+                    : { y: -3, scale: 1.02 }
+                }
+                transition={{ duration: 0.2 }}
+                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 cursor-default ${
                   index === 4 ? 'col-span-2 sm:col-span-1' : ''
                 }`}
               >
@@ -208,10 +240,10 @@ export default function GitHub() {
 
         {/* Contribution Calendar Container */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          viewport={{ once: true }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.99 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.15 }}
           className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
         >
           {/* Header */}
@@ -227,15 +259,17 @@ export default function GitHub() {
                 <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-light">Contributions on GitHub</p>
               </div>
             </div>
-            <a
+            <motion.a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/5 dark:hover:bg-[#311166] dark:border-purple-500/30 text-xs sm:text-sm font-medium dark:text-purple-300 dark:hover:text-white transition-all duration-200"
             >
               <span>View Profile</span>
               <span>→</span>
-            </a>
+            </motion.a>
           </div>
 
           {/* Calendar - lg:flex lg:justify-center fixes mobile left-clipping overflow */}

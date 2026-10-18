@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Trophy, GitBranch, Award, ExternalLink } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import udacityCert from '../assets/udacity.certificate.pdf';
@@ -38,13 +38,43 @@ const certificates = [
 ];
 
 export default function Achievements() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section
       id="achievements"
       className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      {/* Background glow */}
-      <div className="absolute top-1/3 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-40 translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      {/* Background glow with subtle breathing */}
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? false
+            : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
+        }
+        transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
+        className="absolute top-1/3 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
+      />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
@@ -53,15 +83,20 @@ export default function Achievements() {
         />
 
         {/* Achievements Grid */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14">
-          {achievements.map((item, index) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14"
+        >
+          {achievements.map((item) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.4)] transition-all duration-300 hover:-translate-y-1"
+              variants={itemVariants}
+              whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
+              transition={{ duration: 0.2 }}
+              className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.4)] transition-all duration-300 cursor-default"
             >
               <div className="p-2.5 sm:p-3.5 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl h-fit flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
                 <item.icon size={22} />
@@ -76,29 +111,34 @@ export default function Achievements() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Certificates Grid */}
+        {/* Certificates Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
             <Award size={20} className="text-purple-600 dark:text-purple-400" />
             <span>Verified Certifications</span>
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5">
-            {certificates.map((cert, index) => (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5"
+          >
+            {certificates.map((cert) => (
               <motion.div
                 key={cert.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group p-4 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 hover:-translate-y-1"
+                variants={itemVariants}
+                whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
+                transition={{ duration: 0.2 }}
+                className="group p-4 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
@@ -110,20 +150,22 @@ export default function Achievements() {
                     </p>
                   </div>
                   {cert.file && (
-                    <a
+                    <motion.a
                       href={cert.file}
                       target="_blank"
                       rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
                       className="text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white bg-purple-50 hover:bg-purple-100 dark:bg-white/5 dark:hover:bg-[#311166] p-2 rounded-lg border border-purple-200 dark:border-purple-500/20 transition-all duration-200 shadow-sm flex-shrink-0"
                       title="View certificate"
                     >
                       <ExternalLink size={14} />
-                    </a>
+                    </motion.a>
                   )}
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

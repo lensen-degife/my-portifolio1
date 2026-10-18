@@ -1,5 +1,6 @@
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
+import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
@@ -15,6 +16,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-slate-50 dark:bg-[#070214] text-slate-800 dark:text-slate-200 selection:bg-purple-600/30 selection:text-purple-200 font-sans">
+        <ScrollProgress />
         <Navbar />
         <main>
           <Hero />
