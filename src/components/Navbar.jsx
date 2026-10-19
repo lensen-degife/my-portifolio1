@@ -92,9 +92,9 @@ export default function Navbar() {
         <div className="flex items-center justify-end md:justify-center">
           {/* Desktop Floating Pill Navbar: Sized to components with glassmorphism */}
           <div
-            className={`hidden md:inline-flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-full bg-white/70 dark:bg-[#070214]/70 backdrop-blur-2xl backdrop-saturate-150 border border-white/60 dark:border-white/10 pointer-events-auto transition-all duration-300 ${
+            className={`hidden md:inline-flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-full bg-white/70 dark:bg-[#050508]/80 backdrop-blur-2xl backdrop-saturate-150 border border-white/60 dark:border-white/10 pointer-events-auto transition-all duration-300 ${
               scrolled
-                ? 'shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_12px_36px_rgba(79,70,229,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_36px_rgba(0,0,0,0.5)] border-purple-200/50 dark:border-purple-500/25'
+                ? 'shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_12px_36px_rgba(79,70,229,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_36px_rgba(0,0,0,0.5)] border-purple-200/50 dark:border-white/15'
                 : 'shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_24px_rgba(0,0,0,0.35)]'
             }`}
           >
@@ -137,9 +137,9 @@ export default function Navbar() {
                 download
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white text-xs lg:text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-sm shadow-purple-600/20 dark:shadow-none hover:shadow-purple-600/30 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.4)] transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs lg:text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-sm shadow-purple-600/20 dark:shadow-none hover:shadow-purple-600/30 transition-all duration-200"
               >
-                <Download size={14} className="text-white dark:text-purple-300" />
+                <Download size={14} className="text-white dark:text-purple-200" />
                 <span>Resume</span>
               </motion.a>
               <ThemeToggle />
@@ -168,7 +168,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden pointer-events-auto mx-4 mt-2 border border-white/60 dark:border-white/10 bg-white/80 dark:bg-[#070214]/80 backdrop-blur-2xl backdrop-saturate-150 px-4 pt-3 pb-6 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_12px_40px_rgba(0,0,0,0.25)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
+            className="md:hidden pointer-events-auto mx-4 mt-2 border border-white/60 dark:border-white/10 bg-white/90 dark:bg-[#08080d]/95 backdrop-blur-2xl backdrop-saturate-150 px-4 pt-3 pb-6 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_12px_40px_rgba(0,0,0,0.5)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link, index) => {
@@ -183,8 +183,8 @@ export default function Navbar() {
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? 'text-purple-700 dark:text-purple-300 bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-purple-500/30 font-semibold'
-                        : 'text-slate-700 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50/60 dark:hover:bg-white/5'
+                        ? 'text-purple-700 dark:text-white bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-white/15 font-semibold'
+                        : 'text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white hover:bg-purple-50/60 dark:hover:bg-white/5'
                     }`}
                   >
                     {link.name}
@@ -192,14 +192,14 @@ export default function Navbar() {
                 );
               })}
 
-              <div className="pt-3 mt-1 border-t border-purple-100 dark:border-purple-500/20">
+              <div className="pt-3 mt-1 border-t border-purple-100 dark:border-white/10">
                 <a
                   href={resumePdf}
                   download
                   onClick={() => setIsOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] text-white text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-md hover:bg-purple-700 dark:hover:bg-[#3a1078] transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold border border-purple-500/30 shadow-md transition-colors"
                 >
-                  <Download size={16} className="text-white dark:text-purple-300" />
+                  <Download size={16} className="text-white dark:text-purple-200" />
                   <span>Download Resume</span>
                 </a>
               </div>

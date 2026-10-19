@@ -77,9 +77,9 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      {/* --- BACKGROUND GLOWS --- */}
+      {/* --- BACKGROUND GLOWS - hidden/dimmed on mobile in dark mode --- */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -87,9 +87,9 @@ export default function Contact() {
             : { scale: [1, 1.07, 1], opacity: [0.5, 0.7, 0.5] }
         }
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
-        className="absolute top-10 right-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-10 right-0 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[130px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[110px] opacity-60 dark:opacity-50 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-0 left-0 w-[260px] sm:w-[450px] h-[260px] sm:h-[450px] bg-indigo-200/40 dark:bg-[#120626] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[70px] sm:blur-[110px] -translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
       <NetworkLines
@@ -142,7 +142,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
           >
             <MessageSquare size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
             <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
@@ -179,7 +179,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20 hover:border-purple-200 dark:hover:border-purple-500/40 transition-colors duration-300"
+            className="lg:col-span-7 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 hover:border-purple-200 dark:hover:border-white/20 transition-colors duration-300"
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
@@ -197,7 +197,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g. Alex Yonas"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="alex@gmail.com"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
                 />
               </div>
 
@@ -235,19 +235,19 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your idea, project, or inquiry..."
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#0a0216] border border-purple-200 dark:border-purple-500/30 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
                 />
               </div>
 
               {/* Submit Button & Direct Contact Line */}
               <div className="pt-2">
-                <div className="w-full sm:bg-purple-50/80 sm:dark:bg-white/5 sm:border sm:border-purple-200 sm:dark:border-purple-500/30 sm:rounded-full sm:p-1.5 flex flex-col sm:flex-row items-center justify-between sm:shadow-sm sm:dark:shadow-2xl transition-all duration-200 sm:hover:shadow-md sm:dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                <div className="w-full sm:bg-purple-50/80 sm:dark:bg-white/[0.03] sm:border sm:border-purple-200 sm:dark:border-white/10 sm:rounded-full sm:p-1.5 flex flex-col sm:flex-row items-center justify-between sm:shadow-sm transition-all duration-200 sm:hover:shadow-md">
                   <motion.button
                     type="submit"
                     disabled={status === 'sending'}
                     whileHover={shouldReduceMotion ? false : { scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 dark:bg-[#311166] dark:hover:bg-[#3a1078] text-white px-7 py-3.5 rounded-xl sm:rounded-full font-semibold text-sm sm:text-[15px] flex items-center justify-center gap-2.5 shadow-lg shadow-purple-600/25 dark:shadow-[0_0_20px_rgba(49,17,102,0.6)] hover:shadow-purple-600/35 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.8)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
+                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white px-7 py-3.5 rounded-xl sm:rounded-full font-semibold text-sm sm:text-[15px] flex items-center justify-center gap-2.5 shadow-lg shadow-purple-600/25 dark:shadow-black/50 hover:shadow-purple-600/35 active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
                   >
                     {status === 'sending' ? (
                       <>
@@ -257,7 +257,7 @@ export default function Contact() {
                     ) : (
                       <>
                         <span>Send Message</span>
-                        <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 text-purple-200 dark:text-purple-300" />
+                        <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 text-purple-200" />
                       </>
                     )}
                   </motion.button>
@@ -316,7 +316,7 @@ export default function Contact() {
             className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >
             {/* Direct Info Card */}
-            <div className="bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
+            <div className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
                 <Sparkles size={18} className="text-purple-600 dark:text-purple-300 animate-pulse" />
                 Contact Details
@@ -330,9 +330,9 @@ export default function Contact() {
                       key={info.label}
                       whileHover={shouldReduceMotion ? false : { x: 3 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/70 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400/50 hover:bg-purple-100/60 dark:hover:bg-white/10 transition-all duration-200"
+                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-purple-50/70 dark:bg-white/[0.03] border border-purple-200/70 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 hover:bg-purple-100/60 dark:hover:bg-white/[0.06] transition-all duration-200"
                     >
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
                         <Icon size={18} />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -358,7 +358,7 @@ export default function Contact() {
               </div>
 
               {/* Social Channels (Pill UI Buttons) */}
-              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-purple-100 dark:border-purple-500/20">
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-purple-100 dark:border-white/10">
                 <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-3 sm:mb-4">
                   Connect on Social Media
                 </p>
@@ -373,7 +373,7 @@ export default function Contact() {
                         rel="noopener noreferrer"
                         whileHover={shouldReduceMotion ? false : { scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-purple-50 dark:bg-white/5 hover:bg-purple-100 dark:hover:bg-[#311166] border border-purple-200 dark:border-purple-500/30 hover:border-purple-300 dark:hover:border-purple-400 text-purple-700 hover:text-purple-900 dark:text-white text-xs sm:text-sm font-medium transition-all duration-200 shadow-sm dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)]"
+                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-purple-50 dark:bg-white/[0.05] hover:bg-purple-100 dark:hover:bg-white/10 border border-purple-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 text-purple-700 hover:text-purple-900 dark:text-slate-200 dark:hover:text-white text-xs sm:text-sm font-medium transition-all duration-200 shadow-sm"
                         aria-label={link.label}
                       >
                         <Icon size={15} className="text-purple-600 dark:text-purple-300 flex-shrink-0" />
@@ -388,7 +388,7 @@ export default function Contact() {
             {/* Collaboration Callout */}
             <motion.div
               whileHover={shouldReduceMotion ? false : { y: -2 }}
-              className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-[#1d0642]/20 dark:to-[#070214]/60 dark:border-purple-500/30 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 dark:shadow-2xl transition-all duration-300"
+              className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-white/[0.04] dark:to-white/[0.01] dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 transition-all duration-300"
             >
               <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
                 Open to Opportunities

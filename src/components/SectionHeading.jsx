@@ -14,7 +14,7 @@ export default function SectionHeading({ title, subtitle }) {
             {subtitle}
           </p>
         )}
-        <div className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-[#311166] mx-auto rounded-full" />
+        <div className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-600 mx-auto rounded-full" />
       </div>
     );
   }
@@ -46,7 +46,7 @@ export default function SectionHeading({ title, subtitle }) {
         whileInView={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: false, amount: 0.2 }}
-        className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-[#311166] mx-auto rounded-full origin-center"
+        className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-600 mx-auto rounded-full origin-center"
       />
     </motion.div>
   );

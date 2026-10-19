@@ -20,9 +20,9 @@ export default function Timeline() {
   return (
     <section
       id="timeline"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      {/* Background glow with subtle breathing */}
+      {/* Background glow - hidden/dimmed on mobile in dark mode */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -30,7 +30,7 @@ export default function Timeline() {
             : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
         }
         transition={{ repeat: Infinity, duration: 8.5, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[120px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/2 left-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[120px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
       {/* --- MODERN DECORATIONS --- */}
@@ -92,7 +92,7 @@ export default function Timeline() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.4, delay: 0.2, type: 'spring', stiffness: 300, damping: 20 }}
-                className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-purple-600 dark:bg-[#311166] rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-[0_0_15px_rgba(49,17,102,0.8)]"
+                className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-purple-600 rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-none"
               >
                 <item.icon
                   size={15}
@@ -104,13 +104,13 @@ export default function Timeline() {
               <motion.div
                 whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
                 transition={{ duration: 0.25 }}
-                className="bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 p-4 sm:p-8 hover:border-purple-300 dark:hover:border-purple-400/50 shadow-xl shadow-purple-500/5 hover:shadow-purple-500/10 dark:hover:shadow-[0_0_25px_rgba(49,17,102,0.3)] transition-all duration-300"
+                className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl border border-purple-100 dark:border-white/10 p-4 sm:p-8 hover:border-purple-300 dark:hover:border-white/20 shadow-xl shadow-purple-500/5 transition-all duration-300"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                     {item.title}
                   </h3>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-purple-50 dark:bg-white/5 border border-purple-200 dark:border-purple-500/30 text-[11px] sm:text-xs font-medium text-purple-700 dark:text-purple-300">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-purple-50 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 text-[11px] sm:text-xs font-medium text-purple-700 dark:text-slate-300">
                     <Calendar size={12} />
                     {item.period}
                   </div>

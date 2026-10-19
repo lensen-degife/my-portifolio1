@@ -33,7 +33,7 @@ export function NetworkLines({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`absolute pointer-events-none z-0 text-purple-600/15 dark:text-purple-400/20 ${defaultPosition} ${transformClass} ${className}`}
+      className={`absolute pointer-events-none z-0 text-purple-600/15 dark:text-white/10 ${defaultPosition} ${transformClass} ${className}`}
       viewBox="0 0 200 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ export function SparkleStar({
             }
       }
       transition={{ repeat: Infinity, duration, delay, ease: 'easeInOut' }}
-      className={`absolute pointer-events-none z-10 text-purple-600 dark:text-purple-300 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)] ${sizeClasses} ${className}`}
+      className={`absolute pointer-events-none z-10 text-purple-600 dark:text-purple-300 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)] dark:drop-shadow-[0_0_6px_rgba(192,132,252,0.3)] ${sizeClasses} ${className}`}
     >
       <svg
         viewBox="0 0 24 24"

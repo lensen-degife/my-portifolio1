@@ -151,7 +151,7 @@ export default function ThemeDropEffect({ dropletState }) {
               ease: [0.22, 1, 0.36, 1],
             }}
             className={`fixed inset-0 pointer-events-none z-[99998] ${
-              isGoingLight ? 'bg-slate-50' : 'bg-[#070214]'
+              isGoingLight ? 'bg-slate-50' : 'bg-[#030305]'
             }`}
           />
         )}

@@ -149,7 +149,7 @@ export default function GitHub() {
 
   // Contribution graph theme
   const calendarTheme = {
-    dark: ['#160830', '#c084fc'],
+    dark: ['#141419', '#a855f7'],
     light: ['#f3e8ff', '#9333ea'],
   };
 
@@ -174,8 +174,8 @@ export default function GitHub() {
   };
 
   return (
-    <section id="github" className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300">
-      {/* Background glow with breathing animation */}
+    <section id="github" className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300">
+      {/* Background glow - hidden/dimmed on mobile in dark mode */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -183,7 +183,7 @@ export default function GitHub() {
             : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
         }
         transition={{ repeat: Infinity, duration: 8.5, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/2 left-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
       {/* --- MODERN DECORATIONS --- */}
@@ -249,11 +249,11 @@ export default function GitHub() {
                     : { y: -3, scale: 1.02 }
                 }
                 transition={{ duration: 0.2 }}
-                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl border border-purple-100 dark:border-purple-500/20 text-center hover:border-purple-300 dark:hover:border-purple-400 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/15 dark:hover:shadow-[0_0_20px_rgba(49,17,102,0.4)] transition-all duration-200 cursor-default ${
+                className={`p-3.5 sm:p-5 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl border border-purple-100 dark:border-white/10 text-center hover:border-purple-300 dark:hover:border-white/20 shadow-lg shadow-purple-500/5 transition-all duration-200 cursor-default ${
                   index === 4 ? 'col-span-2 sm:col-span-1' : ''
                 }`}
               >
-                <div className="inline-flex p-2.5 sm:p-3 bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 rounded-xl mb-2 sm:mb-3 text-purple-700 dark:text-purple-300 shadow-sm">
+                <div className="inline-flex p-2.5 sm:p-3 bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 rounded-xl mb-2 sm:mb-3 text-purple-700 dark:text-purple-300 shadow-sm">
                   <Icon size={18} />
                 </div>
 
@@ -268,7 +268,7 @@ export default function GitHub() {
                 <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 mt-1 leading-tight">
                   {item.label}
                 </p>
-                <p className="text-[10px] sm:text-[11px] text-purple-600/80 dark:text-purple-300/70 font-light mt-0.5">
+                <p className="text-[10px] sm:text-[11px] text-purple-600/80 dark:text-slate-400 font-light mt-0.5">
                   {item.sublabel}
                 </p>
               </motion.div>
@@ -282,12 +282,12 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: false, amount: 0.15 }}
-          className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
+          className="p-4 sm:p-8 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-white/10 shadow-xl shadow-purple-500/5"
         >
           {/* Header */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-purple-100 dark:border-purple-500/20">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-purple-100 dark:border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 flex-shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 flex items-center justify-center text-purple-700 dark:text-purple-300 flex-shrink-0">
                 <SiGithub size={18} />
               </div>
               <div>
@@ -303,7 +303,7 @@ export default function GitHub() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/5 dark:hover:bg-[#311166] dark:border-purple-500/30 text-xs sm:text-sm font-medium dark:text-purple-300 dark:hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 border border-purple-200 dark:bg-white/[0.05] dark:hover:bg-white/10 dark:border-white/10 text-xs sm:text-sm font-medium dark:text-slate-200 dark:hover:text-white transition-all duration-200"
             >
               <span>View Profile</span>
               <span>→</span>
@@ -323,7 +323,7 @@ export default function GitHub() {
               />
             </div>
           </div>
-          <p className="text-[11px] text-purple-600/70 dark:text-purple-300/60 text-center mt-2.5 block lg:hidden font-light">
+          <p className="text-[11px] text-purple-600/70 dark:text-slate-400 text-center mt-2.5 block lg:hidden font-light">
             ← Scroll horizontally to explore full year activity →
           </p>
         </motion.div>

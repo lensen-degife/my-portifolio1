@@ -15,7 +15,7 @@ import Contact from './sections/Contact';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-slate-50 dark:bg-[#070214] text-slate-800 dark:text-slate-200 selection:bg-purple-600/30 selection:text-purple-200 font-sans">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#030305] text-slate-800 dark:text-slate-200 selection:bg-purple-600/30 selection:text-purple-200 font-sans">
         <ScrollProgress />
         <Navbar />
         <main>

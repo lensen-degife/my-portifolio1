@@ -96,9 +96,9 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#070214] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
     >
-      {/* --- BACKGROUND GLOWS --- */}
+      {/* --- BACKGROUND GLOWS - hidden/dimmed on mobile in dark mode --- */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -106,9 +106,9 @@ export default function Projects() {
             : { scale: [1, 1.07, 1], opacity: [0.5, 0.7, 0.5] }
         }
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/4 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-50 translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-1/4 right-0 w-[260px] sm:w-[500px] h-[260px] sm:h-[500px] bg-indigo-200/40 dark:bg-[#120626] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[70px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
       {/* Top Right Network Lines */}
@@ -172,7 +172,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
           >
             <Layers size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
             <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
@@ -219,17 +219,17 @@ export default function Projects() {
                   : { y: -6, scale: 1.01 }
               }
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="group relative bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl overflow-hidden hover:border-purple-300 dark:hover:border-purple-400 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:shadow-purple-500/15 dark:hover:shadow-[0_0_30px_rgba(49,17,102,0.5)] transition-all duration-300 flex flex-col justify-between"
+              className="group relative bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl overflow-hidden hover:border-purple-300 dark:hover:border-white/20 shadow-xl shadow-purple-500/5 transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Top Banner / Accent */}
               <div className="p-5 sm:p-6 pb-3 sm:pb-4">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-100 dark:bg-[#311166]/60 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:rotate-3 group-hover:border-purple-400 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm dark:shadow-[0_0_15px_rgba(49,17,102,0.4)]">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:rotate-3 group-hover:border-purple-400 dark:group-hover:border-white/25 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm">
                     <Folder size={20} />
                   </div>
 
                   {project.highlight && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-purple-100/90 dark:bg-white/10 text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-purple-400/40 shadow-sm">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-purple-100/90 dark:bg-white/[0.08] text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-white/15 shadow-sm">
                       <Sparkles size={11} className="text-purple-600 dark:text-purple-300 animate-pulse" />
                       {project.highlight}
                     </span>
@@ -256,7 +256,7 @@ export default function Projects() {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-purple-50 dark:bg-[#311166]/60 text-purple-800 dark:text-purple-200 border border-purple-200/80 dark:border-purple-500/30 rounded-full group-hover:border-purple-300/80 dark:group-hover:border-purple-400/50 transition-colors"
+                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-purple-50 dark:bg-white/[0.04] text-purple-800 dark:text-slate-300 border border-purple-200/80 dark:border-white/[0.08] rounded-full group-hover:border-purple-300/80 dark:group-hover:border-white/20 dark:group-hover:text-white transition-colors"
                     >
                       {t}
                     </span>
@@ -264,7 +264,7 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-purple-100 dark:border-purple-500/20">
+                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-purple-100 dark:border-white/10">
                   {project.github && (
                     <a
                       href={project.github}
@@ -272,7 +272,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-600 hover:text-purple-700 dark:text-slate-300 dark:hover:text-white transition-colors group/link"
                     >
-                      <SiGithub size={15} className="text-purple-600 dark:text-purple-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
+                      <SiGithub size={15} className="text-purple-600 dark:text-slate-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
                       <span>Source Code</span>
                     </a>
                   )}

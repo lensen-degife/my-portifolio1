@@ -5,10 +5,10 @@
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --color-dark-bg: #0a0a0f;
-  --color-dark-surface: #12121a;
-  --color-dark-elevated: #1a1a2e;
-  --color-dark-border: #1e293b;
+  --color-dark-bg: #030305;
+  --color-dark-surface: #0a0a0f;
+  --color-dark-elevated: #121218;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {

@@ -19,8 +19,8 @@ export default function Footer() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <footer className="relative bg-slate-100/80 dark:bg-[#070214] border-t border-purple-100 dark:border-purple-500/20 py-12 overflow-hidden text-slate-600 dark:text-slate-300 font-sans transition-colors duration-300">
-      {/* Background glow */}
+    <footer className="relative bg-slate-100/80 dark:bg-[#030305] border-t border-purple-100 dark:border-white/10 py-12 overflow-hidden text-slate-600 dark:text-slate-300 font-sans transition-colors duration-300">
+      {/* Background glow - hidden/subtle on mobile in dark mode */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -28,7 +28,7 @@ export default function Footer() {
             : { scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }
         }
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-purple-200/40 dark:bg-[#290a59] rounded-full blur-[90px] pointer-events-none transition-colors duration-300"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-purple-200/40 dark:bg-[#1a0836] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[90px] pointer-events-none transition-colors duration-300"
       />
 
       {/* Decorative sparkles */}
@@ -66,7 +66,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={shouldReduceMotion ? false : { scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-purple-200 dark:border-purple-500/20 hover:border-purple-300 dark:hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-[#311166] text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm dark:shadow-none hover:shadow-purple-500/10 dark:hover:shadow-[0_0_15px_rgba(49,17,102,0.5)]"
+                  className="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-purple-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 hover:bg-purple-50 dark:hover:bg-white/10 text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10"
                   aria-label={link.label}
                 >
                   <Icon size={17} />
@@ -77,7 +77,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom divider & copyright */}
-        <div className="mt-8 pt-8 border-t border-purple-100 dark:border-purple-500/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div className="mt-8 pt-8 border-t border-purple-100 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
           <p>
             © {new Date().getFullYear()} Lensen Degife. Built with React, Vite & Tailwind CSS.
           </p>
