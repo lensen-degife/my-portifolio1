@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Trophy, GitBranch, Award, ExternalLink } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 import udacityCert from '../assets/udacity.certificate.pdf';
 import simplilearnCert from '../assets/simplilearnCertificate.pdf';
 
@@ -76,6 +77,43 @@ export default function Achievements() {
         className="absolute top-1/3 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-left"
+        variant="matrix"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-right"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
+      />
+
+      <FloatingDiamond
+        className="top-20 right-[6%] sm:right-[10%]"
+        size="md"
+        delay={0.7}
+      />
+
+      <FloatingRing
+        className="bottom-20 left-[5%] sm:left-[8%]"
+        size="md"
+        delay={1.3}
+      />
+
+      <SparkleStar
+        className="top-[40%] left-[6%] sm:left-[9%]"
+        size="sm"
+        delay={0.5}
+      />
+      <SparkleStar
+        className="bottom-[30%] right-[8%] sm:right-[12%]"
+        size="md"
+        delay={1.1}
+      />
+
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="Achievements & Certifications"
@@ -87,7 +125,7 @@ export default function Achievements() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.15 }}
           className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14"
         >
           {achievements.map((item) => (
@@ -118,7 +156,7 @@ export default function Achievements() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.15 }}
         >
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
             <Award size={20} className="text-purple-600 dark:text-purple-400" />
@@ -129,7 +167,7 @@ export default function Achievements() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5"
           >
             {certificates.map((cert) => (

@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const contactInfo = [
   {
@@ -90,43 +91,56 @@ export default function Contact() {
       />
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[110px] opacity-60 dark:opacity-50 -translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
-      {/* --- FLOATING HOLLOW RING --- */}
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? false
-            : { y: [-10, 10, -10], rotate: [0, 90, 0] }
-        }
-        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-        className="absolute top-16 sm:top-28 left-[4%] sm:left-[10%] w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border-4 sm:border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.25)] pointer-events-none z-10"
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-right"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-left"
+        variant="branch"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
+      />
+
+      <FloatingRing
+        className="top-16 sm:top-28 left-[4%] sm:left-[10%]"
+        size="md"
+        duration={6}
+      />
+
+      <SparkleStar
+        className="top-[32%] right-[6%] sm:right-[10%]"
+        size="md"
+        delay={0.6}
+      />
+      <SparkleStar
+        className="bottom-[18%] left-[6%] sm:left-[10%]"
+        size="sm"
+        delay={1.2}
+      />
+      <FloatingDiamond
+        className="bottom-[10%] right-[8%] sm:right-[14%]"
+        size="sm"
+        delay={1.7}
       />
 
       {/* --- SECTION CONTENT --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
         {/* Header with Floating Diamond Star */}
         <div className="relative flex flex-col items-center text-center mb-16 md:mb-20">
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? false
-                : { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }
-            }
-            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-            className="absolute -top-6 right-2 sm:right-16 md:right-28 lg:right-36 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 pointer-events-none z-10"
-          >
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
-              <path
-                d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
-                fill="currentColor"
-                className="opacity-70 dark:opacity-90"
-              />
-            </svg>
-          </motion.div>
+          <FloatingDiamond
+            className="-top-6 right-2 sm:right-16 md:right-28 lg:right-36"
+            size="md"
+            duration={4}
+          />
 
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
           >
@@ -139,7 +153,7 @@ export default function Contact() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
           >
@@ -149,7 +163,7 @@ export default function Contact() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
@@ -163,7 +177,7 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 dark:shadow-2xl dark:shadow-purple-950/20 hover:border-purple-200 dark:hover:border-purple-500/40 transition-colors duration-300"
           >
@@ -297,7 +311,7 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >

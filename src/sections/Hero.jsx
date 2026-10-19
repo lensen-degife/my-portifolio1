@@ -8,6 +8,7 @@ import Typed from 'typed.js';
 // Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
 import profileImage from '../assets/img3.png';
+import { SparkleStar } from '../components/Decorations';
 
 export default function Hero() {
   const typedRef = useRef(null);
@@ -91,8 +92,9 @@ export default function Hero() {
       {/* Top Left Network Lines */}
       <motion.svg
         initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.2 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 1, delay: 0.2 }}
         className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-purple-600/15 dark:text-purple-400/20 pointer-events-none z-0"
         viewBox="0 0 200 200"
         fill="none"
@@ -111,8 +113,9 @@ export default function Hero() {
       {/* Top Right Network Lines */}
       <motion.svg
         initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 1, delay: 0.3 }}
         className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 z-0"
         viewBox="0 0 200 200"
         fill="none"
@@ -154,18 +157,58 @@ export default function Hero() {
         </svg>
       </motion.div>
 
+      {/* Modern Twinkling Sparkle Stars */}
+      <SparkleStar className="top-[14%] right-[20%]" size="md" delay={0.6} />
+      <SparkleStar className="bottom-[14%] left-[5%]" size="sm" delay={1.2} />
+
       {/* --- MAIN CONTENT --- */}
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col-reverse lg:flex-row items-center justify-between gap-8 sm:gap-12 lg:gap-8 z-20 w-full">
         
-        {/* Left Column: Portrait Sticker Image with smooth upward entrance */}
+        {/* Left Column: Portrait Sticker Image with subtle network lines to the left */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, y: 35, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
           className="w-full lg:w-1/2 flex justify-center items-end relative isolate min-h-[300px] sm:min-h-[440px] lg:min-h-[620px]"
         >
+          {/* Subtle Ambient Glow behind portrait */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] sm:w-[360px] lg:w-[440px] h-[240px] sm:h-[360px] lg:h-[440px] bg-purple-300/25 dark:bg-purple-600/25 rounded-full blur-[70px] sm:blur-[100px] pointer-events-none -z-10" />
+
+          {/* Clean & Minimal Network Lines positioned to the left of image background */}
+          <motion.div
+            animate={
+              shouldReduceMotion
+                ? false
+                : { y: [-5, 5, -5] }
+            }
+            transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-purple-600/25 dark:text-purple-400/30 select-none"
+          >
+            <svg
+              viewBox="80 40 200 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full"
+            >
+              <path d="M15 85 L65 55 L115 85 L165 35" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M65 55 L85 135 L35 165" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M85 135 L145 125 L185 175" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M115 85 L145 125" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="15" cy="85" r="3" fill="currentColor" />
+              <circle cx="65" cy="55" r="3.5" fill="currentColor" />
+              <circle cx="115" cy="85" r="3" fill="currentColor" />
+              <circle cx="165" cy="35" r="3.5" fill="currentColor" />
+              <circle cx="85" cy="135" r="3.5" fill="currentColor" />
+              <circle cx="35" cy="165" r="3" fill="currentColor" />
+              <circle cx="145" cy="125" r="3.5" fill="currentColor" />
+              <circle cx="185" cy="175" r="3" fill="currentColor" />
+            </svg>
+          </motion.div>
+
+          {/* Profile Image */}
           <img 
             src={profileImage} 
             alt="Lensen Degife" 
@@ -177,7 +220,8 @@ export default function Hero() {
         <motion.div 
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
           className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
         >
           {/* Section Pill Badge */}
@@ -302,7 +346,8 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
         transition={{ delay: 0.9, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 z-30"
       >

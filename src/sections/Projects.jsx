@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const projects = [
   {
@@ -109,51 +110,58 @@ export default function Projects() {
       />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[120px] opacity-60 dark:opacity-50 translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
-      {/* --- TOP RIGHT NETWORK LINES SVG --- */}
-      <svg
-        className="absolute top-0 right-0 w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 z-0"
-        viewBox="0 0 200 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M200 0L150 60L180 120L200 100" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M150 60L70 30L40 0" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M150 60L100 110L20 90" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="150" cy="60" r="3" fill="currentColor" />
-        <circle cx="180" cy="120" r="3" fill="currentColor" />
-        <circle cx="70" cy="30" r="3" fill="currentColor" />
-        <circle cx="100" cy="110" r="3" fill="currentColor" />
-        <circle cx="20" cy="90" r="3" fill="currentColor" />
-      </svg>
-
-      {/* --- FLOATING GEOMETRIC SHAPES --- */}
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? false
-            : { y: [-10, 10, -10], rotate: [0, 90, 0] }
-        }
-        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-        className="absolute top-[10%] sm:top-[14%] lg:top-[18%] left-[4%] sm:left-[7%] w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 rounded-full border-4 sm:border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
+      {/* --- MODERN DECORATIONS --- */}
+      {/* Top Right Network Lines */}
+      <NetworkLines
+        position="top-right"
+        variant="corner"
+        className="w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
+        delay={0.2}
+      />
+      {/* Bottom Left Network Lines */}
+      <NetworkLines
+        position="bottom-left"
+        variant="branch"
+        className="w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
+        delay={0.3}
       />
 
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? false
-            : { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }
-        }
-        transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-        className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-[5%] sm:left-[12%] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 pointer-events-none z-10"
-      >
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
-          <path
-            d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
-            fill="currentColor"
-            className="opacity-70 dark:opacity-90"
-          />
-        </svg>
-      </motion.div>
+      {/* Floating Hollow Ring */}
+      <FloatingRing
+        className="top-[10%] sm:top-[14%] lg:top-[18%] left-[4%] sm:left-[7%]"
+        size="md"
+        duration={6}
+      />
+
+      {/* Floating Diamond Stars */}
+      <FloatingDiamond
+        className="bottom-10 sm:bottom-16 md:bottom-20 left-[5%] sm:left-[10%]"
+        size="md"
+        duration={4}
+      />
+      <FloatingDiamond
+        className="top-[45%] right-[4%] sm:right-[6%]"
+        size="sm"
+        duration={5}
+        delay={1.2}
+      />
+
+      {/* Twinkling Sparkle Stars */}
+      <SparkleStar
+        className="top-[18%] right-[14%]"
+        size="md"
+        delay={0.4}
+      />
+      <SparkleStar
+        className="bottom-[28%] left-[4%]"
+        size="sm"
+        delay={0.8}
+      />
+      <SparkleStar
+        className="bottom-[10%] right-[12%]"
+        size="lg"
+        delay={1.4}
+      />
 
       {/* --- SECTION CONTENT --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
@@ -162,7 +170,7 @@ export default function Projects() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
           >
@@ -175,7 +183,7 @@ export default function Projects() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
           >
@@ -185,7 +193,7 @@ export default function Projects() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
@@ -198,7 +206,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: false, amount: 0.1 }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {projects.map((project) => (

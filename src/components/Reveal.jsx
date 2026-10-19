@@ -14,7 +14,7 @@ export default function Reveal({
   scale = 1,
   className = '',
   width = 'full',
-  once = true,
+  once = false,
   amount = 0.15,
 }) {
   const shouldReduceMotion = useReducedMotion();

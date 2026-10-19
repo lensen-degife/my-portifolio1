@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, Send, Heart } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
+import { SparkleStar, FloatingDiamond } from './Decorations';
 
 const socialLinks = [
   { icon: SiGithub, href: 'https://github.com/lensen-degife', label: 'GitHub' },
@@ -30,11 +31,15 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-purple-200/40 dark:bg-[#290a59] rounded-full blur-[90px] pointer-events-none transition-colors duration-300"
       />
 
+      {/* Decorative sparkles */}
+      <SparkleStar className="top-4 left-[6%] sm:left-[12%]" size="sm" delay={0.4} />
+      <FloatingDiamond className="top-4 right-[6%] sm:right-[12%]" size="sm" delay={1} />
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
         >

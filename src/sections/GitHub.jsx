@@ -5,6 +5,7 @@ import { SiGithub } from 'react-icons/si';
 import { Flame, Trophy, Star, Activity, GitFork } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { useTheme } from '../context/ThemeContext';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const GITHUB_USERNAME = 'lensen-degife';
 
@@ -185,6 +186,43 @@ export default function GitHub() {
         className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-left"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-right"
+        variant="matrix"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
+      />
+
+      <FloatingDiamond
+        className="top-16 right-[7%] sm:right-[10%]"
+        size="md"
+        delay={0.6}
+      />
+
+      <FloatingRing
+        className="bottom-16 left-[5%] sm:left-[8%]"
+        size="md"
+        delay={1.1}
+      />
+
+      <SparkleStar
+        className="top-1/3 left-[4%] sm:left-[8%]"
+        size="sm"
+        delay={1.8}
+      />
+      <SparkleStar
+        className="bottom-1/3 right-[6%] sm:right-[9%]"
+        size="md"
+        delay={0.9}
+      />
+
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="GitHub Activity"
@@ -196,7 +234,7 @@ export default function GitHub() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.15 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           {statItems.map((item, index) => {
@@ -243,7 +281,7 @@ export default function GitHub() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.99 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: false, amount: 0.15 }}
           className="p-4 sm:p-8 bg-white/80 dark:bg-[#1d0642]/10 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-purple-100 dark:border-purple-500/20 shadow-xl shadow-purple-500/5 dark:shadow-2xl"
         >
           {/* Header */}

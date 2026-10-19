@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { GraduationCap, Calendar, Sparkles } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const timelineItems = [
   {
@@ -32,6 +33,43 @@ export default function Timeline() {
         className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#290a59] rounded-full blur-[120px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-right"
+        variant="branch"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-left"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
+      />
+
+      <FloatingDiamond
+        className="top-20 left-[6%] sm:left-[9%]"
+        size="md"
+        delay={0.4}
+      />
+
+      <FloatingRing
+        className="bottom-16 right-[6%] sm:right-[9%]"
+        size="md"
+        delay={1.2}
+      />
+
+      <SparkleStar
+        className="top-1/2 right-[5%] sm:right-[8%]"
+        size="md"
+        delay={0.8}
+      />
+      <SparkleStar
+        className="bottom-24 left-[7%] sm:left-[10%]"
+        size="sm"
+        delay={1.5}
+      />
+
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="Education & Journey"
@@ -45,14 +83,14 @@ export default function Timeline() {
               initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.15 }}
               className="relative pl-9 sm:pl-12 pb-8 sm:pb-10 last:pb-0"
             >
               {/* Timeline dot */}
               <motion.div
                 initial={shouldReduceMotion ? false : { scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.4, delay: 0.2, type: 'spring', stiffness: 300, damping: 20 }}
                 className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-purple-600 dark:bg-[#311166] rounded-full flex items-center justify-center border-2 border-purple-400 shadow-md shadow-purple-600/20 dark:shadow-[0_0_15px_rgba(49,17,102,0.8)]"
               >

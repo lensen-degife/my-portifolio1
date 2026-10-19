@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, FolderGit2, Award, GraduationCap, Sparkles, Terminal } from 'lucide-react';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const stats = [
   {
@@ -68,34 +69,42 @@ export default function About() {
       />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-200/40 dark:bg-[#1d0642] rounded-full blur-[100px] opacity-60 dark:opacity-40 translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
-      {/* --- GEOMETRIC DECORATIONS --- */}
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? false
-            : { y: [-10, 10, -10], rotate: [0, 90, 0] }
-        }
-        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-        className="absolute top-12 sm:top-20 right-[5%] sm:right-[12%] w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border-4 sm:border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.25)] pointer-events-none z-10"
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-left"
+        variant="branch"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-right"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
       />
 
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? false
-            : { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }
-        }
-        transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-        className="absolute bottom-10 sm:bottom-16 left-[4%] sm:left-[8%] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 pointer-events-none z-10"
-      >
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
-          <path
-            d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
-            fill="currentColor"
-            className="opacity-70 dark:opacity-90"
-          />
-        </svg>
-      </motion.div>
+      <FloatingRing
+        className="top-12 sm:top-20 right-[5%] sm:right-[12%]"
+        size="md"
+        duration={6}
+      />
+
+      <FloatingDiamond
+        className="bottom-10 sm:bottom-16 left-[4%] sm:left-[8%]"
+        size="md"
+        duration={4}
+      />
+
+      <SparkleStar
+        className="top-28 left-[8%] sm:left-[15%]"
+        size="sm"
+        delay={0.5}
+      />
+      <SparkleStar
+        className="bottom-24 right-[8%] sm:right-[14%]"
+        size="md"
+        delay={1.2}
+      />
 
       {/* --- CONTENT CONTAINER --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
@@ -104,7 +113,7 @@ export default function About() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1d0642]/80 border border-purple-200 dark:border-purple-500/30 backdrop-blur-md shadow-sm dark:shadow-[0_0_20px_rgba(49,17,102,0.4)] mb-4"
           >
@@ -117,7 +126,7 @@ export default function About() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
           >
@@ -127,7 +136,7 @@ export default function About() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
@@ -141,7 +150,7 @@ export default function About() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 35, x: -10 }}
             whileInView={{ opacity: 1, y: 0, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 flex flex-col space-y-6"
           >
@@ -174,7 +183,7 @@ export default function About() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.15 }}
             className="lg:col-span-5 grid sm:grid-cols-2 lg:grid-cols-1 gap-3.5 sm:gap-4"
           >
             {stats.map((stat) => {

@@ -20,6 +20,7 @@ import {
 } from 'react-icons/si';
 import { FaJava, FaDatabase } from 'react-icons/fa';
 import SectionHeading from '../components/SectionHeading';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const skillCategories = [
   {
@@ -104,6 +105,43 @@ export default function Skills() {
         className="absolute top-1/2 right-0 w-[450px] h-[450px] bg-purple-200/50 dark:bg-[#1d0642] rounded-full blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
+      {/* --- MODERN DECORATIONS --- */}
+      <NetworkLines
+        position="top-right"
+        variant="corner"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.2}
+      />
+      <NetworkLines
+        position="bottom-left"
+        variant="matrix"
+        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
+        delay={0.3}
+      />
+
+      <FloatingDiamond
+        className="top-16 left-[5%] sm:left-[8%]"
+        size="md"
+        delay={0.5}
+      />
+
+      <FloatingRing
+        className="bottom-20 right-[5%] sm:right-[8%]"
+        size="md"
+        delay={1}
+      />
+
+      <SparkleStar
+        className="top-1/3 right-[7%] sm:right-[12%]"
+        size="sm"
+        delay={1.5}
+      />
+      <SparkleStar
+        className="bottom-1/3 left-[6%] sm:left-[10%]"
+        size="md"
+        delay={0.7}
+      />
+
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
           title="Skills & Technologies"
@@ -116,7 +154,7 @@ export default function Skills() {
               <motion.h3
                 initial={shouldReduceMotion ? false : { opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-5 flex items-center gap-2"
               >
@@ -128,7 +166,7 @@ export default function Skills() {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.15 }}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3.5"
               >
                 {category.skills.map((skill) => (
