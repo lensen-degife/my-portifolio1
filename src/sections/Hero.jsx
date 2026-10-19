@@ -8,7 +8,7 @@ import Typed from 'typed.js';
 // Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
 import profileImage from '../assets/img3.png';
-import { SparkleStar } from '../components/Decorations';
+import { SparkleStar, FloatingDiamond } from '../components/Decorations';
 
 export default function Hero() {
   const typedRef = useRef(null);
@@ -207,6 +207,42 @@ export default function Hero() {
               <circle cx="185" cy="175" r="3" fill="currentColor" />
             </svg>
           </motion.div>
+
+          {/* Clean & Minimal Network Lines positioned to the right of image background in mobile view */}
+          <motion.div
+            animate={
+              shouldReduceMotion
+                ? false
+                : { y: [5, -5, 5] }
+            }
+            transition={{ repeat: Infinity, duration: 6.5, ease: 'easeInOut' }}
+            className="absolute top-[8%] sm:top-[12%] -right-[4%] sm:-right-[8%] w-48 h-48 sm:w-64 sm:h-64 pointer-events-none -z-10 text-purple-600/25 dark:text-purple-400/25 select-none lg:hidden"
+          >
+            <svg
+              viewBox="80 40 200 200"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full transform -scale-x-100"
+            >
+              <path d="M15 85 L65 55 L115 85 L165 35" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M65 55 L85 135 L35 165" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M85 135 L145 125 L185 175" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M115 85 L145 125" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="15" cy="85" r="3" fill="currentColor" />
+              <circle cx="65" cy="55" r="3.5" fill="currentColor" />
+              <circle cx="115" cy="85" r="3" fill="currentColor" />
+              <circle cx="165" cy="35" r="3.5" fill="currentColor" />
+              <circle cx="85" cy="135" r="3.5" fill="currentColor" />
+              <circle cx="35" cy="165" r="3" fill="currentColor" />
+              <circle cx="145" cy="125" r="3.5" fill="currentColor" />
+              <circle cx="185" cy="175" r="3" fill="currentColor" />
+            </svg>
+          </motion.div>
+
+          {/* Stars on the right of profile picture in mobile view */}
+          <SparkleStar className="top-[12%] sm:top-[16%] right-[4%] sm:right-[8%] lg:hidden" size="md" delay={0.4} />
+          <FloatingDiamond className="top-[42%] sm:top-[46%] right-[2%] sm:right-[6%] lg:hidden" size="sm" delay={0.9} />
+          <SparkleStar className="bottom-[20%] sm:bottom-[24%] right-[6%] sm:right-[10%] lg:hidden" size="sm" delay={1.4} />
 
           {/* Profile Image */}
           <img 
