@@ -76,7 +76,7 @@ export default function About() {
             : { y: [-10, 10, -10], rotate: [0, 90, 0] }
         }
         transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-        className="absolute top-20 right-[12%] w-10 h-10 md:w-12 md:h-12 rounded-full border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.25)] pointer-events-none z-10 hidden sm:block"
+        className="absolute top-12 sm:top-20 right-[5%] sm:right-[12%] w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border-4 sm:border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.25)] pointer-events-none z-10"
       />
 
       <motion.div
@@ -86,7 +86,7 @@ export default function About() {
             : { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }
         }
         transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-        className="absolute bottom-16 left-[8%] w-12 h-12 pointer-events-none z-10 hidden md:block"
+        className="absolute bottom-10 sm:bottom-16 left-[4%] sm:left-[8%] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 pointer-events-none z-10"
       >
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
           <path

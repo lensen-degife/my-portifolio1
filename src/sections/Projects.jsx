@@ -111,7 +111,7 @@ export default function Projects() {
 
       {/* --- TOP RIGHT NETWORK LINES SVG --- */}
       <svg
-        className="absolute top-0 right-0 w-80 h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 hidden md:block"
+        className="absolute top-0 right-0 w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 text-purple-600/15 dark:text-purple-400/20 pointer-events-none transform rotate-90 z-0"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ export default function Projects() {
             : { y: [-10, 10, -10], rotate: [0, 90, 0] }
         }
         transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-        className="absolute top-[18%] left-[7%] w-12 h-12 rounded-full border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10 hidden lg:block"
+        className="absolute top-[10%] sm:top-[14%] lg:top-[18%] left-[4%] sm:left-[7%] w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 rounded-full border-4 sm:border-[6px] border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
       />
 
       <motion.div
@@ -144,7 +144,7 @@ export default function Projects() {
             : { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }
         }
         transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-        className="absolute bottom-20 left-[12%] w-12 h-12 pointer-events-none z-10 hidden md:block"
+        className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-[5%] sm:left-[12%] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 pointer-events-none z-10"
       >
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
           <path
