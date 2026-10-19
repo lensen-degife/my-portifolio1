@@ -95,7 +95,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-purple-600/15 dark:text-white/10 pointer-events-none z-0"
+        className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-purple-600/20 dark:text-purple-400/25 pointer-events-none z-0"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-purple-600/15 dark:text-white/10 pointer-events-none transform rotate-90 z-0"
+        className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-purple-600/20 dark:text-purple-400/25 pointer-events-none transform rotate-90 z-0"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@ export default function Hero() {
             : { y: [-10, 10, -10], rotate: [0, 90, 0] }
         }
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute top-[13%] sm:top-[16%] left-[4%] sm:left-[6%] md:left-[10%] lg:left-[6%] w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full border-4 sm:border-[6px] md:border-[8px] border-purple-500/40 dark:border-white/90 shadow-[0_0_15px_rgba(147,51,234,0.15)] dark:shadow-[0_0_15px_rgba(255,255,255,0.3)] pointer-events-none z-10"
+        className="absolute top-[13%] sm:top-[16%] left-[4%] sm:left-[6%] md:left-[10%] lg:left-[6%] w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full border-4 sm:border-[6px] md:border-[8px] border-purple-500/40 dark:border-purple-400/60 shadow-[0_0_15px_rgba(147,51,234,0.18)] dark:shadow-[0_0_16px_rgba(168,85,247,0.35)] pointer-events-none z-10"
       />
 
       {/* Floating Diamond Star */}
@@ -152,8 +152,8 @@ export default function Hero() {
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
         className="absolute top-[26%] sm:top-[35%] md:top-[40%] right-[4%] sm:right-[6%] md:right-[8%] w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 pointer-events-none z-10"
       >
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/50 dark:text-white">
-          <path d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z" fill="currentColor" className="opacity-70 dark:opacity-90" />
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/60 dark:text-purple-300 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]">
+          <path d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z" fill="currentColor" className="opacity-70 dark:opacity-95" />
         </svg>
       </motion.div>
 
@@ -185,7 +185,7 @@ export default function Hero() {
                 : { y: [-5, 5, -5] }
             }
             transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-purple-600/25 dark:text-white/10 select-none"
+            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-purple-600/25 dark:text-purple-400/25 select-none"
           >
             <svg
               viewBox="80 40 200 200"

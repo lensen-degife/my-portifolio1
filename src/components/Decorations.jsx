@@ -33,7 +33,7 @@ export function NetworkLines({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`absolute pointer-events-none z-0 text-purple-600/15 dark:text-white/10 ${defaultPosition} ${transformClass} ${className}`}
+      className={`absolute pointer-events-none z-0 text-purple-600/20 dark:text-purple-400/25 ${defaultPosition} ${transformClass} ${className}`}
       viewBox="0 0 200 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ export function FloatingDiamond({
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full text-purple-600/50 dark:text-white drop-shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+        className="w-full h-full text-purple-600/60 dark:text-purple-300 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]"
       >
         <path
           d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
@@ -165,7 +165,7 @@ export function FloatingRing({
             }
       }
       transition={{ repeat: Infinity, duration, delay, ease: 'easeInOut' }}
-      className={`absolute rounded-full border-purple-500/40 dark:border-white/80 shadow-[0_0_15px_rgba(147,51,234,0.18)] dark:shadow-[0_0_18px_rgba(255,255,255,0.28)] pointer-events-none z-10 ${sizeClasses} ${className}`}
+      className={`absolute rounded-full border-purple-500/40 dark:border-purple-400/60 shadow-[0_0_15px_rgba(147,51,234,0.18)] dark:shadow-[0_0_16px_rgba(168,85,247,0.35)] pointer-events-none z-10 ${sizeClasses} ${className}`}
     />
   );
 }
@@ -199,7 +199,7 @@ export function SparkleStar({
             }
       }
       transition={{ repeat: Infinity, duration, delay, ease: 'easeInOut' }}
-      className={`absolute pointer-events-none z-10 text-purple-600 dark:text-purple-300 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)] dark:drop-shadow-[0_0_6px_rgba(192,132,252,0.3)] ${sizeClasses} ${className}`}
+      className={`absolute pointer-events-none z-10 text-purple-600 dark:text-purple-300 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)] dark:drop-shadow-[0_0_10px_rgba(192,132,252,0.6)] ${sizeClasses} ${className}`}
     >
       <svg
         viewBox="0 0 24 24"
