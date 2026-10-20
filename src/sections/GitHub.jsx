@@ -225,6 +225,8 @@ export default function GitHub() {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
+          icon={SiGithub}
+          badge="Open Source & Activity"
           title="GitHub Activity"
           subtitle="My open-source track record, consistency, and repository milestones"
         />

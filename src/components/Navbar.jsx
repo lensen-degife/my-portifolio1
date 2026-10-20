@@ -1,28 +1,51 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Download } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Download,
+  User,
+  Code2,
+  Layers,
+  GitBranch,
+  GraduationCap,
+  Trophy,
+  MessageSquare,
+} from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
+import { setSectionFavicon } from '../utils/favicons';
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'GitHub', href: '#github' },
-  { name: 'Education', href: '#timeline' },
-  { name: 'Achievements', href: '#achievements' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '#about', icon: User },
+  { name: 'Skills', href: '#skills', icon: Code2 },
+  { name: 'Projects', href: '#projects', icon: Layers },
+  { name: 'GitHub', href: '#github', icon: GitBranch },
+  { name: 'Education', href: '#timeline', icon: GraduationCap },
+  { name: 'Achievements', href: '#achievements', icon: Trophy },
+  { name: 'Contact', href: '#contact', icon: MessageSquare },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState(() =>
+    typeof window !== 'undefined' ? window.location.hash.replace('#', '') || 'hero' : 'hero'
+  );
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (activeSection) {
+      setSectionFavicon(activeSection);
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
+      if (window.scrollY < 80) {
+        setActiveSection('hero');
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -70,6 +93,9 @@ export default function Navbar() {
   const handleLinkClick = (e, href) => {
     e.preventDefault();
     setIsOpen(false);
+    const targetId = href.replace('#', '');
+    setActiveSection(targetId);
+    setSectionFavicon(targetId);
     const target = document.querySelector(href);
     if (target) {
       const navOffset = 80; // Accounting for floating pill height and comfortable padding
@@ -173,6 +199,7 @@ export default function Navbar() {
             <div className="flex flex-col gap-2">
               {navLinks.map((link, index) => {
                 const isActive = activeSection === link.href.slice(1);
+                const Icon = link.icon;
                 return (
                   <motion.a
                     key={link.name}
@@ -181,13 +208,23 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.03, duration: 0.2 }}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
                         ? 'text-purple-700 dark:text-white bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-white/15 font-semibold'
                         : 'text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white hover:bg-purple-50/60 dark:hover:bg-white/5'
                     }`}
                   >
-                    {link.name}
+                    {Icon && (
+                      <Icon
+                        size={17}
+                        className={
+                          isActive
+                            ? 'text-purple-600 dark:text-purple-300'
+                            : 'text-slate-400 dark:text-slate-500'
+                        }
+                      />
+                    )}
+                    <span>{link.name}</span>
                   </motion.a>
                 );
               })}

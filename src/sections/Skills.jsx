@@ -19,6 +19,7 @@ import {
   SiFigma,
 } from 'react-icons/si';
 import { FaJava, FaDatabase } from 'react-icons/fa';
+import { Code2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
@@ -144,6 +145,8 @@ export default function Skills() {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
+          icon={Code2}
+          badge="Technical Proficiency"
           title="Skills & Technologies"
           subtitle="A comprehensive toolkit of languages, frameworks, and modern developer technologies"
         />

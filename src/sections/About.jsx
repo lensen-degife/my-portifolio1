@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { Code2, FolderGit2, Award, GraduationCap, Sparkles, Terminal } from 'lucide-react';
+import { Code2, FolderGit2, Award, GraduationCap, Sparkles, Terminal, User } from 'lucide-react';
 import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
 
 const stats = [
@@ -117,7 +117,7 @@ export default function About() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
           >
-            <Sparkles size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
+            <User size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
             <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
               Get To Know Me
             </span>

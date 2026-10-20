@@ -72,6 +72,8 @@ export default function Timeline() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <SectionHeading
+          icon={GraduationCap}
+          badge="Academic Journey"
           title="Education & Journey"
           subtitle="Academic milestones shaping my engineering fundamentals"
         />
