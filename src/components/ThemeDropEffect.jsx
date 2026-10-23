@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ThemeDropEffect({ dropletState }) {
   if (!dropletState || typeof document === 'undefined') return null;
 
-  const { x, y, targetTheme, stage } = dropletState;
-  const isGoingLight = targetTheme === 'light';
+  const { x, y, stage, targetTheme } = dropletState;
+  const isTargetDark = targetTheme === 'dark';
 
   // Calculate viewport coverage radius for fallback mode
   const width = typeof window !== 'undefined' ? window.innerWidth : 1200;
@@ -17,6 +17,30 @@ export default function ThemeDropEffect({ dropletState }) {
     Math.hypot(width - x, height - y)
   );
   const finalRadius = Math.ceil(maxDistance * 1.35);
+
+  const dropGradStops = isTargetDark ? (
+    <>
+      <stop stopColor="#78756E" />
+      <stop offset="0.45" stopColor="#292825" />
+      <stop offset="1" stopColor="#161614" />
+    </>
+  ) : (
+    <>
+      <stop stopColor="#FAF9F6" />
+      <stop offset="0.45" stopColor="#EEECE6" />
+      <stop offset="1" stopColor="#8A857C" />
+    </>
+  );
+
+  const rippleBorder = isTargetDark
+    ? '2.5px solid rgba(176, 171, 161, 0.6)'
+    : '2.5px solid rgba(138, 133, 124, 0.6)';
+  const rippleBoxShadow = isTargetDark
+    ? '0 0 18px rgba(41, 40, 37, 0.6), inset 0 0 10px rgba(176, 171, 161, 0.3)'
+    : '0 0 18px rgba(138, 133, 124, 0.4), inset 0 0 10px rgba(138, 133, 124, 0.2)';
+  const radialBg = isTargetDark
+    ? 'radial-gradient(circle, rgba(41, 40, 37, 0.8) 0%, rgba(22, 22, 20, 0.4) 50%, transparent 100%)'
+    : 'radial-gradient(circle, rgba(238, 236, 230, 0.8) 0%, rgba(200, 196, 187, 0.3) 50%, transparent 100%)';
 
   return createPortal(
     <div className="fixed inset-0 pointer-events-none z-[999999] overflow-hidden">
@@ -50,29 +74,19 @@ export default function ThemeDropEffect({ dropletState }) {
               viewBox="0 0 24 28"
               fill="none"
               style={{
-                filter: isGoingLight
-                  ? 'drop-shadow(0 0 14px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 6px #ffffff)'
-                  : 'drop-shadow(0 0 14px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 6px #c084fc)',
+                filter: isTargetDark
+                  ? 'drop-shadow(0 0 10px rgba(22, 22, 20, 0.8)) drop-shadow(0 0 4px #292825)'
+                  : 'drop-shadow(0 0 10px rgba(138, 133, 124, 0.6)) drop-shadow(0 0 4px #FAF9F6)',
               }}
             >
               <path
                 d="M12 1.5 C12 1.5 3 13 3 19 C3 24 7 27 12 27 C17 27 21 24 21 19 C21 13 12 1.5 12 1.5 Z"
-                fill={isGoingLight ? 'url(#sunDropGrad)' : 'url(#moonDropGrad)'}
+                fill="url(#stoneDropGrad)"
               />
               <defs>
-                {isGoingLight ? (
-                  <linearGradient id="sunDropGrad" x1="12" y1="2" x2="12" y2="27" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#ffffff" />
-                    <stop offset="0.45" stopColor="#fef08a" />
-                    <stop offset="1" stopColor="#f59e0b" />
-                  </linearGradient>
-                ) : (
-                  <linearGradient id="moonDropGrad" x1="12" y1="2" x2="12" y2="27" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#f3e8ff" />
-                    <stop offset="0.45" stopColor="#c084fc" />
-                    <stop offset="1" stopColor="#4c1d95" />
-                  </linearGradient>
-                )}
+                <linearGradient id="stoneDropGrad" x1="12" y1="2" x2="12" y2="27" gradientUnits="userSpaceOnUse">
+                  {dropGradStops}
+                </linearGradient>
               </defs>
             </svg>
           </motion.div>
@@ -96,12 +110,8 @@ export default function ThemeDropEffect({ dropletState }) {
                 width: 40,
                 height: 40,
                 borderRadius: '9999px',
-                border: isGoingLight
-                  ? '2.5px solid rgba(251, 191, 36, 0.9)'
-                  : '2.5px solid rgba(192, 132, 252, 0.9)',
-                boxShadow: isGoingLight
-                  ? '0 0 24px rgba(251, 191, 36, 0.8), inset 0 0 14px rgba(251, 191, 36, 0.4)'
-                  : '0 0 24px rgba(168, 85, 247, 0.8), inset 0 0 14px rgba(168, 85, 247, 0.4)',
+                border: rippleBorder,
+                boxShadow: rippleBoxShadow,
               }}
             />
 
@@ -118,9 +128,7 @@ export default function ThemeDropEffect({ dropletState }) {
                 width: 50,
                 height: 50,
                 borderRadius: '9999px',
-                background: isGoingLight
-                  ? 'radial-gradient(circle, rgba(254, 240, 138, 0.7) 0%, rgba(245, 158, 11, 0.25) 50%, transparent 100%)'
-                  : 'radial-gradient(circle, rgba(216, 180, 254, 0.7) 0%, rgba(147, 51, 234, 0.25) 50%, transparent 100%)',
+                background: radialBg,
               }}
             />
           </>
@@ -151,7 +159,7 @@ export default function ThemeDropEffect({ dropletState }) {
               ease: [0.22, 1, 0.36, 1],
             }}
             className={`fixed inset-0 pointer-events-none z-[99998] ${
-              isGoingLight ? 'bg-slate-50' : 'bg-[#030305]'
+              isTargetDark ? 'bg-[#161614]' : 'bg-[#F7F6F3]'
             }`}
           />
         )}

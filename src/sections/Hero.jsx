@@ -59,22 +59,22 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#030305] overflow-hidden font-sans pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 transition-colors duration-300"
+      className="relative w-full min-h-screen flex items-center justify-center bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 transition-colors duration-300"
     >
       {/* --- BACKGROUND DECORATIONS --- */}
       
-      {/* Subtle Purple Base Glows - hidden/subtle on mobile in dark mode to prevent purple wash */}
+      {/* Soft Stone Ambient Glows */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
             : {
                 scale: [1, 1.08, 1],
-                opacity: [0.6, 0.8, 0.6],
+                opacity: [0.4, 0.6, 0.4],
               }
         }
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
-        className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-25 rounded-full blur-[80px] sm:blur-[120px] translate-y-1/2 -translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[80px] sm:blur-[120px] translate-y-1/2 -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
       <motion.div
         animate={
@@ -82,11 +82,11 @@ export default function Hero() {
             ? false
             : {
                 scale: [1, 1.06, 1],
-                opacity: [0.5, 0.7, 0.5],
+                opacity: [0.35, 0.55, 0.35],
               }
         }
         transition={{ repeat: Infinity, duration: 9, delay: 1, ease: 'easeInOut' }}
-        className="absolute top-0 right-0 w-[260px] sm:w-[400px] h-[260px] sm:h-[400px] bg-indigo-200/40 dark:bg-[#120626] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[70px] sm:blur-[100px] -translate-y-1/4 translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-0 right-0 w-[260px] sm:w-[400px] h-[260px] sm:h-[400px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[100px] -translate-y-1/4 translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
       {/* Top Left Network Lines */}
@@ -95,7 +95,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-purple-600/20 dark:text-purple-400/25 pointer-events-none z-0"
+        className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-[#C8C4BB] dark:text-[#42403B] pointer-events-none z-0"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-purple-600/20 dark:text-purple-400/25 pointer-events-none transform rotate-90 z-0"
+        className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-[#C8C4BB] dark:text-[#42403B] pointer-events-none transform rotate-90 z-0"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@ export default function Hero() {
             : { y: [-10, 10, -10], rotate: [0, 90, 0] }
         }
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute top-[13%] sm:top-[16%] left-[4%] sm:left-[6%] md:left-[10%] lg:left-[6%] w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full border-4 sm:border-[6px] md:border-[8px] border-purple-500/40 dark:border-purple-400/60 shadow-[0_0_15px_rgba(147,51,234,0.18)] dark:shadow-[0_0_16px_rgba(168,85,247,0.35)] pointer-events-none z-10"
+        className="absolute top-[13%] sm:top-[16%] left-[4%] sm:left-[6%] md:left-[10%] lg:left-[6%] w-7 h-7 sm:w-10 sm:h-10 md:w-14 md:h-14 rounded-full border-4 sm:border-[6px] md:border-[8px] border-[#C8C4BB] dark:border-[#42403B] shadow-[0_0_12px_rgba(200,196,187,0.3)] dark:shadow-[0_0_12px_rgba(66,64,59,0.3)] pointer-events-none z-10"
       />
 
       {/* Floating Diamond Star */}
@@ -152,8 +152,8 @@ export default function Hero() {
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
         className="absolute top-[26%] sm:top-[35%] md:top-[40%] right-[4%] sm:right-[6%] md:right-[8%] w-8 h-8 sm:w-12 sm:h-12 md:w-20 md:h-20 pointer-events-none z-10"
       >
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-600/60 dark:text-purple-300 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]">
-          <path d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z" fill="currentColor" className="opacity-70 dark:opacity-95" />
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#C8C4BB] dark:text-[#42403B] drop-shadow-[0_0_8px_rgba(200,196,187,0.4)] dark:drop-shadow-[0_0_8px_rgba(66,64,59,0.4)]">
+          <path d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z" fill="currentColor" className="opacity-80" />
         </svg>
       </motion.div>
 
@@ -175,7 +175,7 @@ export default function Hero() {
           className="w-full lg:w-1/2 flex justify-center items-end relative isolate min-h-[300px] sm:min-h-[440px] lg:min-h-[620px]"
         >
           {/* Subtle Ambient Glow behind portrait */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[360px] lg:w-[440px] h-[200px] sm:h-[360px] lg:h-[440px] bg-purple-300/25 dark:bg-purple-950/20 sm:dark:bg-purple-900/20 rounded-full blur-[60px] sm:blur-[100px] pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[360px] lg:w-[440px] h-[200px] sm:h-[360px] lg:h-[440px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 rounded-full blur-[60px] sm:blur-[100px] pointer-events-none -z-10" />
 
           {/* Clean & Minimal Network Lines positioned to the left of image background */}
           <motion.div
@@ -185,7 +185,7 @@ export default function Hero() {
                 : { y: [-5, 5, -5] }
             }
             transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-purple-600/25 dark:text-purple-400/25 select-none"
+            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-[#C8C4BB] dark:text-[#42403B] select-none"
           >
             <svg
               viewBox="80 40 200 200"
@@ -216,7 +216,7 @@ export default function Hero() {
                 : { y: [5, -5, 5] }
             }
             transition={{ repeat: Infinity, duration: 6.5, ease: 'easeInOut' }}
-            className="absolute top-[8%] sm:top-[12%] -right-[4%] sm:-right-[8%] w-48 h-48 sm:w-64 sm:h-64 pointer-events-none -z-10 text-purple-600/25 dark:text-purple-400/25 select-none lg:hidden"
+            className="absolute top-[8%] sm:top-[12%] -right-[4%] sm:-right-[8%] w-48 h-48 sm:w-64 sm:h-64 pointer-events-none -z-10 text-[#C8C4BB] dark:text-[#42403B] select-none lg:hidden"
           >
             <svg
               viewBox="80 40 200 200"
@@ -248,7 +248,7 @@ export default function Hero() {
           <img 
             src={profileImage} 
             alt="Lensen Degife" 
-            className="w-auto h-auto max-h-[320px] sm:max-h-[460px] lg:max-h-[620px] xl:max-h-[660px] max-w-[85%] sm:max-w-[420px] lg:max-w-[480px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.18)] dark:drop-shadow-[0_0_35px_rgba(0,0,0,0.8)] z-10 relative select-none transition-transform duration-300"
+            className="w-auto h-auto max-h-[320px] sm:max-h-[460px] lg:max-h-[620px] xl:max-h-[660px] max-w-[85%] sm:max-w-[420px] lg:max-w-[480px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.12)] z-10 relative select-none transition-transform duration-300"
           />
         </motion.div>
 
@@ -263,10 +263,10 @@ export default function Hero() {
           {/* Section Pill Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-3 sm:mb-4"
+            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-3 sm:mb-4"
           >
-            <Sparkles size={13} className="text-purple-600 dark:text-purple-300 animate-pulse" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+            <Sparkles size={13} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-semibold text-[#2C2C2A] dark:text-[#EEECE6]">
               Welcome to my portfolio
             </span>
           </motion.div>
@@ -274,24 +274,24 @@ export default function Hero() {
           {/* Heading - Smooth reveal */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-3 sm:mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] leading-tight tracking-tight mb-3 sm:mb-4"
           >
-            Hi, I&apos;m <span className="text-purple-600 dark:text-purple-300">Lensen Degife</span>
+            Hi, I&apos;m <span className="text-[#8A857C] dark:text-[#B0ABA1]">Lensen Degife</span>
           </motion.h1>
           
           {/* Typed.js Container with Terminal Icon */}
           <motion.div
             variants={itemVariants}
-            className="text-base sm:text-xl md:text-2xl text-purple-700 dark:text-purple-300 mb-4 sm:mb-5 min-h-[2.5rem] sm:min-h-[2.25rem] font-medium tracking-wide flex items-center justify-center lg:justify-start gap-2 sm:gap-2.5"
+            className="text-base sm:text-xl md:text-2xl text-[#8A857C] dark:text-[#B0ABA1] mb-4 sm:mb-5 min-h-[2.5rem] sm:min-h-[2.25rem] font-medium tracking-wide flex items-center justify-center lg:justify-start gap-2 sm:gap-2.5"
           >
-            <Terminal size={18} className="text-purple-600 dark:text-purple-400 flex-shrink-0" />
+            <Terminal size={18} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0" />
             <span ref={typedRef} />
           </motion.div>
           
           {/* Description Paragraph */}
           <motion.p
             variants={itemVariants}
-            className="text-slate-600 dark:text-slate-300 text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-light mb-6 sm:mb-8"
+            className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-light mb-6 sm:mb-8"
           >
             Computer Science student at Addis Ababa University. I engineer scalable backend systems, responsive web & mobile applications, and high-performance solutions with clean code.
           </motion.p>
@@ -300,18 +300,18 @@ export default function Hero() {
           <motion.div
             variants={itemVariants}
             whileHover={shouldReduceMotion ? false : { y: -2 }}
-            className="w-full max-w-xl p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-200/80 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shadow-lg shadow-purple-500/5 mb-6 sm:mb-8"
+            className="w-full max-w-xl p-2 sm:p-2.5 rounded-2xl sm:rounded-full bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shadow-sm mb-6 sm:mb-8"
           >
-            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-purple-100/90 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 text-purple-900 dark:text-white text-xs sm:text-sm font-semibold shadow-sm">
-              <Code2 size={14} className="text-purple-600 dark:text-purple-300" />
+            <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] text-[#2C2C2A] dark:text-[#EEECE6] text-xs sm:text-sm font-semibold shadow-xs">
+              <Code2 size={14} className="text-[#8A857C] dark:text-[#B0ABA1]" />
               <span>Full-Stack & Systems Developer</span>
             </div>
-            <div className="flex items-center justify-center gap-2 px-3 py-1 sm:pr-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <div className="flex items-center justify-center gap-2 px-3 py-1 sm:pr-4 text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C]">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7A8474] dark:bg-[#8F9C88] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7A8474] dark:bg-[#8F9C88]"></span>
               </span>
-              <span className="font-medium text-slate-700 dark:text-slate-300">Open to Opportunities</span>
+              <span className="font-medium text-[#5C5A55] dark:text-[#A8A49C]">Open to Opportunities</span>
             </div>
           </motion.div>
 
@@ -325,9 +325,9 @@ export default function Hero() {
               download
               whileHover={shouldReduceMotion ? false : { scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm sm:text-base border border-purple-500/40 shadow-lg shadow-purple-600/20 dark:shadow-black/50 hover:shadow-purple-600/30 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#2C2C2A] hover:bg-[#3F3F3C] text-white dark:bg-[#EEECE6] dark:hover:bg-white dark:text-[#1A1A18] font-semibold text-sm sm:text-base border border-[#2C2C2A] dark:border-[#EEECE6] shadow-md shadow-black/10 dark:shadow-black/25 transition-all duration-200"
             >
-              <Download size={17} className="text-white dark:text-purple-200" />
+              <Download size={17} className="text-white dark:text-[#1A1A18]" />
               <span>Download Resume</span>
             </motion.a>
             <motion.a
@@ -343,9 +343,9 @@ export default function Hero() {
                   window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
               }}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-white hover:bg-purple-50/80 dark:bg-white/[0.05] dark:hover:bg-white/10 text-purple-700 hover:text-purple-900 dark:text-slate-200 dark:hover:text-white font-semibold text-sm sm:text-base border border-purple-200 hover:border-purple-300 dark:border-white/15 dark:hover:border-white/25 shadow-sm transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] text-[#2C2C2A] dark:bg-[#292825] dark:hover:bg-[#383632] dark:text-[#EEECE6] font-semibold text-sm sm:text-base border border-[#E5E2DB] dark:border-[#383632] shadow-xs transition-all duration-200"
             >
-              <Mail size={17} className="text-purple-600 dark:text-purple-400" />
+              <Mail size={17} className="text-[#5C5A55] dark:text-[#A8A49C]" />
               <span>Contact Me</span>
             </motion.a>
 
@@ -357,7 +357,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 whileHover={shouldReduceMotion ? false : { scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-purple-50 dark:bg-white/[0.05] dark:hover:bg-white/10 border border-purple-200 hover:border-purple-300 dark:border-white/15 dark:hover:border-white/25 text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] flex items-center justify-center transition-all duration-200 shadow-xs"
                 aria-label="GitHub Profile"
               >
                 <SiGithub size={18} />
@@ -368,7 +368,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 whileHover={shouldReduceMotion ? false : { scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-purple-50 dark:bg-white/[0.05] dark:hover:bg-white/10 border border-purple-200 hover:border-purple-300 dark:border-white/15 dark:hover:border-white/25 text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] flex items-center justify-center transition-all duration-200 shadow-xs"
                 aria-label="LinkedIn Profile"
               >
                 <FaLinkedin size={18} />
@@ -398,7 +398,7 @@ export default function Hero() {
               window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
           }}
-          className="flex flex-col items-center gap-1.5 text-xs text-purple-600/70 hover:text-purple-700 dark:text-purple-300/60 dark:hover:text-purple-300 transition-colors"
+          className="flex flex-col items-center gap-1.5 text-xs text-[#9B9890] dark:text-[#78756E] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors"
           aria-label="Scroll to about section"
         >
           <span className="tracking-widest uppercase font-semibold text-[10px]">Scroll</span>
@@ -410,7 +410,7 @@ export default function Hero() {
             }
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
-            <ArrowDown size={18} className="text-purple-600 dark:text-purple-400/80" />
+            <ArrowDown size={18} className="text-[#8A857C] dark:text-[#B0ABA1]" />
           </motion.div>
         </a>
       </motion.div>

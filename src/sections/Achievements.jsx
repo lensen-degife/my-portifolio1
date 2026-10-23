@@ -64,17 +64,17 @@ export default function Achievements() {
   return (
     <section
       id="achievements"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
-      {/* Background glow - hidden/dimmed on mobile in dark mode */}
+      {/* Background glow - soft warm neutral */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
-            : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
+            : { scale: [1, 1.08, 1], opacity: [0.35, 0.55, 0.35] }
         }
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
-        className="absolute top-1/3 right-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/3 right-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[80px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
       {/* --- MODERN DECORATIONS --- */}
@@ -136,16 +136,16 @@ export default function Achievements() {
               variants={itemVariants}
               whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
               transition={{ duration: 0.2 }}
-              className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl border border-purple-100 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 shadow-xl shadow-purple-500/5 transition-all duration-300 cursor-default"
+              className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default"
             >
-              <div className="p-2.5 sm:p-3.5 bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 rounded-xl h-fit flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+              <div className="p-2.5 sm:p-3.5 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl h-fit flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
                 <item.icon size={22} />
               </div>
               <div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1.5 sm:mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-1.5 sm:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
                   {item.description}
                 </p>
               </div>
@@ -160,8 +160,8 @@ export default function Achievements() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: false, amount: 0.15 }}
         >
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
-            <Award size={20} className="text-purple-600 dark:text-purple-400" />
+          <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2">
+            <Award size={20} className="text-[#8A857C] dark:text-[#B0ABA1]" />
             <span>Verified Certifications</span>
           </h3>
 
@@ -178,14 +178,14 @@ export default function Achievements() {
                 variants={itemVariants}
                 whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
                 transition={{ duration: 0.2 }}
-                className="group p-4 sm:p-5 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl border border-purple-100 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 shadow-lg shadow-purple-500/5 transition-all duration-200"
+                className="group p-4 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-purple-700 dark:group-hover:text-white transition-colors">
+                    <h4 className="font-semibold text-[#1A1A18] dark:text-[#FAF9F6] text-sm sm:text-base group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors">
                       {cert.title}
                     </h4>
-                    <p className="text-[11px] sm:text-xs text-purple-700/80 dark:text-slate-400 mt-1">
+                    <p className="text-[11px] sm:text-xs text-[#9B9890] dark:text-[#78756E] mt-1">
                       Issued by {cert.issuer}
                     </p>
                   </div>
@@ -196,7 +196,7 @@ export default function Achievements() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white bg-purple-50 hover:bg-purple-100 dark:bg-white/[0.06] dark:hover:bg-white/15 p-2 rounded-lg border border-purple-200 dark:border-white/10 transition-all duration-200 shadow-sm flex-shrink-0"
+                      className="text-[#2C2C2A] hover:text-[#1A1A18] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] bg-[#EEECE6] hover:bg-[#E5E2DB] dark:bg-[#292825] dark:hover:bg-[#383632] p-2 rounded-lg border border-[#E5E2DB] dark:border-[#383632] transition-all duration-200 shadow-xs flex-shrink-0"
                       title="View certificate"
                     >
                       <ExternalLink size={14} />

@@ -118,10 +118,10 @@ export default function Navbar() {
         <div className="flex items-center justify-end md:justify-center">
           {/* Desktop Floating Pill Navbar: Sized to components with glassmorphism */}
           <div
-            className={`hidden md:inline-flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-full bg-white/70 dark:bg-[#050508]/80 backdrop-blur-2xl backdrop-saturate-150 border border-white/60 dark:border-white/10 pointer-events-auto transition-all duration-300 ${
+            className={`hidden md:inline-flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-full bg-[#FAF9F6]/90 dark:bg-[#1F1E1B]/90 backdrop-blur-2xl border border-[#E5E2DB] dark:border-[#2D2C28] pointer-events-auto transition-all duration-300 ${
               scrolled
-                ? 'shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_12px_36px_rgba(79,70,229,0.1)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_36px_rgba(0,0,0,0.5)] border-purple-200/50 dark:border-white/15'
-                : 'shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_24px_rgba(0,0,0,0.35)]'
+                ? 'shadow-lg shadow-black/5 dark:shadow-black/20'
+                : 'shadow-md shadow-black/5 dark:shadow-black/15'
             }`}
           >
             {/* Desktop Nav Links */}
@@ -135,14 +135,14 @@ export default function Navbar() {
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`relative px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-colors duration-200 ${
                       isActive
-                        ? 'text-purple-700 dark:text-purple-300 font-semibold'
-                        : 'text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-white'
+                        ? 'text-[#1A1A18] dark:text-[#FAF9F6] font-semibold'
+                        : 'text-[#9B9890] dark:text-[#78756E] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6]'
                     }`}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="activeNavPill"
-                        className="absolute inset-0 rounded-full bg-purple-100/90 dark:bg-white/15 border border-purple-200/80 dark:border-white/20 shadow-xs dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]"
+                        className="absolute inset-0 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs"
                         transition={
                           shouldReduceMotion
                             ? { duration: 0 }
@@ -157,15 +157,15 @@ export default function Navbar() {
             </nav>
 
             {/* Resume Button + Theme Toggle inside floating pill */}
-            <div className="flex items-center gap-2 pl-1.5 border-l border-slate-200/60 dark:border-white/10">
+            <div className="flex items-center gap-2 pl-1.5 border-l border-[#E5E2DB] dark:border-[#2D2C28]">
               <motion.a
                 href={resumePdf}
                 download
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs lg:text-sm font-semibold border border-purple-600 dark:border-purple-500/30 shadow-sm shadow-purple-600/20 dark:shadow-none hover:shadow-purple-600/30 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#2C2C2A] hover:bg-[#3F3F3C] text-white dark:bg-[#EEECE6] dark:hover:bg-white dark:text-[#1A1A18] text-xs lg:text-sm font-semibold border border-[#2C2C2A] dark:border-[#EEECE6] shadow-sm transition-all duration-200"
               >
-                <Download size={14} className="text-white dark:text-purple-200" />
+                <Download size={14} className="text-white dark:text-[#1A1A18]" />
                 <span>Resume</span>
               </motion.a>
               <ThemeToggle />
@@ -177,7 +177,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-1.5 text-slate-700 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-full focus:outline-none"
+              className="p-1.5 text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors rounded-full focus:outline-none"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -194,7 +194,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden pointer-events-auto mx-4 mt-2 border border-white/60 dark:border-white/10 bg-white/90 dark:bg-[#08080d]/95 backdrop-blur-2xl backdrop-saturate-150 px-4 pt-3 pb-6 rounded-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_12px_40px_rgba(0,0,0,0.5)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
+            className="md:hidden pointer-events-auto mx-4 mt-2 border border-[#E5E2DB] dark:border-[#2D2C28] bg-[#FAF9F6]/95 dark:bg-[#1F1E1B]/95 backdrop-blur-2xl px-4 pt-3 pb-6 rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/40 max-h-[calc(100dvh-5rem)] overflow-y-auto"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link, index) => {
@@ -210,8 +210,8 @@ export default function Navbar() {
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? 'text-purple-700 dark:text-white bg-purple-100/80 dark:bg-white/10 border border-purple-200 dark:border-white/15 font-semibold'
-                        : 'text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white hover:bg-purple-50/60 dark:hover:bg-white/5'
+                        ? 'text-[#1A1A18] dark:text-[#FAF9F6] bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] font-semibold'
+                        : 'text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] hover:bg-[#EEECE6] dark:hover:bg-[#292825]'
                     }`}
                   >
                     {Icon && (
@@ -219,8 +219,8 @@ export default function Navbar() {
                         size={17}
                         className={
                           isActive
-                            ? 'text-purple-600 dark:text-purple-300'
-                            : 'text-slate-400 dark:text-slate-500'
+                            ? 'text-[#1A1A18] dark:text-[#FAF9F6]'
+                            : 'text-[#9B9890] dark:text-[#78756E]'
                         }
                       />
                     )}
@@ -229,14 +229,14 @@ export default function Navbar() {
                 );
               })}
 
-              <div className="pt-3 mt-1 border-t border-purple-100 dark:border-white/10">
+              <div className="pt-3 mt-1 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
                 <a
                   href={resumePdf}
                   download
                   onClick={() => setIsOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold border border-purple-500/30 shadow-md transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#2C2C2A] hover:bg-[#3F3F3C] text-white dark:bg-[#EEECE6] dark:hover:bg-white dark:text-[#1A1A18] text-sm font-semibold border border-[#2C2C2A] dark:border-[#EEECE6] shadow-sm transition-colors"
                 >
-                  <Download size={16} className="text-white dark:text-purple-200" />
+                  <Download size={16} className="text-white dark:text-[#1A1A18]" />
                   <span>Download Resume</span>
                 </a>
               </div>
@@ -247,4 +247,3 @@ export default function Navbar() {
     </motion.header>
   );
 }
-

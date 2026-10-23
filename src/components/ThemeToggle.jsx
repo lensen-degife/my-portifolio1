@@ -21,45 +21,41 @@ export default function ThemeToggle() {
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.9 }}
       disabled={isTransitioning}
-      className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer overflow-hidden ${
-        theme === 'dark'
-          ? 'text-purple-300 hover:text-white bg-purple-950/40 hover:bg-purple-900/60 border border-purple-500/30 hover:border-purple-400/60 hover:shadow-[0_0_14px_rgba(168,85,247,0.45)]'
-          : 'text-amber-600 hover:text-amber-700 bg-amber-100/70 hover:bg-amber-200/80 border border-amber-300/70 hover:border-amber-400 hover:shadow-[0_0_14px_rgba(245,158,11,0.4)]'
-      }`}
+      className="relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer overflow-hidden bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] shadow-xs"
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       <AnimatePresence mode="wait" initial={false}>
         {theme === 'dark' ? (
           <motion.div
-            key="moon"
+            key="sun"
             initial={{ rotate: -85, scale: 0, opacity: 0 }}
             animate={{ rotate: 0, scale: 1, opacity: 1 }}
             exit={{ rotate: 85, scale: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: 'easeOut' }}
             className="relative flex items-center justify-center"
           >
-            <Moon
+            <Sun
               size={16}
-              className="fill-purple-300/20 text-purple-300 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]"
+              className="text-[#EEECE6]"
             />
-            {/* Twinkling celestial star sparkle */}
-            <span className="absolute -top-1.5 -right-1 text-[8px] text-purple-300 animate-pulse pointer-events-none select-none">
+            {/* Twinkling sparkle */}
+            <span className="absolute -top-1.5 -right-1 text-[8px] text-[#B0ABA1] animate-pulse pointer-events-none select-none">
               ✦
             </span>
           </motion.div>
         ) : (
           <motion.div
-            key="sun"
+            key="moon"
             initial={{ rotate: 85, scale: 0, opacity: 0 }}
             animate={{ rotate: 0, scale: 1, opacity: 1 }}
             exit={{ rotate: -85, scale: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: 'easeOut' }}
             className="relative flex items-center justify-center"
           >
-            <Sun
+            <Moon
               size={16}
-              className="fill-amber-400/25 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.7)]"
+              className="text-[#2C2C2A]"
             />
           </motion.div>
         )}

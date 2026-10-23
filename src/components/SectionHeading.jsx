@@ -7,22 +7,22 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
     return (
       <div className="text-center mb-10 sm:mb-12 md:mb-16 relative z-10 flex flex-col items-center">
         {badge && (
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4">
-            {Icon && <Icon size={14} className="text-purple-600 dark:text-purple-300" />}
-            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4">
+            {Icon && <Icon size={14} className="text-[#8A857C] dark:text-[#B0ABA1]" />}
+            <span className="text-xs uppercase tracking-widest font-semibold text-[#2C2C2A] dark:text-[#EEECE6]">
               {badge}
             </span>
           </div>
         )}
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-3 sm:mb-4 tracking-tight">
           {title}
         </h2>
         {subtitle && (
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light leading-relaxed px-2">
+          <p className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light leading-relaxed px-2">
             {subtitle}
           </p>
         )}
-        <div className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-600 mx-auto rounded-full" />
+        <div className="mt-4 w-20 h-1 bg-[#8A857C] dark:bg-[#B0ABA1] mx-auto rounded-full" />
       </div>
     );
   }
@@ -41,15 +41,15 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: false, amount: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
         >
-          {Icon && <Icon size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />}
-          <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+          {Icon && <Icon size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />}
+          <span className="text-xs uppercase tracking-widest font-semibold text-[#2C2C2A] dark:text-[#EEECE6]">
             {badge}
           </span>
         </motion.div>
       )}
-      <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 tracking-tight">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-3 sm:mb-4 tracking-tight">
         {title}
       </h2>
       {subtitle && (
@@ -58,7 +58,7 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: false, amount: 0.2 }}
-          className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light leading-relaxed px-2"
+          className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light leading-relaxed px-2"
         >
           {subtitle}
         </motion.p>
@@ -68,9 +68,8 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
         whileInView={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: false, amount: 0.2 }}
-        className="mt-4 w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-600 mx-auto rounded-full origin-center"
+        className="mt-4 w-20 h-1 bg-[#8A857C] dark:bg-[#B0ABA1] mx-auto rounded-full origin-center"
       />
     </motion.div>
   );
 }
-

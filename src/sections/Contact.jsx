@@ -77,19 +77,19 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
-      {/* --- BACKGROUND GLOWS - hidden/dimmed on mobile in dark mode --- */}
+      {/* --- BACKGROUND GLOWS - soft warm neutral --- */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
-            : { scale: [1, 1.07, 1], opacity: [0.5, 0.7, 0.5] }
+            : { scale: [1, 1.07, 1], opacity: [0.35, 0.55, 0.35] }
         }
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
-        className="absolute top-10 right-0 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[130px] translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-10 right-0 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[80px] sm:blur-[130px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
-      <div className="absolute bottom-0 left-0 w-[260px] sm:w-[450px] h-[260px] sm:h-[450px] bg-indigo-200/40 dark:bg-[#120626] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[70px] sm:blur-[110px] -translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-0 left-0 w-[260px] sm:w-[450px] h-[260px] sm:h-[450px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[110px] -translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
       <NetworkLines
@@ -142,10 +142,10 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
           >
-            <MessageSquare size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
-            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+            <MessageSquare size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-[#2C2C2A] dark:text-[#EEECE6]">
               Get In Touch
             </span>
           </motion.div>
@@ -155,9 +155,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight mb-4"
           >
-            Let&apos;s Build <span className="text-purple-600 dark:text-purple-300">Together</span>
+            Let&apos;s Build <span className="text-[#8A857C] dark:text-[#B0ABA1]">Together</span>
           </motion.h2>
 
           <motion.p
@@ -165,7 +165,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
+            className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
             Have a project in mind, a potential collaboration, or simply want to connect? Reach out and I&apos;ll get back to you promptly.
           </motion.p>
@@ -179,13 +179,13 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5 hover:border-purple-200 dark:hover:border-white/20 transition-colors duration-300"
+            className="lg:col-span-7 bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300"
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                  className="block text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] mb-2"
                 >
                   Your Name
                 </label>
@@ -197,14 +197,14 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g. Alex Yonas"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#161614] border border-[#E5E2DB] dark:border-[#383632] rounded-xl text-[#1A1A18] dark:text-[#FAF9F6] placeholder-[#9B9890] dark:placeholder-[#78756E] focus:ring-1 focus:ring-[#8A857C] dark:focus:ring-[#B0ABA1] focus:border-[#8A857C] dark:focus:border-[#B0ABA1] outline-none transition-all duration-200"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                  className="block text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] mb-2"
                 >
                   Your Email
                 </label>
@@ -216,14 +216,14 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="alex@gmail.com"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#161614] border border-[#E5E2DB] dark:border-[#383632] rounded-xl text-[#1A1A18] dark:text-[#FAF9F6] placeholder-[#9B9890] dark:placeholder-[#78756E] focus:ring-1 focus:ring-[#8A857C] dark:focus:ring-[#B0ABA1] focus:border-[#8A857C] dark:focus:border-[#B0ABA1] outline-none transition-all duration-200"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2"
+                  className="block text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] mb-2"
                 >
                   Your Message
                 </label>
@@ -235,43 +235,43 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your idea, project, or inquiry..."
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-[#09090e] border border-purple-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#161614] border border-[#E5E2DB] dark:border-[#383632] rounded-xl text-[#1A1A18] dark:text-[#FAF9F6] placeholder-[#9B9890] dark:placeholder-[#78756E] focus:ring-1 focus:ring-[#8A857C] dark:focus:ring-[#B0ABA1] focus:border-[#8A857C] dark:focus:border-[#B0ABA1] outline-none transition-all duration-200 resize-none"
                 />
               </div>
 
               {/* Submit Button & Direct Contact Line */}
               <div className="pt-2">
-                <div className="w-full sm:bg-purple-50/80 sm:dark:bg-white/[0.03] sm:border sm:border-purple-200 sm:dark:border-white/10 sm:rounded-full sm:p-1.5 flex flex-col sm:flex-row items-center justify-between sm:shadow-sm transition-all duration-200 sm:hover:shadow-md">
+                <div className="w-full sm:bg-[#EEECE6] dark:sm:bg-[#292825] sm:border sm:border-[#E5E2DB] dark:sm:border-[#383632] sm:rounded-full sm:p-1.5 flex flex-col sm:flex-row items-center justify-between sm:shadow-xs transition-all duration-200">
                   <motion.button
                     type="submit"
                     disabled={status === 'sending'}
                     whileHover={shouldReduceMotion ? false : { scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white px-7 py-3.5 rounded-xl sm:rounded-full font-semibold text-sm sm:text-[15px] flex items-center justify-center gap-2.5 shadow-lg shadow-purple-600/25 dark:shadow-black/50 hover:shadow-purple-600/35 active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
+                    className="w-full sm:w-auto bg-[#2C2C2A] hover:bg-[#3F3F3C] text-white dark:bg-[#EEECE6] dark:hover:bg-white dark:text-[#1A1A18] px-7 py-3.5 rounded-xl sm:rounded-full font-semibold text-sm sm:text-[15px] flex items-center justify-center gap-2.5 shadow-md shadow-black/10 active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
                   >
                     {status === 'sending' ? (
                       <>
-                        <Loader2 size={18} className="animate-spin text-white" />
+                        <Loader2 size={18} className="animate-spin text-white dark:text-[#1A1A18]" />
                         <span>Sending Message...</span>
                       </>
                     ) : (
                       <>
                         <span>Send Message</span>
-                        <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 text-purple-200" />
+                        <Send size={16} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 text-white dark:text-[#1A1A18]" />
                       </>
                     )}
                   </motion.button>
-                  <span className="hidden sm:inline-block text-purple-900 dark:text-slate-200 font-medium text-sm sm:text-[15px] sm:pr-6 truncate">
+                  <span className="hidden sm:inline-block text-[#2C2C2A] dark:text-[#EEECE6] font-medium text-sm sm:text-[15px] sm:pr-6 truncate">
                     lensendegife@gmail.com
                   </span>
                 </div>
 
                 {/* Mobile direct email link */}
-                <div className="flex sm:hidden items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-2.5">
+                <div className="flex sm:hidden items-center justify-center gap-1.5 text-xs text-[#9B9890] dark:text-[#78756E] mt-2.5">
                   <span>Direct email:</span>
                   <a
                     href="mailto:lensendegife@gmail.com"
-                    className="text-purple-600 dark:text-purple-400 font-medium hover:underline"
+                    className="text-[#8A857C] dark:text-[#B0ABA1] font-medium hover:underline"
                   >
                     lensendegife@gmail.com
                   </a>
@@ -285,7 +285,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2.5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-sm"
+                    className="flex items-center gap-2.5 p-4 rounded-xl bg-[#7A8474]/15 border border-[#7A8474]/40 text-[#7A8474] dark:text-[#8F9C88] text-sm"
                   >
                     <CheckCircle2 size={18} className="flex-shrink-0" />
                     <span>Thank you! Your message was sent successfully. I will get back to you soon.</span>
@@ -297,7 +297,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2.5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-sm"
+                    className="flex items-center gap-2.5 p-4 rounded-xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] text-[#5C5A55] dark:text-[#A8A49C] text-sm"
                   >
                     <AlertCircle size={18} className="flex-shrink-0" />
                     <span>Oops! Something went wrong. Please try again or email me directly at lensendegife@gmail.com.</span>
@@ -316,9 +316,9 @@ export default function Contact() {
             className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >
             {/* Direct Info Card */}
-            <div className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl shadow-purple-500/5">
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
-                <Sparkles size={18} className="text-purple-600 dark:text-purple-300 animate-pulse" />
+            <div className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5">
+              <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
+                <Sparkles size={18} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
                 Contact Details
               </h3>
 
@@ -330,24 +330,24 @@ export default function Contact() {
                       key={info.label}
                       whileHover={shouldReduceMotion ? false : { x: 3 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-purple-50/70 dark:bg-white/[0.03] border border-purple-200/70 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 hover:bg-purple-100/60 dark:hover:bg-white/[0.06] transition-all duration-200"
+                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#EEECE6]/70 dark:bg-[#292825]/70 border border-[#E5E2DB] dark:border-[#383632] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] transition-all duration-200"
                     >
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 flex items-center justify-center flex-shrink-0 text-purple-700 dark:text-purple-300 shadow-sm">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
                         <Icon size={18} />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#8A857C] dark:text-[#B0ABA1]">
                           {info.label}
                         </p>
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-xs sm:text-base font-medium text-slate-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors break-all sm:break-normal block"
+                            className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors break-all sm:break-normal block"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-xs sm:text-base font-medium text-slate-900 dark:text-white break-words">
+                          <p className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] break-words">
                             {info.value}
                           </p>
                         )}
@@ -358,8 +358,8 @@ export default function Contact() {
               </div>
 
               {/* Social Channels (Pill UI Buttons) */}
-              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-purple-100 dark:border-white/10">
-                <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-3 sm:mb-4">
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
+                <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#9B9890] dark:text-[#78756E] mb-3 sm:mb-4">
                   Connect on Social Media
                 </p>
                 <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -373,10 +373,10 @@ export default function Contact() {
                         rel="noopener noreferrer"
                         whileHover={shouldReduceMotion ? false : { scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-purple-50 dark:bg-white/[0.05] hover:bg-purple-100 dark:hover:bg-white/10 border border-purple-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 text-purple-700 hover:text-purple-900 dark:text-slate-200 dark:hover:text-white text-xs sm:text-sm font-medium transition-all duration-200 shadow-sm"
+                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] text-xs sm:text-sm font-medium transition-all duration-200 shadow-xs"
                         aria-label={link.label}
                       >
-                        <Icon size={15} className="text-purple-600 dark:text-purple-300 flex-shrink-0" />
+                        <Icon size={15} className="text-[#5C5A55] dark:text-[#A8A49C] flex-shrink-0" />
                         <span>{link.label}</span>
                       </motion.a>
                     );
@@ -388,12 +388,12 @@ export default function Contact() {
             {/* Collaboration Callout */}
             <motion.div
               whileHover={shouldReduceMotion ? false : { y: -2 }}
-              className="bg-gradient-to-br from-purple-100/90 to-indigo-100/90 border border-purple-200 dark:from-white/[0.04] dark:to-white/[0.01] dark:border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-md shadow-xl shadow-purple-500/5 transition-all duration-300"
+              className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 transition-all duration-300"
             >
-              <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
+              <h4 className="text-base sm:text-lg font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-2">
                 Open to Opportunities
               </h4>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
                 Whether you have an internship opportunity, freelance project, full-stack opening, or open-source collaboration in mind, I&apos;m always glad to talk!
               </p>
             </motion.div>

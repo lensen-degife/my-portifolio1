@@ -2,19 +2,22 @@ import { useState, useEffect } from 'react';
 import { setSectionFavicon, SECTION_METADATA } from '../utils/favicons';
 
 export function useDynamicFavicon() {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash && SECTION_METADATA[initialHash]) {
+        return initialHash;
+      }
+    }
+    return 'hero';
+  });
 
   useEffect(() => {
-    // 1. Initial check based on current URL hash or scroll position
-    const initialHash = window.location.hash.replace('#', '');
-    if (initialHash && SECTION_METADATA[initialHash]) {
-      setActiveSection(initialHash);
-      setSectionFavicon(initialHash);
-    } else {
-      setSectionFavicon('hero');
-    }
+    setSectionFavicon(activeSection);
+  }, [activeSection]);
 
-    // 2. IntersectionObserver to detect which section is currently centered/active
+  useEffect(() => {
+    // 1. IntersectionObserver to detect which section is currently centered/active
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

@@ -18,7 +18,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-slate-50 dark:bg-[#030305] text-slate-800 dark:text-slate-200 selection:bg-purple-600/30 selection:text-purple-200 font-sans">
+      <div className="min-h-screen bg-[#F7F6F3] dark:bg-[#161614] text-[#5C5A55] dark:text-[#A8A49C] selection:bg-[#E5E2DB] selection:text-[#1A1A18] dark:selection:bg-[#383632] dark:selection:text-[#FAF9F6] font-sans transition-colors duration-300">
         <ScrollProgress />
         <Navbar />
         <main>

@@ -19,16 +19,16 @@ export default function Footer() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <footer className="relative bg-slate-100/80 dark:bg-[#030305] border-t border-purple-100 dark:border-white/10 py-12 overflow-hidden text-slate-600 dark:text-slate-300 font-sans transition-colors duration-300">
-      {/* Background glow - hidden/subtle on mobile in dark mode */}
+    <footer className="relative bg-[#F7F6F3] dark:bg-[#161614] border-t border-[#E5E2DB] dark:border-[#2D2C28] py-12 overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] font-sans transition-colors duration-300">
+      {/* Background glow - softened warm neutral */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
-            : { scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }
+            : { scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }
         }
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-purple-200/40 dark:bg-[#1a0836] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[90px] pointer-events-none transition-colors duration-300"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#E5E2DB]/60 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[90px] pointer-events-none transition-colors duration-300"
       />
 
       {/* Decorative sparkles */}
@@ -45,11 +45,11 @@ export default function Footer() {
         >
           {/* Brand info */}
           <div>
-            <div className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center justify-center md:justify-start gap-1">
+            <div className="text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight flex items-center justify-center md:justify-start gap-1">
               <span>Lensen Degife</span>
-              <span className="text-purple-600 dark:text-purple-400">.</span>
+              <span className="text-[#8A857C] dark:text-[#B0ABA1]">.</span>
             </div>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-light">
+            <p className="text-sm text-[#9B9890] dark:text-[#78756E] mt-1 font-light">
               Full-Stack Developer & Computer Science Student at Addis Ababa University
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={shouldReduceMotion ? false : { scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-purple-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 hover:bg-purple-50 dark:hover:bg-white/10 text-purple-700 hover:text-purple-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-purple-500/10"
+                  className="w-10 h-10 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] flex items-center justify-center transition-all duration-200 shadow-xs"
                   aria-label={link.label}
                 >
                   <Icon size={17} />
@@ -77,12 +77,12 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom divider & copyright */}
-        <div className="mt-8 pt-8 border-t border-purple-100 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div className="mt-8 pt-8 border-t border-[#E5E2DB] dark:border-[#2D2C28] flex flex-col sm:flex-row items-center justify-between text-xs text-[#9B9890] dark:text-[#78756E] gap-3">
           <p>
             © {new Date().getFullYear()} Lensen Degife. Built with React, Vite & Tailwind CSS.
           </p>
-          <p className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 font-light">
-            Crafted with precision & passion <Heart size={13} className="text-purple-600 dark:text-purple-400 fill-purple-600 dark:fill-purple-400" />
+          <p className="flex items-center gap-1.5 text-[#5C5A55] dark:text-[#A8A49C] font-light">
+            Crafted with precision & passion <Heart size={13} className="text-[#8A857C] fill-[#8A857C] dark:text-[#B0ABA1] dark:fill-[#B0ABA1]" />
           </p>
         </div>
       </div>

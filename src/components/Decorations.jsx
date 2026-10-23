@@ -33,7 +33,7 @@ export function NetworkLines({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`absolute pointer-events-none z-0 text-purple-600/20 dark:text-purple-400/25 ${defaultPosition} ${transformClass} ${className}`}
+      className={`absolute pointer-events-none z-0 text-[#C8C4BB] dark:text-[#42403B] ${defaultPosition} ${transformClass} ${className}`}
       viewBox="0 0 200 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ export function NetworkLines({
           <circle cx="170" cy="50" r="3" fill="currentColor" />
           <circle cx="80" cy="140" r="3.5" fill="currentColor" />
           <circle cx="40" cy="170" r="3" fill="currentColor" />
-          <circle cx="150" cy="140" r="3" fill="currentColor" />
+          <circle cx="150" cy="140" r="3.5" fill="currentColor" />
           <circle cx="190" cy="150" r="3" fill="currentColor" />
           <circle cx="130" cy="170" r="2.5" fill="currentColor" />
         </>
@@ -80,10 +80,10 @@ export function NetworkLines({
           <circle cx="20" cy="20" r="3" fill="currentColor" />
           <circle cx="70" cy="20" r="3" fill="currentColor" />
           <circle cx="100" cy="50" r="3.5" fill="currentColor" />
-          <circle cx="160" cy="50" r="3" fill="currentColor" />
+          <circle cx="160" cy="50" r="3.5" fill="currentColor" />
           <circle cx="100" cy="110" r="3" fill="currentColor" />
           <circle cx="140" cy="150" r="3.5" fill="currentColor" />
-          <circle cx="180" cy="150" r="3" fill="currentColor" />
+          <circle cx="180" cy="150" r="3.5" fill="currentColor" />
         </>
       )}
     </motion.svg>
@@ -125,12 +125,12 @@ export function FloatingDiamond({
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full text-purple-600/60 dark:text-purple-300 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]"
+        className="w-full h-full text-[#C8C4BB] dark:text-[#42403B] drop-shadow-[0_0_8px_rgba(200,196,187,0.4)] dark:drop-shadow-[0_0_8px_rgba(66,64,59,0.4)]"
       >
         <path
           d="M12 0C12 0 12 9 24 12C24 12 13 13 12 24C12 24 11 13 0 12C0 12 11 11 12 0Z"
           fill="currentColor"
-          className="opacity-75 dark:opacity-95"
+          className="opacity-80"
         />
       </svg>
     </motion.div>
@@ -165,7 +165,7 @@ export function FloatingRing({
             }
       }
       transition={{ repeat: Infinity, duration, delay, ease: 'easeInOut' }}
-      className={`absolute rounded-full border-purple-500/40 dark:border-purple-400/60 shadow-[0_0_15px_rgba(147,51,234,0.18)] dark:shadow-[0_0_16px_rgba(168,85,247,0.35)] pointer-events-none z-10 ${sizeClasses} ${className}`}
+      className={`absolute rounded-full border-[#C8C4BB] dark:border-[#42403B] shadow-[0_0_12px_rgba(200,196,187,0.3)] dark:shadow-[0_0_12px_rgba(66,64,59,0.3)] pointer-events-none z-10 ${sizeClasses} ${className}`}
     />
   );
 }
@@ -199,7 +199,7 @@ export function SparkleStar({
             }
       }
       transition={{ repeat: Infinity, duration, delay, ease: 'easeInOut' }}
-      className={`absolute pointer-events-none z-10 text-purple-600 dark:text-purple-300 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)] dark:drop-shadow-[0_0_10px_rgba(192,132,252,0.6)] ${sizeClasses} ${className}`}
+      className={`absolute pointer-events-none z-10 text-[#C8C4BB] dark:text-[#42403B] drop-shadow-[0_0_6px_rgba(200,196,187,0.4)] dark:drop-shadow-[0_0_6px_rgba(66,64,59,0.4)] ${sizeClasses} ${className}`}
     >
       <svg
         viewBox="0 0 24 24"

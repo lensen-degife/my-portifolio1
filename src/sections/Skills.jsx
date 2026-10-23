@@ -93,17 +93,17 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
-      {/* Background glow - hidden/dimmed on mobile in dark mode */}
+      {/* Background glow - soft warm neutral */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
-            : { scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }
+            : { scale: [1, 1.08, 1], opacity: [0.35, 0.55, 0.35] }
         }
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
-        className="absolute top-1/2 right-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/2 right-0 w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[80px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
       {/* --- MODERN DECORATIONS --- */}
@@ -159,9 +159,9 @@ export default function Skills() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="text-lg font-semibold text-purple-700 dark:text-slate-200 mb-5 flex items-center gap-2"
+                className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mb-5 flex items-center gap-2"
               >
-                <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400" />
+                <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
                 {category.title}
               </motion.h3>
 
@@ -182,14 +182,14 @@ export default function Skills() {
                         : { y: -3, scale: 1.02 }
                     }
                     transition={{ duration: 0.2 }}
-                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-xl sm:rounded-2xl border border-purple-100 dark:border-white/10 hover:border-purple-300 dark:hover:border-white/20 shadow-md shadow-purple-500/5 transition-all duration-200 cursor-default select-none"
+                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-xl sm:rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] shadow-sm shadow-black/5 transition-all duration-200 cursor-default select-none"
                   >
                     <skill.icon
                       size={22}
                       className="flex-shrink-0 transition-transform duration-200 group-hover:scale-115"
                       style={{ color: skill.color }}
                     />
-                    <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-purple-700 dark:group-hover:text-white transition-colors leading-snug">
+                    <span className="text-xs sm:text-sm font-medium text-[#2C2C2A] dark:text-[#EEECE6] group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-colors leading-snug">
                       {skill.name}
                     </span>
                   </motion.div>

@@ -96,19 +96,19 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative w-full py-24 md:py-32 bg-slate-50 dark:bg-[#030305] overflow-hidden font-sans text-slate-800 dark:text-slate-200 transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
-      {/* --- BACKGROUND GLOWS - hidden/dimmed on mobile in dark mode --- */}
+      {/* --- BACKGROUND GLOWS - soft warm neutral --- */}
       <motion.div
         animate={
           shouldReduceMotion
             ? false
-            : { scale: [1, 1.07, 1], opacity: [0.5, 0.7, 0.5] }
+            : { scale: [1, 1.07, 1], opacity: [0.35, 0.55, 0.35] }
         }
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-purple-200/50 dark:bg-[#16062e] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[80px] sm:blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
+        className="absolute top-1/4 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 opacity-30 sm:opacity-50 rounded-full blur-[80px] sm:blur-[130px] -translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
-      <div className="absolute bottom-1/4 right-0 w-[260px] sm:w-[500px] h-[260px] sm:h-[500px] bg-indigo-200/40 dark:bg-[#120626] opacity-30 sm:opacity-50 dark:opacity-0 sm:dark:opacity-20 rounded-full blur-[70px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300" />
+      <div className="absolute bottom-1/4 right-0 w-[260px] sm:w-[500px] h-[260px] sm:h-[500px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
       {/* Top Right Network Lines */}
@@ -172,10 +172,10 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-white/[0.05] border border-purple-200 dark:border-white/10 backdrop-blur-md shadow-sm mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
           >
-            <Layers size={14} className="text-purple-600 dark:text-purple-300 animate-pulse" />
-            <span className="text-xs uppercase tracking-widest font-semibold text-purple-700 dark:text-purple-300">
+            <Layers size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+            <span className="text-xs uppercase tracking-widest font-semibold text-[#2C2C2A] dark:text-[#EEECE6]">
               Selected Works
             </span>
           </motion.div>
@@ -185,9 +185,9 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight mb-4"
           >
-            Featured <span className="text-purple-600 dark:text-purple-300">Projects</span>
+            Featured <span className="text-[#8A857C] dark:text-[#B0ABA1]">Projects</span>
           </motion.h2>
 
           <motion.p
@@ -195,7 +195,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-slate-600 dark:text-slate-300 max-w-2xl text-base sm:text-lg font-light leading-relaxed"
+            className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
             A curated collection of full-stack systems, backend microservices, and mobile applications engineered with clean code.
           </motion.p>
@@ -219,32 +219,32 @@ export default function Projects() {
                   : { y: -6, scale: 1.01 }
               }
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="group relative bg-white/80 dark:bg-white/[0.03] backdrop-blur-md border border-purple-100 dark:border-white/10 rounded-2xl overflow-hidden hover:border-purple-300 dark:hover:border-white/20 shadow-xl shadow-purple-500/5 transition-all duration-300 flex flex-col justify-between"
+              className="group relative bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl overflow-hidden hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Top Banner / Accent */}
               <div className="p-5 sm:p-6 pb-3 sm:pb-4">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-100 dark:bg-white/[0.06] border border-purple-200 dark:border-white/10 flex items-center justify-center text-purple-700 dark:text-purple-300 group-hover:scale-110 group-hover:rotate-3 group-hover:border-purple-400 dark:group-hover:border-white/25 group-hover:text-purple-900 dark:group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-all duration-300 shadow-xs">
                     <Folder size={20} />
                   </div>
 
                   {project.highlight && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-purple-100/90 dark:bg-white/[0.08] text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-white/15 shadow-sm">
-                      <Sparkles size={11} className="text-purple-600 dark:text-purple-300 animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-[#EEECE6] dark:bg-[#292825] text-[#2C2C2A] dark:text-[#EEECE6] border border-[#E5E2DB] dark:border-[#383632] shadow-xs">
+                      <Sparkles size={11} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
                       {project.highlight}
                     </span>
                   )}
                 </div>
 
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#8A857C] dark:text-[#B0ABA1] mb-1">
                   {project.category}
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors mb-2.5 sm:mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors mb-2.5 sm:mb-3">
                   {project.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-4 sm:mb-6">
+                <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light mb-4 sm:mb-6">
                   {project.description}
                 </p>
               </div>
@@ -256,7 +256,7 @@ export default function Projects() {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-purple-50 dark:bg-white/[0.04] text-purple-800 dark:text-slate-300 border border-purple-200/80 dark:border-white/[0.08] rounded-full group-hover:border-purple-300/80 dark:group-hover:border-white/20 dark:group-hover:text-white transition-colors"
+                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-[#EEECE6] dark:bg-[#292825] text-[#5C5A55] dark:text-[#A8A49C] border border-[#E5E2DB] dark:border-[#383632] rounded-full group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-colors"
                     >
                       {t}
                     </span>
@@ -264,15 +264,15 @@ export default function Projects() {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-purple-100 dark:border-white/10">
+                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-slate-600 hover:text-purple-700 dark:text-slate-300 dark:hover:text-white transition-colors group/link"
+                      className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors group/link"
                     >
-                      <SiGithub size={15} className="text-purple-600 dark:text-slate-400 group-hover/link:text-purple-800 dark:group-hover/link:text-white transition-colors" />
+                      <SiGithub size={15} className="text-[#8A857C] dark:text-[#B0ABA1] group-hover/link:text-[#1A1A18] dark:group-hover/link:text-[#FAF9F6] transition-colors" />
                       <span>Source Code</span>
                     </a>
                   )}
@@ -282,7 +282,7 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-purple-700 hover:text-purple-900 dark:text-purple-300 dark:hover:text-white transition-colors ml-auto group/link"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors ml-auto group/link"
                     >
                       <span>Live Preview</span>
                       <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
