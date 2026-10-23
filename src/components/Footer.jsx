@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, Send, Heart } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
-import { SparkleStar, FloatingDiamond } from './Decorations';
+import { SparkleStar, FloatingDiamond, GridLines } from './Decorations';
 
 const socialLinks = [
   { icon: SiGithub, href: 'https://github.com/lensen-degife', label: 'GitHub' },
@@ -20,6 +20,9 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-[#F7F6F3] dark:bg-[#161614] border-t border-[#E5E2DB] dark:border-[#2D2C28] py-12 overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] font-sans transition-colors duration-300">
+      {/* Technical Background Grid Lines */}
+      <GridLines />
+
       {/* Background glow - softened warm neutral */}
       <motion.div
         animate={

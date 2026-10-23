@@ -21,7 +21,7 @@ import {
 import { FaJava, FaDatabase } from 'react-icons/fa';
 import { Code2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const skillCategories = [
   {
@@ -95,6 +95,9 @@ export default function Skills() {
       id="skills"
       className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
+      {/* Technical Background Grid Lines */}
+      <GridLines />
+
       {/* Background glow - soft warm neutral */}
       <motion.div
         animate={

@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const projects = [
   {
@@ -98,6 +98,9 @@ export default function Projects() {
       id="projects"
       className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
+      {/* Technical Background Grid Lines */}
+      <GridLines />
+
       {/* --- BACKGROUND GLOWS - soft warm neutral --- */}
       <motion.div
         animate={

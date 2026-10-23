@@ -8,7 +8,7 @@ import Typed from 'typed.js';
 // Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
 import profileImage from '../assets/img3.png';
-import { SparkleStar, FloatingDiamond } from '../components/Decorations';
+import { SparkleStar, FloatingDiamond, HeroConstellation, GridLines } from '../components/Decorations';
 
 export default function Hero() {
   const typedRef = useRef(null);
@@ -89,47 +89,11 @@ export default function Hero() {
         className="absolute top-0 right-0 w-[260px] sm:w-[400px] h-[260px] sm:h-[400px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[100px] -translate-y-1/4 translate-x-1/4 pointer-events-none transition-colors duration-300"
       />
 
-      {/* Top Left Network Lines */}
-      <motion.svg
-        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: false, amount: 0.1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 text-[#C8C4BB] dark:text-[#42403B] pointer-events-none z-0"
-        viewBox="0 0 200 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M0 0L50 50L20 100L0 80" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M50 50L120 20L150 0" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M50 50L100 90L180 80" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="50" cy="50" r="3" fill="currentColor" />
-        <circle cx="20" cy="100" r="3" fill="currentColor" />
-        <circle cx="120" cy="20" r="3" fill="currentColor" />
-        <circle cx="100" cy="90" r="3" fill="currentColor" />
-        <circle cx="180" cy="80" r="3" fill="currentColor" />
-      </motion.svg>
+      {/* Technical Grid Lines */}
+      <GridLines />
 
-      {/* Top Right Network Lines */}
-      <motion.svg
-        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: false, amount: 0.1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="absolute top-0 right-0 w-44 h-44 sm:w-56 sm:h-56 md:w-80 md:h-80 text-[#C8C4BB] dark:text-[#42403B] pointer-events-none transform rotate-90 z-0"
-        viewBox="0 0 200 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M200 0L150 60L180 120L200 100" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M150 60L70 30L40 0" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M150 60L100 110L20 90" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="150" cy="60" r="3" fill="currentColor" />
-        <circle cx="180" cy="120" r="3" fill="currentColor" />
-        <circle cx="70" cy="30" r="3" fill="currentColor" />
-        <circle cx="100" cy="110" r="3" fill="currentColor" />
-        <circle cx="20" cy="90" r="3" fill="currentColor" />
-      </motion.svg>
+      {/* Hero Soft Network / Constellation Lines (Behind photo & text) */}
+      <HeroConstellation />
 
       {/* Floating Hollow Ring */}
       <motion.div 
@@ -176,68 +140,6 @@ export default function Hero() {
         >
           {/* Subtle Ambient Glow behind portrait */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[360px] lg:w-[440px] h-[200px] sm:h-[360px] lg:h-[440px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 rounded-full blur-[60px] sm:blur-[100px] pointer-events-none -z-10" />
-
-          {/* Clean & Minimal Network Lines positioned to the left of image background */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? false
-                : { y: [-5, 5, -5] }
-            }
-            transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-            className="absolute top-[8%] sm:top-[12%] lg:top-[14%] -left-[4%] sm:-left-[8%] lg:-left-[12%] w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 pointer-events-none -z-10 text-[#C8C4BB] dark:text-[#42403B] select-none"
-          >
-            <svg
-              viewBox="80 40 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full"
-            >
-              <path d="M15 85 L65 55 L115 85 L165 35" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M65 55 L85 135 L35 165" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M85 135 L145 125 L185 175" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M115 85 L145 125" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="15" cy="85" r="3" fill="currentColor" />
-              <circle cx="65" cy="55" r="3.5" fill="currentColor" />
-              <circle cx="115" cy="85" r="3" fill="currentColor" />
-              <circle cx="165" cy="35" r="3.5" fill="currentColor" />
-              <circle cx="85" cy="135" r="3.5" fill="currentColor" />
-              <circle cx="35" cy="165" r="3" fill="currentColor" />
-              <circle cx="145" cy="125" r="3.5" fill="currentColor" />
-              <circle cx="185" cy="175" r="3" fill="currentColor" />
-            </svg>
-          </motion.div>
-
-          {/* Clean & Minimal Network Lines positioned to the right of image background in mobile view */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? false
-                : { y: [5, -5, 5] }
-            }
-            transition={{ repeat: Infinity, duration: 6.5, ease: 'easeInOut' }}
-            className="absolute top-[8%] sm:top-[12%] -right-[4%] sm:-right-[8%] w-48 h-48 sm:w-64 sm:h-64 pointer-events-none -z-10 text-[#C8C4BB] dark:text-[#42403B] select-none lg:hidden"
-          >
-            <svg
-              viewBox="80 40 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full transform -scale-x-100"
-            >
-              <path d="M15 85 L65 55 L115 85 L165 35" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M65 55 L85 135 L35 165" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M85 135 L145 125 L185 175" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M115 85 L145 125" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="15" cy="85" r="3" fill="currentColor" />
-              <circle cx="65" cy="55" r="3.5" fill="currentColor" />
-              <circle cx="115" cy="85" r="3" fill="currentColor" />
-              <circle cx="165" cy="35" r="3.5" fill="currentColor" />
-              <circle cx="85" cy="135" r="3.5" fill="currentColor" />
-              <circle cx="35" cy="165" r="3" fill="currentColor" />
-              <circle cx="145" cy="125" r="3.5" fill="currentColor" />
-              <circle cx="185" cy="175" r="3" fill="currentColor" />
-            </svg>
-          </motion.div>
 
           {/* Stars on the right of profile picture in mobile view */}
           <SparkleStar className="top-[12%] sm:top-[16%] right-[4%] sm:right-[8%] lg:hidden" size="md" delay={0.4} />

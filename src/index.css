@@ -45,6 +45,58 @@
   }
 }
 
+/* Faint technical dot grid for warm stone portfolio */
+.faint-dot-grid {
+  background-image: radial-gradient(rgba(138, 133, 124, 0.28) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+@media (min-width: 640px) {
+  .faint-dot-grid {
+    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(138, 133, 124, 0.28) 1.2px, transparent 1.2px);
+  }
+}
+
+html.dark .faint-dot-grid {
+  background-image: radial-gradient(rgba(250, 249, 246, 0.12) 1.2px, transparent 1.2px);
+}
+
+@media (min-width: 640px) {
+  html.dark .faint-dot-grid {
+    background-image: radial-gradient(rgba(250, 249, 246, 0.14) 1.2px, transparent 1.2px);
+  }
+}
+
+/* Technical grid lines for warm stone portfolio */
+.technical-grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(175, 170, 160, 0.42) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(175, 170, 160, 0.42) 1px, transparent 1px),
+    linear-gradient(to right, rgba(200, 196, 187, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 196, 187, 0.28) 1px, transparent 1px);
+  background-size: 144px 144px, 144px 144px, 36px 36px, 36px 36px;
+}
+
+@media (min-width: 640px) {
+  .technical-grid-lines {
+    background-size: 176px 176px, 176px 176px, 44px 44px, 44px 44px;
+    background-image:
+      linear-gradient(to right, rgba(170, 165, 155, 0.46) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(170, 165, 155, 0.46) 1px, transparent 1px),
+      linear-gradient(to right, rgba(195, 190, 180, 0.30) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(195, 190, 180, 0.30) 1px, transparent 1px);
+  }
+}
+
+html.dark .technical-grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(250, 249, 246, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 249, 246, 0.09) 1px, transparent 1px),
+    linear-gradient(to right, rgba(250, 249, 246, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 249, 246, 0.045) 1px, transparent 1px);
+}
+
 /* View Transition: Liquid Drop from Above Corner */
 ::view-transition-old(root),
 ::view-transition-new(root) {

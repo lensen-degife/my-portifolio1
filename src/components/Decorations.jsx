@@ -1,6 +1,198 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
 /**
+ * Technical Grid Lines for CS student portfolio background.
+ * Clean, subtle coordinate grid lines with major (176px) and minor (44px) divisions
+ * in warm neutral stone tones (#E5E2DB / #C8C4BB).
+ * Placed behind all section content and cards.
+ */
+export function GridLines({ className = '' }) {
+  return (
+    <div
+      className={`absolute inset-0 pointer-events-none z-0 technical-grid-lines ${className}`}
+      aria-hidden="true"
+    />
+  );
+}
+
+/**
+ * Faint Dot Grid / Grid Lines for technical CS student portfolio.
+ * Evenly spaced grid lines with subtle division in clean warm stone (#E5E2DB tone).
+ * Placed behind section content and not on top of cards.
+ */
+export function DotGrid({ className = '' }) {
+  return (
+    <div
+      className={`absolute inset-0 pointer-events-none z-0 technical-grid-lines ${className}`}
+      aria-hidden="true"
+    />
+  );
+}
+
+const constellationNodes = [
+  // Left cluster (framing portrait image)
+  { id: 'l1', x: 100, y: 150 },
+  { id: 'l2', x: 230, y: 90 },
+  { id: 'l3', x: 380, y: 160 },
+  { id: 'l4', x: 160, y: 290 },
+  { id: 'l5', x: 70, y: 460 },
+  { id: 'l6', x: 210, y: 520 },
+  { id: 'l7', x: 320, y: 680 },
+  { id: 'l8', x: 130, y: 740 },
+
+  // Center subtle bridging nodes
+  { id: 'c1', x: 520, y: 130 },
+  { id: 'c2', x: 670, y: 210, highlight: true },
+  { id: 'c3', x: 580, y: 380 },
+  { id: 'c4', x: 730, y: 470 },
+
+  // Right cluster (framing headline and bio text)
+  { id: 'r1', x: 860, y: 160 },
+  { id: 'r2', x: 1020, y: 110, highlight: true },
+  { id: 'r3', x: 1180, y: 170 },
+  { id: 'r4', x: 1340, y: 120 },
+  { id: 'r5', x: 920, y: 320 },
+  { id: 'r6', x: 1080, y: 340 },
+  { id: 'r7', x: 1260, y: 280 },
+  { id: 'r8', x: 1390, y: 370 },
+  { id: 'r9', x: 850, y: 530 },
+  { id: 'r10', x: 1010, y: 620, highlight: true },
+  { id: 'r11', x: 1190, y: 560 },
+  { id: 'r12', x: 1340, y: 670 },
+  { id: 'r13', x: 1110, y: 760 },
+];
+
+const constellationEdges = [
+  // Left cluster
+  ['l1', 'l2'],
+  ['l2', 'l3'],
+  ['l1', 'l4'],
+  ['l4', 'l6'],
+  ['l4', 'l5'],
+  ['l5', 'l6'],
+  ['l6', 'l7'],
+  ['l6', 'l8'],
+  ['l7', 'l8', true],
+
+  // Center bridge (subtle & sparse)
+  ['l3', 'c1'],
+  ['c1', 'c2'],
+  ['c2', 'r1'],
+  ['c2', 'c3'],
+  ['c3', 'c4', true],
+  ['c4', 'r9'],
+
+  // Right cluster
+  ['r1', 'r2'],
+  ['r2', 'r3'],
+  ['r3', 'r4'],
+  ['r1', 'r5'],
+  ['r2', 'r6'],
+  ['r3', 'r7'],
+  ['r4', 'r8'],
+  ['r5', 'r6'],
+  ['r6', 'r7'],
+  ['r7', 'r8'],
+  ['r5', 'r9'],
+  ['r6', 'r10'],
+  ['r10', 'r11'],
+  ['r7', 'r11'],
+  ['r11', 'r12'],
+  ['r10', 'r13', true],
+  ['r13', 'r12'],
+];
+
+const nodeMap = constellationNodes.reduce((acc, node) => {
+  acc[node.id] = node;
+  return acc;
+}, {});
+
+/**
+ * Soft Constellation / Graph Network background for the Hero section.
+ * Thin connected lines (stroke ~0.28) with small dots at connection points (fill ~0.40).
+ * Animates with a gentle slow drift behind photo and text content.
+ */
+export function HeroConstellation({ className = '' }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      animate={
+        shouldReduceMotion
+          ? false
+          : {
+              y: [-6, 6, -6],
+              x: [-3, 3, -3],
+            }
+      }
+      transition={{
+        duration: 18,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      }}
+      className={`absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden opacity-60 sm:opacity-100 ${className}`}
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 1440 900"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        className="w-full h-full text-[#C8C4BB] dark:text-[#42403B]"
+      >
+        {/* Connected Constellation Lines */}
+        <g>
+          {constellationEdges.map(([fromId, toId, isDashed], idx) => {
+            const from = nodeMap[fromId];
+            const to = nodeMap[toId];
+            if (!from || !to) return null;
+            return (
+              <line
+                key={`edge-${idx}`}
+                x1={from.x}
+                y1={from.y}
+                x2={to.x}
+                y2={to.y}
+                stroke="currentColor"
+                strokeWidth="1.2"
+                strokeOpacity={isDashed ? '0.22' : '0.28'}
+                strokeDasharray={isDashed ? '4 4' : undefined}
+              />
+            );
+          })}
+        </g>
+
+        {/* Small Dots at Connection Points */}
+        <g>
+          {constellationNodes.map((node) => (
+            <g key={node.id}>
+              <circle
+                cx={node.x}
+                cy={node.y}
+                r="2.5"
+                fill="currentColor"
+                fillOpacity="0.40"
+              />
+              {node.highlight && (
+                <circle
+                  cx={node.x}
+                  cy={node.y}
+                  r="5.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeOpacity="0.25"
+                />
+              )}
+            </g>
+          ))}
+        </g>
+      </svg>
+    </motion.div>
+  );
+}
+
+/**
  * Modern Tech Network Lines SVG with connected nodes and circuit traces.
  */
 export function NetworkLines({

@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, FolderGit2, Award, GraduationCap, Terminal, User } from 'lucide-react';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar } from '../components/Decorations';
+import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const stats = [
   {
@@ -57,6 +57,9 @@ export default function About() {
       id="about"
       className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
+      {/* Technical Background Grid Lines */}
+      <GridLines />
+
       {/* --- BACKGROUND GLOWS - soft warm neutral --- */}
       <motion.div
         animate={
