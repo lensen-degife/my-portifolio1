@@ -21,7 +21,7 @@ import {
 import { FaJava, FaDatabase } from 'react-icons/fa';
 import { Code2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const skillCategories = [
   {
@@ -110,19 +110,6 @@ export default function Skills() {
       />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-right"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-left"
-        variant="matrix"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingDiamond
         className="top-16 left-[5%] sm:left-[8%]"
         size="md"

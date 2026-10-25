@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const contactInfo = [
   {
@@ -95,19 +95,6 @@ export default function Contact() {
       <div className="absolute bottom-0 left-0 w-[260px] sm:w-[450px] h-[260px] sm:h-[450px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[110px] -translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-right"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-left"
-        variant="branch"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingRing
         className="top-16 sm:top-28 left-[4%] sm:left-[10%]"
         size="md"

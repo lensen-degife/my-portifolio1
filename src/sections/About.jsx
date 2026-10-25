@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, FolderGit2, Award, GraduationCap, Terminal, User } from 'lucide-react';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const stats = [
   {
@@ -73,19 +73,6 @@ export default function About() {
       <div className="absolute bottom-0 right-0 w-[260px] sm:w-[400px] h-[260px] sm:h-[400px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[100px] translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-left"
-        variant="branch"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-right"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingRing
         className="top-12 sm:top-20 right-[5%] sm:right-[12%]"
         size="md"

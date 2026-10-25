@@ -11,7 +11,7 @@ import { SiGithub } from 'react-icons/si';
 import { GitHubCalendar } from 'react-github-calendar';
 import SectionHeading from '../components/SectionHeading';
 import { useTheme } from '../context/ThemeContext';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const GITHUB_USERNAME = 'lensen-degife';
 
@@ -182,19 +182,6 @@ export default function GitHub() {
       />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-left"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-right"
-        variant="matrix"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingDiamond
         className="top-16 right-[7%] sm:right-[10%]"
         size="md"

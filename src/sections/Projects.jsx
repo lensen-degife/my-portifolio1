@@ -1,17 +1,17 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const projects = [
-  {
-    title: 'HydroLink',
-    category: 'Mobile & IoT Solution',
+    {
+    title: 'AI Study Support Agent',
+    category: 'Full Stack Web Application with AI Integration',
     description:
-      'A full-stack Android application built for municipal water resource management. Features real-time utility telemetry, community leak incident reporting, online bill payments, and cloud database integration.',
-    tech: ['React Native', 'Expo', 'Node.js', 'Express', 'PostgreSQL'],
-    github: 'https://github.com/lensen-degife/hydrolink',
-    live: null,
+      'A full-stack web application that leverages AI to provide personalized study support. Features include interactive learning modules, real-time feedback, and adaptive learning paths.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Gemini AI API'],
+    github: 'https://github.com/lensen-degife/Study-Support',
+    live: 'https://study-support-vertex.vercel.app/',
     highlight: 'Featured Project',
   },
   {
@@ -23,6 +23,16 @@ const projects = [
     github: 'https://github.com/lensen-degife/stockflow-frontend',
     live: 'https://stockflow-frontend-lac.vercel.app',
     highlight: 'Live Deployment',
+  },
+  {
+    title: 'HydroLink',
+    category: 'Mobile & IoT Solution',
+    description:
+      'A full-stack Android application built for municipal water resource management. Features real-time utility telemetry, community leak incident reporting, online bill payments, and cloud database integration.',
+    tech: ['React Native', 'Expo', 'Node.js', 'Express', 'PostgreSQL'],
+    github: 'https://github.com/lensen-degife/hydrolink',
+    live: null,
+    highlight: 'Featured Project',
   },
   {
     title: 'Product Service API',
@@ -114,21 +124,6 @@ export default function Projects() {
       <div className="absolute bottom-1/4 right-0 w-[260px] sm:w-[500px] h-[260px] sm:h-[500px] bg-[#EEECE6]/60 dark:bg-[#292825]/40 opacity-30 sm:opacity-50 rounded-full blur-[70px] sm:blur-[120px] translate-x-1/4 pointer-events-none transition-colors duration-300" />
 
       {/* --- MODERN DECORATIONS --- */}
-      {/* Top Right Network Lines */}
-      <NetworkLines
-        position="top-right"
-        variant="corner"
-        className="w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
-        delay={0.2}
-      />
-      {/* Bottom Left Network Lines */}
-      <NetworkLines
-        position="bottom-left"
-        variant="branch"
-        className="w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
-        delay={0.3}
-      />
-
       {/* Floating Hollow Ring */}
       <FloatingRing
         className="top-[10%] sm:top-[14%] lg:top-[18%] left-[4%] sm:left-[7%]"

@@ -3,16 +3,26 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Noto Serif Ethiopic', serif;
+  --font-serif: 'Noto Serif Ethiopic', serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
+  *, ::before, ::after {
+    font-family: 'Noto Serif Ethiopic', serif;
+  }
+
+  button, input, optgroup, select, textarea {
+    font-family: 'Noto Serif Ethiopic', serif;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     background-color: #F7F6F3;
     color: #5C5A55;
+    font-family: 'Noto Serif Ethiopic', serif;
   }
 
   html.dark {
@@ -21,7 +31,7 @@
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: 'Noto Serif Ethiopic', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #F7F6F3;
@@ -68,33 +78,137 @@ html.dark .faint-dot-grid {
   }
 }
 
-/* Technical grid lines for warm stone portfolio */
+/* Technical arched grid lines for warm stone portfolio */
 .technical-grid-lines {
   background-image:
-    linear-gradient(to right, rgba(175, 170, 160, 0.42) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(175, 170, 160, 0.42) 1px, transparent 1px),
-    linear-gradient(to right, rgba(200, 196, 187, 0.28) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(200, 196, 187, 0.28) 1px, transparent 1px);
-  background-size: 144px 144px, 144px 144px, 36px 36px, 36px 36px;
+    repeating-radial-gradient(
+      circle at 50% calc(100% + 1500px),
+      transparent 0,
+      transparent 143px,
+      rgba(175, 170, 160, 0.42) 144px,
+      transparent 145px
+    ),
+    repeating-radial-gradient(
+      circle at 50% calc(100% + 1500px),
+      transparent 0,
+      transparent 35px,
+      rgba(200, 196, 187, 0.28) 36px,
+      transparent 37px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(175, 170, 160, 0.42) 0,
+      rgba(175, 170, 160, 0.42) 1px,
+      transparent 1px,
+      transparent 144px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(200, 196, 187, 0.28) 0,
+      rgba(200, 196, 187, 0.28) 1px,
+      transparent 1px,
+      transparent 36px
+    );
 }
 
 @media (min-width: 640px) {
   .technical-grid-lines {
-    background-size: 176px 176px, 176px 176px, 44px 44px, 44px 44px;
     background-image:
-      linear-gradient(to right, rgba(170, 165, 155, 0.46) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(170, 165, 155, 0.46) 1px, transparent 1px),
-      linear-gradient(to right, rgba(195, 190, 180, 0.30) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(195, 190, 180, 0.30) 1px, transparent 1px);
+      repeating-radial-gradient(
+        circle at 50% calc(100% + 2000px),
+        transparent 0,
+        transparent 175px,
+        rgba(170, 165, 155, 0.46) 176px,
+        transparent 177px
+      ),
+      repeating-radial-gradient(
+        circle at 50% calc(100% + 2000px),
+        transparent 0,
+        transparent 43px,
+        rgba(195, 190, 180, 0.30) 44px,
+        transparent 45px
+      ),
+      repeating-linear-gradient(
+        to right,
+        rgba(170, 165, 155, 0.46) 0,
+        rgba(170, 165, 155, 0.46) 1px,
+        transparent 1px,
+        transparent 176px
+      ),
+      repeating-linear-gradient(
+        to right,
+        rgba(195, 190, 180, 0.30) 0,
+        rgba(195, 190, 180, 0.30) 1px,
+        transparent 1px,
+        transparent 44px
+      );
   }
 }
 
 html.dark .technical-grid-lines {
   background-image:
-    linear-gradient(to right, rgba(250, 249, 246, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(250, 249, 246, 0.09) 1px, transparent 1px),
-    linear-gradient(to right, rgba(250, 249, 246, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(250, 249, 246, 0.045) 1px, transparent 1px);
+    repeating-radial-gradient(
+      circle at 50% calc(100% + 1500px),
+      transparent 0,
+      transparent 143px,
+      rgba(250, 249, 246, 0.09) 144px,
+      transparent 145px
+    ),
+    repeating-radial-gradient(
+      circle at 50% calc(100% + 1500px),
+      transparent 0,
+      transparent 35px,
+      rgba(250, 249, 246, 0.045) 36px,
+      transparent 37px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(250, 249, 246, 0.09) 0,
+      rgba(250, 249, 246, 0.09) 1px,
+      transparent 1px,
+      transparent 144px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(250, 249, 246, 0.045) 0,
+      rgba(250, 249, 246, 0.045) 1px,
+      transparent 1px,
+      transparent 36px
+    );
+}
+
+@media (min-width: 640px) {
+  html.dark .technical-grid-lines {
+    background-image:
+      repeating-radial-gradient(
+        circle at 50% calc(100% + 2000px),
+        transparent 0,
+        transparent 175px,
+        rgba(250, 249, 246, 0.09) 176px,
+        transparent 177px
+      ),
+      repeating-radial-gradient(
+        circle at 50% calc(100% + 2000px),
+        transparent 0,
+        transparent 43px,
+        rgba(250, 249, 246, 0.045) 44px,
+        transparent 45px
+      ),
+      repeating-linear-gradient(
+        to right,
+        rgba(250, 249, 246, 0.09) 0,
+        rgba(250, 249, 246, 0.09) 1px,
+        transparent 1px,
+        transparent 176px
+      ),
+      repeating-linear-gradient(
+        to right,
+        rgba(250, 249, 246, 0.045) 0,
+        rgba(250, 249, 246, 0.045) 1px,
+        transparent 1px,
+        transparent 44px
+      );
+  }
 }
 
 /* View Transition: Liquid Drop from Above Corner */

@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { GraduationCap, Calendar, Sparkles } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 
 const timelineItems = [
   {
@@ -37,19 +37,6 @@ export default function Timeline() {
       />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-right"
-        variant="branch"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-left"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingDiamond
         className="top-20 left-[6%] sm:left-[9%]"
         size="md"

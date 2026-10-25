@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Trophy, GitBranch, Award, ExternalLink } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
-import { NetworkLines, FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import udacityCert from '../assets/udacity.certificate.pdf';
 import simplilearnCert from '../assets/simplilearnCertificate.pdf';
 
@@ -81,19 +81,6 @@ export default function Achievements() {
       />
 
       {/* --- MODERN DECORATIONS --- */}
-      <NetworkLines
-        position="top-left"
-        variant="matrix"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.2}
-      />
-      <NetworkLines
-        position="bottom-right"
-        variant="corner"
-        className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72"
-        delay={0.3}
-      />
-
       <FloatingDiamond
         className="top-20 right-[6%] sm:right-[10%]"
         size="md"
