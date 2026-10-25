@@ -113,7 +113,7 @@ export default function Achievements() {
         />
 
         {/* Achievements Grid with Alternating Slide from Left and Right */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14 overflow-hidden">
           {achievements.map((item, index) => {
             const isLeft = index % 2 === 0;
             return (
@@ -122,10 +122,10 @@ export default function Achievements() {
                 initial={
                   shouldReduceMotion
                     ? false
-                    : { opacity: 0, x: isLeft ? -45 : 45 }
+                    : { opacity: 0, x: isLeft ? -30 : 30 }
                 }
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.12 }}
                 whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
                 className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default"
@@ -151,7 +151,7 @@ export default function Achievements() {
           initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.05 }}
         >
           <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2">
             <Award size={20} className="text-[#8A857C] dark:text-[#B0ABA1]" />
@@ -162,7 +162,7 @@ export default function Achievements() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.05 }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5"
           >
             {certificates.map((cert) => (

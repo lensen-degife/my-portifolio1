@@ -176,8 +176,7 @@ export default function Hero() {
         {/* Left Column: Portrait Sticker Image (Desktop) */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
           whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
           onClick={() => setIsCardOpen(true)}
@@ -218,8 +217,7 @@ export default function Hero() {
         <motion.div 
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="visible"
           className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-start text-left"
         >
           {/* Section Pill Badge */}
@@ -352,8 +350,7 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 z-30"
       >

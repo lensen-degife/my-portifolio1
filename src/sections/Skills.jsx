@@ -147,7 +147,7 @@ export default function Skills() {
               <motion.h3
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.55, ease: 'easeOut' }}
                 className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mb-5 flex items-center gap-2"
               >
@@ -159,7 +159,7 @@ export default function Skills() {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.05 }}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3.5"
               >
                 {category.skills.map((skill) => (

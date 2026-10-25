@@ -17,16 +17,23 @@ export function useDynamicFavicon() {
   }, [activeSection]);
 
   useEffect(() => {
+    let currentActive = activeSection;
+
+    const updateActiveSection = (sectionId) => {
+      if (currentActive !== sectionId && SECTION_METADATA[sectionId]) {
+        currentActive = sectionId;
+        setActiveSection(sectionId);
+        setSectionFavicon(sectionId);
+      }
+    };
+
     // 1. IntersectionObserver to detect which section is currently centered/active
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const sectionId = entry.target.id;
-            if (SECTION_METADATA[sectionId]) {
-              setActiveSection(sectionId);
-              setSectionFavicon(sectionId);
-            }
+            updateActiveSection(sectionId);
           }
         });
       },
@@ -39,11 +46,10 @@ export function useDynamicFavicon() {
     const sections = document.querySelectorAll('section[id]');
     sections.forEach((section) => observer.observe(section));
 
-    // 3. Scroll listener to reset to hero when user is at the very top
+    // 3. Scroll listener to reset to hero when user is at the very top (guarded to prevent DOM thrashing)
     const handleScroll = () => {
-      if (window.scrollY < 60) {
-        setActiveSection('hero');
-        setSectionFavicon('hero');
+      if (window.scrollY < 60 && currentActive !== 'hero') {
+        updateActiveSection('hero');
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -51,9 +57,8 @@ export function useDynamicFavicon() {
     // 4. Hashchange listener
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash && SECTION_METADATA[hash]) {
-        setActiveSection(hash);
-        setSectionFavicon(hash);
+      if (hash) {
+        updateActiveSection(hash);
       }
     };
     window.addEventListener('hashchange', handleHashChange);

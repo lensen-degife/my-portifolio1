@@ -103,7 +103,7 @@ export default function About() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
           >
@@ -116,7 +116,7 @@ export default function About() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight mb-4"
           >
@@ -126,7 +126,7 @@ export default function About() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
             className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
@@ -140,7 +140,7 @@ export default function About() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="lg:col-span-7 flex flex-col space-y-6"
           >
@@ -173,7 +173,7 @@ export default function About() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.05 }}
             className="lg:col-span-5 grid sm:grid-cols-2 lg:grid-cols-1 gap-3.5 sm:gap-4"
           >
             {stats.map((stat) => {

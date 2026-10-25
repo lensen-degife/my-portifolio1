@@ -75,14 +75,14 @@ export default function Timeline() {
               initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: index * 0.12, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.05 }}
               className="relative pl-9 sm:pl-12 pb-8 sm:pb-10 last:pb-0"
             >
               {/* Timeline dot */}
               <motion.div
                 initial={shouldReduceMotion ? false : { scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.45, delay: 0.15, ease: 'easeOut' }}
                 className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-[#2C2C2A] dark:bg-[#EEECE6] rounded-full flex items-center justify-center border-2 border-[#8A857C] dark:border-[#B0ABA1] shadow-sm"
               >

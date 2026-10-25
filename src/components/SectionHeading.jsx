@@ -32,7 +32,7 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
       initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, ease: 'easeOut' }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.05 }}
       className="text-center mb-10 sm:mb-12 md:mb-16 relative z-10 flex flex-col items-center"
     >
       {badge && (
@@ -40,7 +40,7 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.05 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
         >
           {Icon && <Icon size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />}
@@ -57,7 +57,7 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.05 }}
           className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light leading-relaxed px-2"
         >
           {subtitle}
@@ -67,7 +67,7 @@ export default function SectionHeading({ title, subtitle, icon: Icon, badge }) {
         initial={{ scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.05 }}
         className="mt-4 w-20 h-1 bg-[#8A857C] dark:bg-[#B0ABA1] mx-auto rounded-full origin-center"
       />
     </motion.div>
