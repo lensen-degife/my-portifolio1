@@ -112,7 +112,7 @@ export default function Hero() {
       {/* Aligned Grid Lines on Top of the Portrait's Blurred Base */}
       <div 
         aria-hidden="true"
-        className="hidden lg:block absolute inset-0 pointer-events-none z-25 [mask-image:radial-gradient(ellipse_440px_220px_at_30%_72%,black_25%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_440px_220px_at_30%_72%,black_25%,transparent_100%)]"
+        className="hidden lg:block absolute inset-0 pointer-events-none z-25 [mask-image:radial-gradient(ellipse_480px_250px_at_29%_73%,black_25%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_480px_250px_at_29%_73%,black_25%,transparent_100%)]"
       >
         <div className="absolute inset-0 technical-grid-lines" />
       </div>
@@ -171,7 +171,7 @@ export default function Hero() {
 
       {/* --- MAIN CONTENT --- */}
       
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-9 lg:gap-8 xl:gap-12 z-20 w-full">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-9 lg:gap-8 xl:gap-12 z-20 w-full lg:scale-[1.10] lg:origin-center transition-transform duration-300">
         
         {/* Left Column: Portrait Sticker Image (Desktop) */}
         <motion.div 
