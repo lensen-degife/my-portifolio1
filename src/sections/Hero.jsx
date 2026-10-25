@@ -193,7 +193,7 @@ export default function Hero() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
-          className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
+          className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-start text-left"
         >
           {/* Section Pill Badge */}
           <motion.div
@@ -217,7 +217,7 @@ export default function Hero() {
           {/* Typed.js Container with Terminal Icon */}
           <motion.div
             variants={itemVariants}
-            className="text-base sm:text-xl md:text-2xl text-[#8A857C] dark:text-[#B0ABA1] mb-4 sm:mb-5 min-h-[2.25rem] sm:min-h-[2rem] font-medium tracking-wide flex items-center justify-center lg:justify-start gap-2 sm:gap-2.5"
+            className="text-base sm:text-xl md:text-2xl text-[#8A857C] dark:text-[#B0ABA1] mb-4 sm:mb-5 min-h-[2.25rem] sm:min-h-[2rem] font-medium tracking-wide flex items-center justify-start gap-2 sm:gap-2.5"
           >
             <Terminal size={18} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0" />
             <span ref={typedRef} />
@@ -226,15 +226,15 @@ export default function Hero() {
           {/* Balanced Structured Description */}
           <motion.div
             variants={itemVariants}
-            className="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6 max-w-lg"
+            className="w-full space-y-2 sm:space-y-2.5 mb-5 sm:mb-6"
           >
-            <p className="text-base sm:text-lg text-[#2C2C2A] dark:text-[#EEECE6] font-medium leading-snug text-balance">
+            <p className="text-base sm:text-lg text-[#2C2C2A] dark:text-[#EEECE6] font-medium leading-snug">
               Computer Science student at{' '}
               <span className="text-[#1A1A18] dark:text-white font-semibold">
                 Addis Ababa University
               </span>
             </p>
-            <p className="text-sm sm:text-base text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-normal text-balance">
+            <p className="text-sm sm:text-base text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-normal">
               Building scalable backend systems, responsive web & mobile apps, and robust high-performance solutions with clean architecture.
             </p>
           </motion.div>
@@ -243,7 +243,7 @@ export default function Hero() {
           <motion.div
             variants={itemVariants}
             whileHover={shouldReduceMotion ? false : { y: -2 }}
-            className="w-full max-w-lg p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 shadow-xs mb-6 sm:mb-8"
+            className="w-full max-w-xl p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 shadow-xs mb-6 sm:mb-8"
           >
             <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] text-[#2C2C2A] dark:text-[#EEECE6] text-xs sm:text-sm font-semibold shadow-xs">
               <Code2 size={13} className="text-[#8A857C] dark:text-[#B0ABA1]" />
@@ -261,7 +261,7 @@ export default function Hero() {
           {/* Action Buttons & Social Links */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-3 w-full"
+            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-start gap-2.5 sm:gap-3 w-full"
           >
             <motion.a
               href={resumePdf}
