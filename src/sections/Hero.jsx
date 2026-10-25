@@ -109,6 +109,14 @@ export default function Hero() {
       {/* Technical Arched Grid Lines */}
       <GridLines />
 
+      {/* Aligned Grid Lines on Top of the Portrait's Blurred Base */}
+      <div 
+        aria-hidden="true"
+        className="hidden lg:block absolute inset-0 pointer-events-none z-25 [mask-image:radial-gradient(ellipse_440px_220px_at_30%_72%,black_25%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_440px_220px_at_30%_72%,black_25%,transparent_100%)]"
+      >
+        <div className="absolute inset-0 technical-grid-lines" />
+      </div>
+
       {/* Floating Hollow Ring */}
       <motion.div 
         animate={
@@ -179,12 +187,31 @@ export default function Hero() {
           {/* Subtle Ambient Glow behind portrait */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[320px] lg:w-[380px] h-[200px] sm:h-[320px] lg:h-[380px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 rounded-full blur-[60px] sm:blur-[90px] pointer-events-none -z-10" />
 
-          {/* Profile Image */}
-          <img 
-            src={profileImage} 
-            alt="Lensen Degife" 
-            className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.12)] z-10 relative select-none transition-transform duration-300 group-hover:scale-[1.01]"
-          />
+          {/* Profile Image with Stepped Progressive Bottom Blur */}
+          <div className="relative select-none z-10 flex items-end justify-center">
+            {/* Step 3: Deep soft blur at the bottom boundary */}
+            <img 
+              src={profileImage} 
+              alt="" 
+              aria-hidden="true"
+              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[10px] brightness-115 dark:brightness-65 opacity-70 [mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)]"
+            />
+
+            {/* Step 2: Medium soft blur mid-transition */}
+            <img 
+              src={profileImage} 
+              alt="" 
+              aria-hidden="true"
+              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[4px] brightness-110 dark:brightness-75 opacity-85 [mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)]"
+            />
+
+            {/* Step 1: Base sharp image with smooth stepped fade-in into full clarity */}
+            <img 
+              src={profileImage} 
+              alt="Lensen Degife" 
+              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.12)] relative select-none transition-transform duration-300 group-hover:scale-[1.01] [mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)]"
+            />
+          </div>
         </motion.div>
 
         {/* Right Column: Text Content & Actions */}
