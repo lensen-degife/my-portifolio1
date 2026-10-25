@@ -46,18 +46,18 @@ export default function Achievements() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25, scale: 0.98 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.65, ease: 'easeOut' },
     },
   };
 
@@ -112,43 +112,46 @@ export default function Achievements() {
           subtitle="Key milestones and recognitions earned through continuous technical pursuit"
         />
 
-        {/* Achievements Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }}
-          className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14"
-        >
-          {achievements.map((item) => (
-            <motion.div
-              key={item.title}
-              variants={itemVariants}
-              whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
-              transition={{ duration: 0.2 }}
-              className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default"
-            >
-              <div className="p-2.5 sm:p-3.5 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl h-fit flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
-                <item.icon size={22} />
-              </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-1.5 sm:mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
-                  {item.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Achievements Grid with Alternating Slide from Left and Right */}
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14">
+          {achievements.map((item, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+              <motion.div
+                key={item.title}
+                initial={
+                  shouldReduceMotion
+                    ? false
+                    : { opacity: 0, x: isLeft ? -45 : 45 }
+                }
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.12 }}
+                whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
+                className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default"
+              >
+                <div className="p-2.5 sm:p-3.5 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl h-fit flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
+                  <item.icon size={22} />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-1.5 sm:mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* Certificates Section */}
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2">
             <Award size={20} className="text-[#8A857C] dark:text-[#B0ABA1]" />
@@ -159,7 +162,7 @@ export default function Achievements() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.15 }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5"
           >
             {certificates.map((cert) => (

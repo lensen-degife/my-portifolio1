@@ -156,12 +156,11 @@ export default function GitHub() {
   };
 
   const statItemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20, scale: 0.96 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.65, ease: 'easeOut' },
     },
   };
 
@@ -218,7 +217,7 @@ export default function GitHub() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           {statItems.map((item, index) => {
@@ -262,10 +261,10 @@ export default function GitHub() {
 
         {/* Contribution Calendar Container */}
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.99 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: false, amount: 0.15 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.15 }}
           className="p-4 sm:p-8 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl sm:rounded-3xl border border-[#E5E2DB] dark:border-[#2D2C28] shadow-md shadow-black/5"
         >
           {/* Header */}

@@ -84,21 +84,21 @@ export default function Projects() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.1,
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 35, scale: 0.98 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 38, scale: shouldReduceMotion ? 1 : 0.96 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.7,
+        ease: 'easeOut',
       },
     },
   };
@@ -168,8 +168,8 @@ export default function Projects() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
           >
             <Layers size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
@@ -181,8 +181,8 @@ export default function Projects() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight mb-4"
           >
             Featured <span className="text-[#8A857C] dark:text-[#B0ABA1]">Projects</span>
@@ -191,8 +191,8 @@ export default function Projects() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
             className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
             A curated collection of full-stack systems, backend microservices, and mobile applications engineered with clean code.
@@ -204,7 +204,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {projects.map((project) => (

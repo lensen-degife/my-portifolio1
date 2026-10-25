@@ -130,8 +130,8 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] shadow-xs mb-4"
           >
             <MessageSquare size={14} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
@@ -143,8 +143,8 @@ export default function Contact() {
           <motion.h2
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight mb-4"
           >
             Let&apos;s Build <span className="text-[#8A857C] dark:text-[#B0ABA1]">Together</span>
@@ -153,8 +153,8 @@ export default function Contact() {
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
             className="text-[#5C5A55] dark:text-[#A8A49C] max-w-2xl text-base sm:text-lg font-light leading-relaxed"
           >
             Have a project in mind, a potential collaboration, or simply want to connect? Reach out and I&apos;ll get back to you promptly.
@@ -167,8 +167,8 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             className="lg:col-span-7 bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300"
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
@@ -301,8 +301,8 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
             className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
           >
             {/* Direct Info Card */}

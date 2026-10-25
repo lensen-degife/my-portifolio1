@@ -55,20 +55,20 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
+        ease: 'easeOut',
       },
     },
   };
@@ -175,10 +175,10 @@ export default function Hero() {
         
         {/* Left Column: Portrait Sticker Image (Desktop) */}
         <motion.div 
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 35, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
           whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
           onClick={() => setIsCardOpen(true)}
           className="hidden lg:flex lg:w-auto lg:flex-initial flex-shrink-0 justify-end items-end relative isolate min-h-[520px] cursor-pointer group"
@@ -219,7 +219,7 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-start text-left"
         >
           {/* Section Pill Badge */}

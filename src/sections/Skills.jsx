@@ -76,17 +76,17 @@ export default function Skills() {
       opacity: 1,
       transition: {
         staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 18, scale: 0.96 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   };
 
@@ -145,10 +145,10 @@ export default function Skills() {
           {skillCategories.map((category) => (
             <div key={category.title}>
               <motion.h3
-                initial={shouldReduceMotion ? false : { opacity: 0, x: -15 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, ease: 'easeOut' }}
                 className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mb-5 flex items-center gap-2"
               >
                 <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
@@ -159,7 +159,7 @@ export default function Skills() {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3.5"
               >
                 {category.skills.map((skill) => (
