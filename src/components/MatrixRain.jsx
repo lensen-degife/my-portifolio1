@@ -8,6 +8,8 @@ export default function MatrixRain({
   density = 10,
   speedMultiplier = 1,
   isFixed = true,
+  opacity = 0.5,
+  style = {},
 }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -94,7 +96,7 @@ export default function MatrixRain({
 
     // Strategic positioning on mobile:
     // 1 in left margin gutter, 1 in right margin gutter, rest distributed across visible viewport
-    const getStreamX = (index, total) => {
+    const getStreamX = (index) => {
       const isMob = width < 640;
       if (!isMob) {
         return 16 + Math.random() * Math.max(10, width - 32);
@@ -108,13 +110,13 @@ export default function MatrixRain({
 
     // Rain drop stream representation
     class Stream {
-      constructor(initialY, index = 0, total = 6) {
-        this.reset(initialY, index, total);
+      constructor(initialY, index = 0) {
+        this.reset(initialY, index);
       }
 
-      reset(initialY, index = 0, total = 6) {
+      reset(initialY, index = 0) {
         const isMob = width < 640;
-        this.x = getStreamX(index, total);
+        this.x = getStreamX(index);
         this.y = initialY !== undefined ? initialY : -Math.random() * 120 - 20;
         const baseSpeed = (2.2 + Math.random() * 2.8) * speedMultiplier;
         this.speed = shouldReduceMotion ? baseSpeed * 0.4 : baseSpeed;
@@ -419,7 +421,8 @@ export default function MatrixRain({
   return (
     <div
       ref={containerRef}
-      className={`${positioningClass} pointer-events-none z-[1] overflow-hidden ${className}`}
+      className={`${positioningClass} pointer-events-none z-[1] overflow-hidden opacity-50 ${className}`}
+      style={{ opacity, ...style }}
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="block w-full h-full pointer-events-none" />
