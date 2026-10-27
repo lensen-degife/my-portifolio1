@@ -34,6 +34,30 @@ export default function Navbar() {
   );
   const shouldReduceMotion = useReducedMotion();
 
+  const [isMobileOrTouch, setIsMobileOrTouch] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.innerWidth < 768 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      'ontouchstart' in window ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+    );
+  });
+
+  useEffect(() => {
+    const check = () => {
+      setIsMobileOrTouch(
+        window.innerWidth < 768 ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        'ontouchstart' in window ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      );
+    };
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -103,9 +127,9 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={shouldReduceMotion ? false : { y: -24, opacity: 0 }}
+      initial={shouldReduceMotion || isMobileOrTouch ? false : { y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
     >
       <div className="w-full px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
@@ -140,7 +164,7 @@ export default function Navbar() {
                         transition={
                           shouldReduceMotion
                             ? { duration: 0 }
-                            : { type: 'spring', stiffness: 380, damping: 30 }
+                            : { duration: 0.25, ease: 'easeOut' }
                         }
                       />
                     )}

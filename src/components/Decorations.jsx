@@ -1,12 +1,41 @@
+import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import MatrixRain from './MatrixRain';
 
 export { MatrixRain };
 
+function useIsTouchOrReducedMotion() {
+  const shouldReduceMotion = useReducedMotion();
+  const [isTouch, setIsTouch] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.innerWidth < 768 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      'ontouchstart' in window ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+    );
+  });
+
+  useEffect(() => {
+    const check = () => {
+      setIsTouch(
+        window.innerWidth < 768 ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        'ontouchstart' in window ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      );
+    };
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  return shouldReduceMotion || isTouch;
+}
+
 /**
  * Technical Arched Grid Lines with Matrix Digital Rain for background.
- * Subtle arched coordinate grid lines with major (176px) and minor (44px) divisions
- * layered with ambient code matrix rain that falls from top to bottom with an impact boom.
+ * Subtle arched coordinate grid lines with major (176px) and minor (44px) divisions.
  */
 export function GridLines({ className = '', showRain = false }) {
   return (
@@ -22,8 +51,6 @@ export function GridLines({ className = '', showRain = false }) {
 
 /**
  * Faint Dot Grid / Grid Lines for technical CS student portfolio.
- * Evenly spaced grid lines with subtle division in clean warm stone (#E5E2DB tone).
- * Placed behind section content and not on top of cards.
  */
 export function DotGrid({ className = '' }) {
   return (
@@ -51,7 +78,7 @@ export function FloatingDiamond({
   duration = 4,
   delay = 0,
 }) {
-  const shouldReduceMotion = useReducedMotion();
+  const disableAnimation = useIsTouchOrReducedMotion();
 
   const sizeClasses = {
     sm: 'w-7 h-7 sm:w-9 sm:h-9',
@@ -62,7 +89,7 @@ export function FloatingDiamond({
   return (
     <motion.div
       animate={
-        shouldReduceMotion
+        disableAnimation
           ? false
           : {
               scale: [1, 1.15, 1],
@@ -98,7 +125,7 @@ export function FloatingRing({
   duration = 6,
   delay = 0,
 }) {
-  const shouldReduceMotion = useReducedMotion();
+  const disableAnimation = useIsTouchOrReducedMotion();
 
   const sizeClasses = {
     sm: 'w-6 h-6 sm:w-8 sm:h-8 border-[3.5px] sm:border-4',
@@ -109,7 +136,7 @@ export function FloatingRing({
   return (
     <motion.div
       animate={
-        shouldReduceMotion
+        disableAnimation
           ? false
           : {
               y: [-10, 10, -10],
@@ -131,7 +158,7 @@ export function SparkleStar({
   duration = 3,
   delay = 0,
 }) {
-  const shouldReduceMotion = useReducedMotion();
+  const disableAnimation = useIsTouchOrReducedMotion();
 
   const sizeClasses = {
     sm: 'w-4 h-4 sm:w-5 sm:h-5',
@@ -142,7 +169,7 @@ export function SparkleStar({
   return (
     <motion.div
       animate={
-        shouldReduceMotion
+        disableAnimation
           ? false
           : {
               scale: [0.85, 1.25, 0.85],

@@ -15,6 +15,31 @@ export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [isCardOpen, setIsCardOpen] = useState(false);
 
+  // Detect mobile / touch devices for simplified zero-lag animations
+  const [isMobileOrTouch, setIsMobileOrTouch] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.innerWidth < 768 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      'ontouchstart' in window ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+    );
+  });
+
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsMobileOrTouch(
+        window.innerWidth < 768 ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        'ontouchstart' in window ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      );
+    };
+    checkTouch();
+    window.addEventListener('resize', checkTouch, { passive: true });
+    return () => window.removeEventListener('resize', checkTouch);
+  }, []);
+
   useEffect(() => {
     if (isCardOpen) {
       document.body.style.overflow = 'hidden';
@@ -50,24 +75,29 @@ export default function Hero() {
     return () => typed.destroy();
   }, []);
 
+  // Simplified entrance variants: immediate & reliable on iOS/touch, elegant stagger on desktop
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobileOrTouch ? 1 : 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.15,
-      },
+      transition: isMobileOrTouch || shouldReduceMotion
+        ? { duration: 0 }
+        : {
+            staggerChildren: 0.1,
+            delayChildren: 0.1,
+          },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 30 },
+    hidden: isMobileOrTouch || shouldReduceMotion
+      ? { opacity: 1, y: 0 }
+      : { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.65,
+        duration: isMobileOrTouch || shouldReduceMotion ? 0 : 0.5,
         ease: 'easeOut',
       },
     },
@@ -80,10 +110,10 @@ export default function Hero() {
     >
       {/* --- BACKGROUND DECORATIONS --- */}
       
-      {/* Soft Stone Ambient Glows */}
+      {/* Soft Stone Ambient Glows - disabled continuous keyframes on mobile/touch to eliminate GPU filter redraws */}
       <motion.div
         animate={
-          shouldReduceMotion
+          shouldReduceMotion || isMobileOrTouch
             ? false
             : {
                 scale: [1, 1.08, 1],
@@ -95,7 +125,7 @@ export default function Hero() {
       />
       <motion.div
         animate={
-          shouldReduceMotion
+          shouldReduceMotion || isMobileOrTouch
             ? false
             : {
                 scale: [1, 1.06, 1],
@@ -120,7 +150,7 @@ export default function Hero() {
       {/* Floating Hollow Ring */}
       <motion.div 
         animate={
-          shouldReduceMotion
+          shouldReduceMotion || isMobileOrTouch
             ? false
             : { y: [-10, 10, -10], rotate: [0, 90, 0] }
         }
@@ -131,7 +161,7 @@ export default function Hero() {
       {/* Floating Diamond Star */}
       <motion.div 
         animate={
-          shouldReduceMotion
+          shouldReduceMotion || isMobileOrTouch
             ? false
             : { scale: [1, 1.12, 1], opacity: [0.6, 1, 0.6], rotate: [0, 15, 0] }
         }
@@ -151,11 +181,10 @@ export default function Hero() {
       <motion.button
         type="button"
         onClick={() => setIsCardOpen(true)}
-        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.8 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
+        whileHover={isMobileOrTouch ? false : { scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
         className="lg:hidden fixed top-3.5 left-4 sm:top-4 sm:left-6 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full p-0.5 bg-[#FAF9F6]/90 dark:bg-[#1C1B18]/90 backdrop-blur-md border border-[#E5E2DB] dark:border-[#383632] shadow-sm hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-all cursor-pointer group"
         aria-label="View profile card"
         title="Tap to view profile details"
@@ -216,7 +245,7 @@ export default function Hero() {
         {/* Right Column: Text Content & Actions */}
         <motion.div 
           variants={containerVariants}
-          initial="hidden"
+          initial={isMobileOrTouch || shouldReduceMotion ? false : "hidden"}
           animate="visible"
           className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-start text-left"
         >

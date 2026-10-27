@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useReducedMotion } from 'framer-motion';
 
 const CODE_CHARS = '01<>{}/=+-~;:λπ#$_&|[]*!?0101'.split('');
@@ -13,7 +13,36 @@ export default function MatrixRain({
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
 
+  // Detect touch/mobile to completely disable canvas particle system on mobile devices
+  const [isDisabled, setIsDisabled] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    return (
+      window.innerWidth < 768 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      'ontouchstart' in window ||
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+    );
+  });
+
   useEffect(() => {
+    const checkDisabled = () => {
+      const isTouchOrMobile =
+        window.innerWidth < 768 ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        'ontouchstart' in window ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+      setIsDisabled(isTouchOrMobile || !!shouldReduceMotion);
+    };
+
+    checkDisabled();
+    window.addEventListener('resize', checkDisabled, { passive: true });
+    return () => window.removeEventListener('resize', checkDisabled);
+  }, [shouldReduceMotion]);
+
+  useEffect(() => {
+    // If on mobile/touch or reduced motion, completely abort canvas setup
+    if (isDisabled || shouldReduceMotion) return;
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -45,14 +74,14 @@ export default function MatrixRain({
     const getDimensions = () => {
       if (isFixed) {
         return {
-          w: typeof window !== 'undefined' ? window.innerWidth : 390,
-          h: typeof window !== 'undefined' ? window.innerHeight : 844,
+          w: typeof window !== 'undefined' ? window.innerWidth : 1200,
+          h: typeof window !== 'undefined' ? window.innerHeight : 800,
         };
       }
       const rect = container.getBoundingClientRect();
       return {
-        w: Math.floor(rect.width) || (typeof window !== 'undefined' ? window.innerWidth : 390),
-        h: Math.floor(rect.height) || (typeof window !== 'undefined' ? window.innerHeight : 844),
+        w: Math.floor(rect.width) || (typeof window !== 'undefined' ? window.innerWidth : 1200),
+        h: Math.floor(rect.height) || (typeof window !== 'undefined' ? window.innerHeight : 800),
       };
     };
 
@@ -62,9 +91,7 @@ export default function MatrixRain({
       currentW = newW;
       currentH = newH;
 
-      // Clamping DPR: 1 on mobile to prevent WebKit GPU memory bottlenecks, 1.5 on desktop for crispness
-      const isMob = width < 768;
-      const dpr = isMob ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -75,57 +102,27 @@ export default function MatrixRain({
       ctx.scale(dpr, dpr);
     };
 
-    // Initial setup
     const initialDims = getDimensions();
     updateCanvasSize(initialDims.w, initialDims.h);
 
-    // Target stream count: on mobile, reduced by 60% for a clean, non-intrusive aesthetic and optimal battery life
     const getTargetCount = () => {
-      const isMob = width < 640;
-      if (isMob) {
-        return Math.max(5, Math.floor((width / 390) * 6));
-      }
-      return Math.max(16, Math.min(34, Math.floor((width / 1200) * density)));
+      return Math.max(16, Math.min(32, Math.floor((width / 1200) * density)));
     };
 
-    // Strategic horizontal positioning on mobile so rain is clearly visible
-    // outside card boundaries (in left & right gutters) as well as ambient center
-    const getStreamX = (index, total) => {
-      const isMob = width < 640;
-      if (!isMob) {
-        return 16 + Math.random() * Math.max(10, width - 32);
-      }
-      // On mobile screen: guarantee 1 stream in left gutter
-      if (index === 0) {
-        return 6 + Math.random() * 20; // 6px - 26px left margin
-      }
-      // Guarantee 1 stream in right gutter
-      if (index === 1) {
-        return Math.max(20, width - 26 + Math.random() * 20); // right margin
-      }
-      // Remaining streams distributed evenly across viewport
-      const innerW = Math.max(30, width - 56);
-      return 28 + Math.random() * innerW;
-    };
-
-    // Rain drop stream representation
+    // Rain drop stream representation for desktop
     class Stream {
-      constructor(initialY, index = 0, total = 14) {
-        this.reset(initialY, index, total);
+      constructor(initialY) {
+        this.reset(initialY);
       }
 
-      reset(initialY, index = 0, total = 14) {
-        const isMob = width < 640;
-        this.x = getStreamX(index, total);
-        this.y = initialY !== undefined ? initialY : -Math.random() * 110 - 20;
-        const baseSpeed = (2.4 + Math.random() * 2.8) * speedMultiplier;
-        this.speed = shouldReduceMotion ? baseSpeed * 0.45 : baseSpeed;
-        const safeHeight = Math.max(300, height);
-        this.targetY = safeHeight - 8 - Math.random() * Math.min(60, safeHeight * 0.2);
-        this.length = isMob
-          ? 6 + Math.floor(Math.random() * 7)
-          : 7 + Math.floor(Math.random() * 8);
-        this.fontSize = isMob ? 12 : 13;
+      reset(initialY) {
+        this.x = 20 + Math.random() * Math.max(10, width - 40);
+        this.y = initialY !== undefined ? initialY : -Math.random() * 100 - 20;
+        this.speed = (2.2 + Math.random() * 2.6) * speedMultiplier;
+        const safeHeight = Math.max(400, height);
+        this.targetY = safeHeight - 10 - Math.random() * 50;
+        this.length = 7 + Math.floor(Math.random() * 8);
+        this.fontSize = 13;
         this.chars = [];
         for (let i = 0; i < this.length; i++) {
           this.chars.push(CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]);
@@ -136,7 +133,6 @@ export default function MatrixRain({
       update() {
         this.y += this.speed;
 
-        // Subtle digital character flicker
         if (Math.random() > 0.65) {
           const idx = Math.floor(Math.random() * this.chars.length);
           this.chars[idx] = CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)];
@@ -148,7 +144,6 @@ export default function MatrixRain({
       }
 
       draw() {
-        const isMob = width < 640;
         ctx.font = `500 ${this.fontSize}px 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace`;
 
         for (let i = 0; i < this.length; i++) {
@@ -156,56 +151,46 @@ export default function MatrixRain({
           if (charY < -10 || charY > height + 10) continue;
 
           const progress = i / this.length;
-          // Clear, punchy contrast in both light and dark modes
-          const baseAlpha = isDark ? 0.88 : 0.82;
+          const baseAlpha = isDark ? 0.85 : 0.78;
           const alpha = Math.max(0.12, Math.pow(1 - progress, 1.1) * baseAlpha);
 
           if (i === 0) {
-            // Leading head character
             ctx.fillStyle = isDark
               ? 'rgba(255, 255, 255, 1.0)'
               : 'rgba(20, 20, 18, 1.0)';
-            if (!isMob) {
-              ctx.shadowColor = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.3)';
-              ctx.shadowBlur = 4;
-            }
+            ctx.shadowColor = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.3)';
+            ctx.shadowBlur = 4;
           } else {
-            // Trailing body characters
             ctx.fillStyle = isDark
               ? `rgba(224, 220, 212, ${alpha})`
               : `rgba(60, 56, 50, ${alpha})`;
-            if (!isMob) {
-              ctx.shadowBlur = 0;
-            }
+            ctx.shadowBlur = 0;
           }
 
           ctx.fillText(this.chars[i], this.x, charY);
         }
 
-        if (!isMob) {
-          ctx.shadowBlur = 0;
-        }
+        ctx.shadowBlur = 0;
       }
     }
 
     // Impact boom animation
     class Boom {
       constructor(x, y) {
-        const isMob = width < 640;
         this.x = x;
         this.y = y;
         this.radius = 2;
-        this.maxRadius = (isMob ? 18 : 24) + Math.random() * 8;
+        this.maxRadius = 24 + Math.random() * 8;
         this.opacity = 0.9;
         this.starScale = 0;
         this.starMaxScale = 1.0 + Math.random() * 0.4;
         this.dead = false;
 
         this.particles = [];
-        const count = (isMob ? 3 : 6) + Math.floor(Math.random() * 2);
+        const count = 6 + Math.floor(Math.random() * 3);
         for (let i = 0; i < count; i++) {
           const angle = -Math.PI * 0.5 + (Math.random() - 0.5) * 1.8;
-          const spd = (isMob ? 1.6 : 2.2) + Math.random() * 2.2;
+          const spd = 2.0 + Math.random() * 2.2;
           this.particles.push({
             x: this.x,
             y: this.y,
@@ -241,8 +226,6 @@ export default function MatrixRain({
       }
 
       draw() {
-        const isMob = width < 640;
-        // 1. Shockwave Ripple Ring
         if (this.opacity > 0) {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -253,9 +236,8 @@ export default function MatrixRain({
           ctx.stroke();
         }
 
-        // 2. 4-point Sparkle Star Flash at impact center
         if (this.starScale > 0.05) {
-          const s = this.starScale * (isMob ? 4.5 : 5.8);
+          const s = this.starScale * 5.8;
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.fillStyle = isDark
@@ -272,7 +254,6 @@ export default function MatrixRain({
           ctx.restore();
         }
 
-        // 3. Upward fountain spark particles
         for (const p of this.particles) {
           if (p.life <= 0) continue;
           ctx.beginPath();
@@ -292,25 +273,22 @@ export default function MatrixRain({
       const targetCount = getTargetCount();
       streams.length = 0;
       for (let i = 0; i < targetCount; i++) {
-        const initialY = Math.random() * (Math.max(300, height) * 0.9);
-        streams.push(new Stream(initialY, i, targetCount));
+        const initialY = Math.random() * (Math.max(400, height) * 0.9);
+        streams.push(new Stream(initialY));
       }
     };
 
     reseedStreams();
 
-    // Resize handler guarded against mobile address bar expand/collapse jitter
     const handleResize = () => {
       const { w: newW, h: newH } = getDimensions();
       if (newW <= 0 || newH <= 0) return;
 
-      // On iOS Safari / Chrome, mobile scrolling expands/collapses the address bar (~40-85px).
-      // Ignore vertical-only height fluctuations under 120px when width doesn't change!
       if (
         currentW > 0 &&
         currentH > 0 &&
         Math.abs(newW - currentW) < 8 &&
-        Math.abs(newH - currentH) < 120
+        Math.abs(newH - currentH) < 50
       ) {
         return;
       }
@@ -341,7 +319,6 @@ export default function MatrixRain({
       }
     };
 
-    // Pause when browser tab is inactive to preserve battery and 0% CPU
     const handleVisibilityChange = () => {
       if (document.hidden) {
         isPaused = true;
@@ -366,28 +343,23 @@ export default function MatrixRain({
 
       frameCount++;
       const targetCount = getTargetCount();
-      const spawnInterval = width < 640 ? 24 : 16;
-      if (frameCount % spawnInterval === 0 && streams.length < targetCount) {
-        streams.push(new Stream(undefined, streams.length, targetCount));
+      if (frameCount % 16 === 0 && streams.length < targetCount) {
+        streams.push(new Stream());
       }
 
-      // Update & draw streams
       for (let i = streams.length - 1; i >= 0; i--) {
         const stream = streams[i];
         stream.update();
         stream.draw();
 
         if (stream.dead) {
-          // Trigger impact boom unless reduced motion is on; capped appropriately
-          const maxBooms = width < 640 ? 4 : 10;
-          if (!shouldReduceMotion && booms.length < maxBooms) {
+          if (!shouldReduceMotion && booms.length < 10) {
             booms.push(new Boom(stream.x, stream.targetY));
           }
-          stream.reset(undefined, i, streams.length);
+          stream.reset();
         }
       }
 
-      // Update & draw booms
       for (let i = booms.length - 1; i >= 0; i--) {
         const boom = booms[i];
         boom.update();
@@ -410,7 +382,12 @@ export default function MatrixRain({
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       themeObserver.disconnect();
     };
-  }, [density, speedMultiplier, shouldReduceMotion, isFixed]);
+  }, [density, speedMultiplier, shouldReduceMotion, isFixed, isDisabled]);
+
+  // If mobile, touch device, or prefers-reduced-motion, render nothing
+  if (isDisabled || shouldReduceMotion) {
+    return null;
+  }
 
   const positioningClass = isFixed ? 'fixed inset-0' : 'absolute inset-0';
 
