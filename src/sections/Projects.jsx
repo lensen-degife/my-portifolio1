@@ -106,7 +106,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
+      className="relative w-full py-24 md:py-32 bg-transparent overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
       {/* Technical Background Grid Lines */}
       <GridLines />

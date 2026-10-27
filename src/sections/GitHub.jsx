@@ -165,7 +165,7 @@ export default function GitHub() {
   };
 
   return (
-    <section id="github" className="relative w-full py-24 md:py-32 bg-[#F7F6F3] dark:bg-[#161614] overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300">
+    <section id="github" className="relative w-full py-24 md:py-32 bg-transparent overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300">
       {/* Technical Background Grid Lines */}
       <GridLines />
 

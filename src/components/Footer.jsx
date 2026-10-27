@@ -19,7 +19,7 @@ export default function Footer() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <footer className="relative bg-[#F7F6F3] dark:bg-[#161614] border-t border-[#E5E2DB] dark:border-[#2D2C28] py-12 overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] font-sans transition-colors duration-300">
+    <footer className="relative bg-transparent border-t border-[#E5E2DB] dark:border-[#2D2C28] py-12 overflow-hidden text-[#5C5A55] dark:text-[#A8A49C] font-sans transition-colors duration-300">
       {/* Technical Background Grid Lines */}
       <GridLines />
 

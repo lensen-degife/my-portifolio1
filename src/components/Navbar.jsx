@@ -35,12 +35,6 @@ export default function Navbar() {
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (activeSection) {
-      setSectionFavicon(activeSection);
-    }
-  }, [activeSection]);
-
-  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
       if (window.scrollY < 80) {

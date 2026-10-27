@@ -80,6 +80,13 @@ export function setSectionFavicon(sectionId) {
     document.title = meta.title;
   }
 
+  // Skip dynamic SVG favicon rewriting on mobile view:
+  // iOS Safari and mobile Chrome do not display tab favicons in the address bar,
+  // and repeatedly rewriting the link href during scroll causes WebKit DOM churn.
+  if (typeof window !== "undefined" && window.innerWidth < 768) {
+    return;
+  }
+
   // Update tab favicon
   const targetHref = SECTION_FAVICON_DATA_URIS[sectionId] || SECTION_FAVICON_DATA_URIS.hero;
   if (!targetHref) return;
@@ -88,7 +95,9 @@ export function setSectionFavicon(sectionId) {
   let link = document.querySelector("link[rel*='icon']");
 
   if (link) {
-    link.href = targetHref;
+    if (link.getAttribute("href") !== targetHref) {
+      link.href = targetHref;
+    }
   } else {
     link = document.createElement("link");
     link.rel = "icon";

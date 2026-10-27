@@ -18,11 +18,20 @@
   }
 
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     background-color: #F7F6F3;
     color: #5C5A55;
     font-family: 'Noto Serif Ethiopic', serif;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Only enable CSS smooth scrolling on desktop devices with mouse/trackpad pointer.
+     On mobile touch devices (iOS Safari & iOS Chrome), native touch momentum physics
+     must not conflict with CSS smooth scroll to prevent scrolling freezes. */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   html.dark {
@@ -34,6 +43,7 @@
     font-family: 'Noto Serif Ethiopic', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
     background-color: #F7F6F3;
     color: #5C5A55;
     transition: background-color 0.3s ease, color 0.3s ease;

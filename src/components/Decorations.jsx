@@ -8,14 +8,14 @@ export { MatrixRain };
  * Subtle arched coordinate grid lines with major (176px) and minor (44px) divisions
  * layered with ambient code matrix rain that falls from top to bottom with an impact boom.
  */
-export function GridLines({ className = '', showRain = true }) {
+export function GridLines({ className = '', showRain = false }) {
   return (
     <div
       className={`absolute inset-0 pointer-events-none z-0 overflow-hidden ${className}`}
       aria-hidden="true"
     >
       <div className="absolute inset-0 technical-grid-lines" />
-      {showRain && <MatrixRain />}
+      {showRain && <MatrixRain isFixed={false} />}
     </div>
   );
 }
