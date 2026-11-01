@@ -10,8 +10,8 @@ const projects = [
     description:
       'A full-stack web application that leverages AI to provide personalized study support. Features include interactive learning modules, real-time feedback, and adaptive learning paths.',
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Gemini AI API'],
-    github: 'https://github.com/lensen-degife/Study-Support',
-    live: 'https://study-support-vertex.vercel.app/',
+    github: 'https://github.com/lensen-degife/study-support-ai',
+    live: 'https://study-support-ai-ivory.vercel.app/',
     highlight: 'Featured Project',
   },
   {
