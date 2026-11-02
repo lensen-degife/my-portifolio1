@@ -12,6 +12,7 @@ import { GitHubCalendar } from 'react-github-calendar';
 import SectionHeading from '../components/SectionHeading';
 import { useTheme } from '../context/ThemeContext';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate from '../components/ScrollEliminate';
 
 const GITHUB_USERNAME = 'lensen-degife';
 
@@ -212,104 +213,108 @@ export default function GitHub() {
           subtitle="My open-source track record, consistency, and repository milestones"
         />
 
-        {/* Stats Grid with Sequential Stagger */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
-        >
-          {statItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.key}
-                variants={statItemVariants}
-                whileHover={
-                  shouldReduceMotion
-                    ? false
-                    : { y: -3, scale: 1.02 }
-                }
-                transition={{ duration: 0.2 }}
-                className={`p-3.5 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] text-center hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200 cursor-default ${
-                  index === 4 ? 'col-span-2 sm:col-span-1' : ''
-                }`}
-              >
-                <div className="inline-flex p-2.5 sm:p-3 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl mb-2 sm:mb-3 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
-                  <Icon size={18} />
+        {/* Stats Grid with Sequential Stagger & Scroll Elimination */}
+        <ScrollEliminate preset="card" className="w-full">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10"
+          >
+            {statItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.key}
+                  variants={statItemVariants}
+                  whileHover={
+                    shouldReduceMotion
+                      ? false
+                      : { y: -3, scale: 1.02 }
+                  }
+                  transition={{ duration: 0.2 }}
+                  className={`p-3.5 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] text-center hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200 cursor-default ${
+                    index === 4 ? 'col-span-2 sm:col-span-1' : ''
+                  }`}
+                >
+                  <div className="inline-flex p-2.5 sm:p-3 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl mb-2 sm:mb-3 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
+                    <Icon size={18} />
+                  </div>
+
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight">
+                    {loading ? (
+                      <span className="inline-block w-10 h-7 bg-[#EEECE6] dark:bg-[#292825] rounded animate-pulse" />
+                    ) : (
+                      (stats?.[item.key] ?? '—')
+                    )}
+                  </p>
+
+                  <p className="text-xs font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mt-1 leading-tight">
+                    {item.label}
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
+                    {item.sublabel}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </ScrollEliminate>
+
+        {/* Contribution Calendar Container with Scroll Elimination */}
+        <ScrollEliminate preset="card" className="w-full">
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="p-4 sm:p-8 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl sm:rounded-3xl border border-[#E5E2DB] dark:border-[#2D2C28] shadow-md shadow-black/5"
+          >
+            {/* Header */}
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#E5E2DB] dark:border-[#2D2C28]">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] flex-shrink-0">
+                  <SiGithub size={18} />
                 </div>
-
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight">
-                  {loading ? (
-                    <span className="inline-block w-10 h-7 bg-[#EEECE6] dark:bg-[#292825] rounded animate-pulse" />
-                  ) : (
-                    (stats?.[item.key] ?? '—')
-                  )}
-                </p>
-
-                <p className="text-xs font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mt-1 leading-tight">
-                  {item.label}
-                </p>
-                <p className="text-[10px] sm:text-[11px] text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
-                  {item.sublabel}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Contribution Calendar Container */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.05 }}
-          className="p-4 sm:p-8 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl sm:rounded-3xl border border-[#E5E2DB] dark:border-[#2D2C28] shadow-md shadow-black/5"
-        >
-          {/* Header */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#E5E2DB] dark:border-[#2D2C28]">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] flex-shrink-0">
-                <SiGithub size={18} />
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-[#1A1A18] dark:text-[#FAF9F6]">
+                    @{GITHUB_USERNAME}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-[#9B9890] dark:text-[#78756E] font-light">Contributions on GitHub</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm sm:text-base font-bold text-[#1A1A18] dark:text-[#FAF9F6]">
-                  @{GITHUB_USERNAME}
-                </h3>
-                <p className="text-[11px] sm:text-xs text-[#9B9890] dark:text-[#78756E] font-light">Contributions on GitHub</p>
+              <motion.a
+                href={`https://github.com/${GITHUB_USERNAME}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] border border-[#E5E2DB] text-xs sm:text-sm font-medium transition-all duration-200"
+              >
+                <span>View Profile</span>
+                <span>→</span>
+              </motion.a>
+            </div>
+
+            {/* Calendar - lg:flex lg:justify-center fixes mobile left-clipping overflow */}
+            <div className="overflow-x-auto pb-3 -mx-2 px-2 lg:flex lg:justify-center">
+              <div className="min-w-[680px] text-[#1A1A18] dark:text-[#FAF9F6]">
+                <GitHubCalendar
+                  username={GITHUB_USERNAME}
+                  colorScheme={theme === 'dark' ? 'dark' : 'light'}
+                  theme={calendarTheme}
+                  blockSize={13}
+                  blockMargin={4}
+                  fontSize={13}
+                />
               </div>
             </div>
-            <motion.a
-              href={`https://github.com/${GITHUB_USERNAME}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] border border-[#E5E2DB] text-xs sm:text-sm font-medium transition-all duration-200"
-            >
-              <span>View Profile</span>
-              <span>→</span>
-            </motion.a>
-          </div>
-
-          {/* Calendar - lg:flex lg:justify-center fixes mobile left-clipping overflow */}
-          <div className="overflow-x-auto pb-3 -mx-2 px-2 lg:flex lg:justify-center">
-            <div className="min-w-[680px] text-[#1A1A18] dark:text-[#FAF9F6]">
-              <GitHubCalendar
-                username={GITHUB_USERNAME}
-                colorScheme={theme === 'dark' ? 'dark' : 'light'}
-                theme={calendarTheme}
-                blockSize={13}
-                blockMargin={4}
-                fontSize={13}
-              />
-            </div>
-          </div>
-          <p className="text-[11px] text-[#9B9890] dark:text-[#78756E] text-center mt-2.5 block lg:hidden font-light">
-            ← Scroll horizontally to explore full year activity →
-          </p>
-        </motion.div>
+            <p className="text-[11px] text-[#9B9890] dark:text-[#78756E] text-center mt-2.5 block lg:hidden font-light">
+              ← Scroll horizontally to explore full year activity →
+            </p>
+          </motion.div>
+        </ScrollEliminate>
       </div>
     </section>
   );

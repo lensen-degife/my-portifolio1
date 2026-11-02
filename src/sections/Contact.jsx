@@ -4,6 +4,7 @@ import { Send, Mail, MapPin, Sparkles, MessageSquare, CheckCircle2, AlertCircle,
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate from '../components/ScrollEliminate';
 
 const contactInfo = [
   {
@@ -119,8 +120,8 @@ export default function Contact() {
 
       {/* --- SECTION CONTENT --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
-        {/* Header with Floating Diamond Star */}
-        <div className="relative flex flex-col items-center text-center mb-16 md:mb-20">
+        {/* Header with Floating Diamond Star & Scroll Elimination */}
+        <ScrollEliminate preset="header" className="relative flex flex-col items-center text-center mb-16 md:mb-20">
           <FloatingDiamond
             className="-top-6 right-2 sm:right-16 md:right-28 lg:right-36"
             size="md"
@@ -159,19 +160,20 @@ export default function Contact() {
           >
             Have a project in mind, a potential collaboration, or simply want to connect? Reach out and I&apos;ll get back to you promptly.
           </motion.p>
-        </div>
+        </ScrollEliminate>
 
         {/* 2-Column Contact Section */}
         <div className="grid lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto">
-          {/* Left Column: Form with Smooth Directional Reveal */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="lg:col-span-7 bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300"
-          >
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+          {/* Left Column: Form with Smooth Directional Reveal & Scroll Elimination */}
+          <ScrollEliminate preset="card" className="lg:col-span-7 w-full">
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="w-full bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300"
+            >
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
                 <label
                   htmlFor="name"
@@ -296,98 +298,101 @@ export default function Contact() {
               </AnimatePresence>
             </form>
           </motion.div>
+          </ScrollEliminate>
 
-          {/* Right Column: Contact Details & Socials */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-            className="lg:col-span-5 flex flex-col space-y-5 sm:space-y-6"
-          >
-            {/* Direct Info Card */}
-            <div className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5">
-              <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
-                <Sparkles size={18} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
-                Contact Details
-              </h3>
+          {/* Right Column: Contact Details & Socials with Scroll Elimination */}
+          <ScrollEliminate preset="card" className="lg:col-span-5 w-full flex flex-col space-y-5 sm:space-y-6">
+            <motion.div
+              initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+              className="w-full flex flex-col space-y-5 sm:space-y-6"
+            >
+              {/* Direct Info Card */}
+              <div className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5">
+                <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-2.5">
+                  <Sparkles size={18} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+                  Contact Details
+                </h3>
 
-              <div className="space-y-3.5 sm:space-y-4">
-                {contactInfo.map((info) => {
-                  const Icon = info.icon;
-                  return (
-                    <motion.div
-                      key={info.label}
-                      whileHover={shouldReduceMotion ? false : { x: 3 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#EEECE6]/70 dark:bg-[#292825]/70 border border-[#E5E2DB] dark:border-[#383632] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] transition-all duration-200"
-                    >
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
-                        <Icon size={18} />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#8A857C] dark:text-[#B0ABA1]">
-                          {info.label}
-                        </p>
-                        {info.href ? (
-                          <a
-                            href={info.href}
-                            className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors break-all sm:break-normal block"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] break-words">
-                            {info.value}
-                          </p>
-                        )}
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Social Channels (Pill UI Buttons) */}
-              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
-                <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#9B9890] dark:text-[#78756E] mb-3 sm:mb-4">
-                  Connect on Social Media
-                </p>
-                <div className="flex flex-wrap gap-2 sm:gap-3">
-                  {socialLinks.map((link) => {
-                    const Icon = link.icon;
+                <div className="space-y-3.5 sm:space-y-4">
+                  {contactInfo.map((info) => {
+                    const Icon = info.icon;
                     return (
-                      <motion.a
-                        key={link.label}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={shouldReduceMotion ? false : { scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] text-xs sm:text-sm font-medium transition-all duration-200 shadow-xs"
-                        aria-label={link.label}
+                      <motion.div
+                        key={info.label}
+                        whileHover={shouldReduceMotion ? false : { x: 3 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#EEECE6]/70 dark:bg-[#292825]/70 border border-[#E5E2DB] dark:border-[#383632] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] transition-all duration-200"
                       >
-                        <Icon size={15} className="text-[#5C5A55] dark:text-[#A8A49C] flex-shrink-0" />
-                        <span>{link.label}</span>
-                      </motion.a>
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
+                          <Icon size={18} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#8A857C] dark:text-[#B0ABA1]">
+                            {info.label}
+                          </p>
+                          {info.href ? (
+                            <a
+                              href={info.href}
+                              className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors break-all sm:break-normal block"
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <p className="text-xs sm:text-base font-medium text-[#1A1A18] dark:text-[#FAF9F6] break-words">
+                              {info.value}
+                            </p>
+                          )}
+                        </div>
+                      </motion.div>
                     );
                   })}
                 </div>
-              </div>
-            </div>
 
-            {/* Collaboration Callout */}
-            <motion.div
-              whileHover={shouldReduceMotion ? false : { y: -2 }}
-              className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 transition-all duration-300"
-            >
-              <h4 className="text-base sm:text-lg font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-2">
-                Open to Opportunities
-              </h4>
-              <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
-                Whether you have an internship opportunity, freelance project, full-stack opening, or open-source collaboration in mind, I&apos;m always glad to talk!
-              </p>
+                {/* Social Channels (Pill UI Buttons) */}
+                <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
+                  <p className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#9B9890] dark:text-[#78756E] mb-3 sm:mb-4">
+                    Connect on Social Media
+                  </p>
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    {socialLinks.map((link) => {
+                      const Icon = link.icon;
+                      return (
+                        <motion.a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={shouldReduceMotion ? false : { scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] border border-[#E5E2DB] text-[#2C2C2A] hover:text-[#1A1A18] dark:bg-[#292825] dark:hover:bg-[#383632] dark:border-[#383632] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] text-xs sm:text-sm font-medium transition-all duration-200 shadow-xs"
+                          aria-label={link.label}
+                        >
+                          <Icon size={15} className="text-[#5C5A55] dark:text-[#A8A49C] flex-shrink-0" />
+                          <span>{link.label}</span>
+                        </motion.a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Collaboration Callout */}
+              <motion.div
+                whileHover={shouldReduceMotion ? false : { y: -2 }}
+                className="bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md shadow-black/5 transition-all duration-300"
+              >
+                <h4 className="text-base sm:text-lg font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-2">
+                  Open to Opportunities
+                </h4>
+                <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
+                  Whether you have an internship opportunity, freelance project, full-stack opening, or open-source collaboration in mind, I&apos;m always glad to talk!
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </ScrollEliminate>
         </div>
       </div>
     </section>

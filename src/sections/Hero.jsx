@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ArrowDown, Download, Mail, Sparkles, Code2, Terminal, X, GraduationCap, MapPin, User } from 'lucide-react';
+import { ArrowDown, Download, Mail, Sparkles, Code2, Terminal, X, GraduationCap } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 import Typed from 'typed.js';
@@ -8,9 +8,11 @@ import Typed from 'typed.js';
 // Import assets
 import resumePdf from '../assets/LensenDegifeCV1.pdf';
 import profileImage from '../assets/img3.png';
-import { SparkleStar, FloatingDiamond, GridLines } from '../components/Decorations';
+import { SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate from '../components/ScrollEliminate';
 
 export default function Hero() {
+  const heroRef = useRef(null);
   const typedRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const [isCardOpen, setIsCardOpen] = useState(false);
@@ -106,6 +108,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={heroRef}
       className="relative w-full min-h-screen flex items-center justify-center bg-transparent overflow-hidden font-sans pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 transition-colors duration-300"
     >
       {/* --- BACKGROUND DECORATIONS --- */}
@@ -202,53 +205,64 @@ export default function Hero() {
       
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-9 lg:gap-8 xl:gap-12 z-20 w-full lg:scale-[1.10] lg:origin-center transition-transform duration-300">
         
-        {/* Left Column: Portrait Sticker Image (Desktop) */}
-        <motion.div 
-          initial={shouldReduceMotion ? false : { opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
-          whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
-          onClick={() => setIsCardOpen(true)}
-          className="hidden lg:flex lg:w-auto lg:flex-initial flex-shrink-0 justify-end items-end relative isolate min-h-[520px] cursor-pointer group"
-          title="Click to view profile card"
+        {/* Left Column: Portrait Sticker Image (Desktop) with Scroll Elimination */}
+        <ScrollEliminate
+          targetRef={heroRef}
+          preset="hero-image"
+          className="hidden lg:flex lg:w-auto lg:flex-initial flex-shrink-0 justify-end items-end relative isolate min-h-[520px]"
         >
-          {/* Subtle Ambient Glow behind portrait */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[320px] lg:w-[380px] h-[200px] sm:h-[320px] lg:h-[380px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 rounded-full blur-[60px] sm:blur-[90px] pointer-events-none -z-10" />
+          <motion.div 
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, ease: 'easeOut', delay: 0.1 }}
+            whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
+            onClick={() => setIsCardOpen(true)}
+            className="w-full h-full flex justify-end items-end relative isolate min-h-[520px] cursor-pointer group"
+            title="Click to view profile card"
+          >
+            {/* Subtle Ambient Glow behind portrait */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[320px] lg:w-[380px] h-[200px] sm:h-[320px] lg:h-[380px] bg-[#E5E2DB]/50 dark:bg-[#2D2C28]/40 rounded-full blur-[60px] sm:blur-[90px] pointer-events-none -z-10" />
 
-          {/* Profile Image with Stepped Progressive Bottom Blur */}
-          <div className="relative select-none z-10 flex items-end justify-center">
-            {/* Step 3: Deep soft blur at the bottom boundary */}
-            <img 
-              src={profileImage} 
-              alt="" 
-              aria-hidden="true"
-              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[10px] brightness-115 dark:brightness-65 opacity-70 [mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)]"
-            />
+            {/* Profile Image with Stepped Progressive Bottom Blur */}
+            <div className="relative select-none z-10 flex items-end justify-center">
+              {/* Step 3: Deep soft blur at the bottom boundary */}
+              <img 
+                src={profileImage} 
+                alt="" 
+                aria-hidden="true"
+                className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[10px] brightness-115 dark:brightness-65 opacity-70 [mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_6%,rgba(0,0,0,0.4)_14%,rgba(0,0,0,0.8)_22%,transparent_32%)]"
+              />
 
-            {/* Step 2: Medium soft blur mid-transition */}
-            <img 
-              src={profileImage} 
-              alt="" 
-              aria-hidden="true"
-              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[4px] brightness-110 dark:brightness-75 opacity-85 [mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)]"
-            />
+              {/* Step 2: Medium soft blur mid-transition */}
+              <img 
+                src={profileImage} 
+                alt="" 
+                aria-hidden="true"
+                className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom select-none pointer-events-none absolute inset-0 filter blur-[4px] brightness-110 dark:brightness-75 opacity-85 [mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_10%,rgba(0,0,0,0.6)_20%,rgba(0,0,0,0.9)_28%,transparent_38%)]"
+              />
 
-            {/* Step 1: Base sharp image with smooth stepped fade-in into full clarity */}
-            <img 
-              src={profileImage} 
-              alt="Lensen Degife" 
-              className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.12)] relative select-none transition-transform duration-300 group-hover:scale-[1.01] [mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)]"
-            />
-          </div>
-        </motion.div>
+              {/* Step 1: Base sharp image with smooth stepped fade-in into full clarity */}
+              <img 
+                src={profileImage} 
+                alt="Lensen Degife" 
+                className="w-auto h-auto max-h-[520px] xl:max-h-[560px] max-w-[390px] xl:max-w-[420px] object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.12)] relative select-none transition-transform duration-300 group-hover:scale-[1.01] [mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)] [-webkit-mask-image:linear-gradient(to_top,transparent_0%,transparent_8%,rgba(0,0,0,0.15)_15%,rgba(0,0,0,0.5)_24%,rgba(0,0,0,0.85)_32%,black_40%)]"
+              />
+            </div>
+          </motion.div>
+        </ScrollEliminate>
 
-        {/* Right Column: Text Content & Actions */}
-        <motion.div 
-          variants={containerVariants}
-          initial={isMobileOrTouch || shouldReduceMotion ? false : "hidden"}
-          animate="visible"
+        {/* Right Column: Text Content & Actions with Layered Scroll Elimination */}
+        <ScrollEliminate
+          targetRef={heroRef}
+          preset="hero-text"
           className="w-full lg:w-auto lg:flex-1 max-w-xl xl:max-w-2xl flex flex-col justify-center items-start text-left"
         >
+          <motion.div 
+            variants={containerVariants}
+            initial={isMobileOrTouch || shouldReduceMotion ? false : "hidden"}
+            animate="visible"
+            className="w-full flex flex-col justify-center items-start text-left"
+          >
           {/* Section Pill Badge */}
           <motion.div
             variants={itemVariants}
@@ -373,43 +387,50 @@ export default function Hero() {
             </div>
           </motion.div>
         </motion.div>
+        </ScrollEliminate>
 
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
+      {/* Scroll Indicator with Instant Scroll Elimination */}
+      <ScrollEliminate
+        targetRef={heroRef}
+        preset="hero-indicator"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 z-30"
       >
-        <a
-          href="#about"
-          onClick={(e) => {
-            e.preventDefault();
-            const target = document.querySelector('#about');
-            if (target) {
-              const navOffset = 80;
-              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-              window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            }
-          }}
-          className="flex flex-col items-center gap-1.5 text-xs text-[#9B9890] dark:text-[#78756E] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors"
-          aria-label="Scroll to about section"
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="flex flex-col items-center gap-2"
         >
-          <span className="tracking-widest uppercase font-semibold text-[10px]">Scroll</span>
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? false
-                : { y: [0, 6, 0] }
-            }
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              const target = document.querySelector('#about');
+              if (target) {
+                const navOffset = 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+              }
+            }}
+            className="flex flex-col items-center gap-1.5 text-xs text-[#9B9890] dark:text-[#78756E] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors"
+            aria-label="Scroll to about section"
           >
-            <ArrowDown size={18} className="text-[#8A857C] dark:text-[#B0ABA1]" />
-          </motion.div>
-        </a>
-      </motion.div>
+            <span className="tracking-widest uppercase font-semibold text-[10px]">Scroll</span>
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? false
+                  : { y: [0, 6, 0] }
+              }
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <ArrowDown size={18} className="text-[#8A857C] dark:text-[#B0ABA1]" />
+            </motion.div>
+          </a>
+        </motion.div>
+      </ScrollEliminate>
 
       {/* --- PROFILE DETAILS CARD MODAL --- */}
       <AnimatePresence>

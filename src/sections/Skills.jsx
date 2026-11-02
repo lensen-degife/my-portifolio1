@@ -22,6 +22,7 @@ import { FaJava, FaDatabase } from 'react-icons/fa';
 import { Code2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate from '../components/ScrollEliminate';
 
 const skillCategories = [
   {
@@ -143,7 +144,7 @@ export default function Skills() {
 
         <div className="space-y-12">
           {skillCategories.map((category) => (
-            <div key={category.title}>
+            <ScrollEliminate key={category.title} preset="card" className="w-full">
               <motion.h3
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -185,7 +186,7 @@ export default function Skills() {
                   </motion.div>
                 ))}
               </motion.div>
-            </div>
+            </ScrollEliminate>
           ))}
         </div>
       </div>

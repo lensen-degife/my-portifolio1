@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { GraduationCap, Calendar, Sparkles } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
 
 const timelineItems = [
   {
@@ -70,54 +71,57 @@ export default function Timeline() {
 
         <div className="relative">
           {timelineItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: index * 0.12, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.05 }}
-              className="relative pl-9 sm:pl-12 pb-8 sm:pb-10 last:pb-0"
-            >
-              {/* Timeline dot */}
+            <ScrollEliminate key={index} preset="card" className="w-full">
               <motion.div
-                initial={shouldReduceMotion ? false : { scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: index * 0.12, ease: 'easeOut' }}
                 viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.45, delay: 0.15, ease: 'easeOut' }}
-                className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-[#2C2C2A] dark:bg-[#EEECE6] rounded-full flex items-center justify-center border-2 border-[#8A857C] dark:border-[#B0ABA1] shadow-sm"
+                className="relative pl-9 sm:pl-12 pb-8 sm:pb-10 last:pb-0"
               >
-                <item.icon
-                  size={15}
-                  className="text-white dark:text-[#1A1A18]"
-                />
+                {/* Timeline dot */}
+                <motion.div
+                  initial={shouldReduceMotion ? false : { scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.45, delay: 0.15, ease: 'easeOut' }}
+                  className="absolute left-0 top-1 w-8 h-8 sm:w-9 sm:h-9 bg-[#2C2C2A] dark:bg-[#EEECE6] rounded-full flex items-center justify-center border-2 border-[#8A857C] dark:border-[#B0ABA1] shadow-sm"
+                >
+                  <item.icon
+                    size={15}
+                    className="text-white dark:text-[#1A1A18]"
+                  />
+                </motion.div>
+
+                {/* Content card */}
+                <motion.div
+                  whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.25 }}
+                  className="bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] p-4 sm:p-8 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300"
+                >
+                  <ScrollLayer rate="text">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6]">
+                        {item.title}
+                      </h3>
+                      <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] text-[11px] sm:text-xs font-medium text-[#5C5A55] dark:text-[#A8A49C]">
+                        <Calendar size={12} />
+                        {item.period}
+                      </div>
+                    </div>
+
+                    <p className="text-[#8A857C] dark:text-[#B0ABA1] font-medium text-sm sm:text-base mb-2.5 sm:mb-3 flex items-center gap-2">
+                      <Sparkles size={15} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0 animate-pulse" />
+                      <span>{item.organization}</span>
+                    </p>
+
+                    <p className="text-[#5C5A55] dark:text-[#A8A49C] text-xs sm:text-base leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </ScrollLayer>
+                </motion.div>
               </motion.div>
-
-              {/* Content card */}
-              <motion.div
-                whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
-                transition={{ duration: 0.25 }}
-                className="bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] p-4 sm:p-8 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6]">
-                    {item.title}
-                  </h3>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] text-[11px] sm:text-xs font-medium text-[#5C5A55] dark:text-[#A8A49C]">
-                    <Calendar size={12} />
-                    {item.period}
-                  </div>
-                </div>
-
-                <p className="text-[#8A857C] dark:text-[#B0ABA1] font-medium text-sm sm:text-base mb-2.5 sm:mb-3 flex items-center gap-2">
-                  <Sparkles size={15} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0 animate-pulse" />
-                  <span>{item.organization}</span>
-                </p>
-
-                <p className="text-[#5C5A55] dark:text-[#A8A49C] text-xs sm:text-base leading-relaxed font-light">
-                  {item.description}
-                </p>
-              </motion.div>
-            </motion.div>
+            </ScrollEliminate>
           ))}
         </div>
       </div>

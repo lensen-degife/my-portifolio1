@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
+import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
 
 const projects = [
     {
@@ -163,8 +164,8 @@ export default function Projects() {
 
       {/* --- SECTION CONTENT --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+        {/* Header with Scroll Elimination */}
+        <ScrollEliminate preset="header" className="flex flex-col items-center text-center mb-16 md:mb-20">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -197,9 +198,9 @@ export default function Projects() {
           >
             A curated collection of full-stack systems, backend microservices, and mobile applications engineered with clean code.
           </motion.p>
-        </div>
+        </ScrollEliminate>
 
-        {/* Projects Grid with Sequential Stagger */}
+        {/* Projects Grid with Sequential Stagger & Scroll Elimination */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -208,87 +209,92 @@ export default function Projects() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={cardVariants}
-              whileHover={
-                shouldReduceMotion
-                  ? false
-                  : { y: -6, scale: 1.01 }
-              }
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="group relative bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl overflow-hidden hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex flex-col justify-between"
-            >
-              {/* Card Top Banner / Accent */}
-              <div className="p-5 sm:p-6 pb-3 sm:pb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-all duration-300 shadow-xs">
-                    <Folder size={20} />
+            <ScrollEliminate key={project.title} preset="card" className="h-full flex flex-col">
+              <motion.div
+                variants={cardVariants}
+                whileHover={
+                  shouldReduceMotion
+                    ? false
+                    : { y: -6, scale: 1.01 }
+                }
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="group relative bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl overflow-hidden hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex flex-col justify-between h-full"
+              >
+                {/* Card Top Banner / Accent */}
+                <div className="p-5 sm:p-6 pb-3 sm:pb-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <ScrollLayer rate="image">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-all duration-300 shadow-xs">
+                        <Folder size={20} />
+                      </div>
+                    </ScrollLayer>
+
+                    {project.highlight && (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-[#EEECE6] dark:bg-[#292825] text-[#2C2C2A] dark:text-[#EEECE6] border border-[#E5E2DB] dark:border-[#383632] shadow-xs">
+                        <Sparkles size={11} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+                        {project.highlight}
+                      </span>
+                    )}
                   </div>
 
-                  {project.highlight && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-[#EEECE6] dark:bg-[#292825] text-[#2C2C2A] dark:text-[#EEECE6] border border-[#E5E2DB] dark:border-[#383632] shadow-xs">
-                      <Sparkles size={11} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
-                      {project.highlight}
-                    </span>
-                  )}
+                  <ScrollLayer rate="text">
+                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#8A857C] dark:text-[#B0ABA1] mb-1">
+                      {project.category}
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors mb-2.5 sm:mb-3">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light mb-4 sm:mb-6">
+                      {project.description}
+                    </p>
+                  </ScrollLayer>
                 </div>
 
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#8A857C] dark:text-[#B0ABA1] mb-1">
-                  {project.category}
+                {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
+                <div className="p-5 sm:p-6 pt-0 mt-auto">
+                  {/* Tech Pills */}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-[#EEECE6] dark:bg-[#292825] text-[#5C5A55] dark:text-[#A8A49C] border border-[#E5E2DB] dark:border-[#383632] rounded-full group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-colors"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Links */}
+                  <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors group/link"
+                      >
+                        <SiGithub size={15} className="text-[#8A857C] dark:text-[#B0ABA1] group-hover/link:text-[#1A1A18] dark:group-hover/link:text-[#FAF9F6] transition-colors" />
+                        <span>Source Code</span>
+                      </a>
+                    )}
+
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors ml-auto group/link"
+                      >
+                        <span>Live Preview</span>
+                        <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-
-                <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors mb-2.5 sm:mb-3">
-                  {project.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light mb-4 sm:mb-6">
-                  {project.description}
-                </p>
-              </div>
-
-              {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
-              <div className="p-5 sm:p-6 pt-0 mt-auto">
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-[#EEECE6] dark:bg-[#292825] text-[#5C5A55] dark:text-[#A8A49C] border border-[#E5E2DB] dark:border-[#383632] rounded-full group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-colors"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Links */}
-                <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors group/link"
-                    >
-                      <SiGithub size={15} className="text-[#8A857C] dark:text-[#B0ABA1] group-hover/link:text-[#1A1A18] dark:group-hover/link:text-[#FAF9F6] transition-colors" />
-                      <span>Source Code</span>
-                    </a>
-                  )}
-
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors ml-auto group/link"
-                    >
-                      <span>Live Preview</span>
-                      <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </ScrollEliminate>
           ))}
         </motion.div>
       </div>
