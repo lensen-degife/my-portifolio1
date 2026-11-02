@@ -13,16 +13,10 @@ export const ScrollEliminateContext = createContext(null);
  * You can easily tweak any of these numbers to change how quickly or gently
  * elements fade out and scale down as they scroll out of the viewport.
  *
- * - `offset`: [startTrigger, endTrigger]
- *   - 'start 0.18': Elimination starts when the top of the element reaches
- *                   18% from the top of the viewport (near the navbar).
- *   - 'end 0.02':   Elimination finishes when the bottom of the element is
- *                   near the top of the viewport (2% remaining).
- *
+ * - `offset`: [startTrigger, endTrigger] for Desktop/Tablet
+ * - `offsetMobile`: [startTrigger, endTrigger] tailored for iPhone / Safari mobile viewports
  * - `progressRange`: [fadeStart, fadeEnd]
  *   - Fraction of the scroll travel (0.0 to 1.0) during which opacity drops from 1 -> 0.
- *   - E.g. [0, 0.70] means text finishes fading earlier than the surrounding card.
- *
  * - `minScale`: Target scale at full elimination (e.g. 0.94 = slight scale-down).
  * - `blur`: Optional blur intensity at full elimination (false or CSS string like '4px').
  */
@@ -30,6 +24,7 @@ export const ELIMINATION_PRESETS = {
   // Standard card / container elimination
   default: {
     offset: ['start 0.16', 'end 0.02'],
+    offsetMobile: ['start 0.20', 'end 0.02'],
     progressRange: [0, 0.88],
     minScale: 0.94,
     blur: false,
@@ -37,6 +32,7 @@ export const ELIMINATION_PRESETS = {
   // Section headers (titles, badges, subtitles)
   header: {
     offset: ['start 0.18', 'end 0.02'],
+    offsetMobile: ['start 0.22', 'end 0.02'],
     progressRange: [0, 0.80],
     minScale: 0.95,
     blur: false,
@@ -44,13 +40,23 @@ export const ELIMINATION_PRESETS = {
   // Project cards, stat cards, milestone cards
   card: {
     offset: ['start 0.16', 'end 0.02'],
+    offsetMobile: ['start 0.20', 'end 0.02'],
     progressRange: [0, 0.86],
     minScale: 0.94,
+    blur: false,
+  },
+  // Individual skill badges (compact items, one-by-one sequential elimination)
+  badge: {
+    offset: ['start 0.16', 'end 0.02'],
+    offsetMobile: ['start 0.20', 'end 0.02'],
+    progressRange: [0, 0.72],
+    minScale: 0.92,
     blur: false,
   },
   // Text blocks (dissolves slightly earlier for layered depth)
   text: {
     offset: ['start 0.16', 'end 0.02'],
+    offsetMobile: ['start 0.20', 'end 0.02'],
     progressRange: [0, 0.70],
     minScale: 0.95,
     blur: false,
@@ -58,6 +64,7 @@ export const ELIMINATION_PRESETS = {
   // Images / photos (holds crispness longer, dissolves later)
   image: {
     offset: ['start 0.16', 'end 0.02'],
+    offsetMobile: ['start 0.20', 'end 0.02'],
     progressRange: [0.10, 0.94],
     minScale: 0.93,
     blur: false,
@@ -65,6 +72,7 @@ export const ELIMINATION_PRESETS = {
   // Hero text & actions (starts fading early as user scrolls down from top of page)
   'hero-text': {
     offset: ['start start', 'end start'],
+    offsetMobile: ['start start', 'end start'],
     progressRange: [0.02, 0.46],
     minScale: 0.93,
     blur: false,
@@ -72,6 +80,7 @@ export const ELIMINATION_PRESETS = {
   // Hero portrait sticker (stays sharp slightly longer than hero text for layered depth)
   'hero-image': {
     offset: ['start start', 'end start'],
+    offsetMobile: ['start start', 'end start'],
     progressRange: [0.08, 0.58],
     minScale: 0.94,
     blur: false,
@@ -79,6 +88,7 @@ export const ELIMINATION_PRESETS = {
   // Hero scroll-down prompt indicator (fades out immediately when scroll begins)
   'hero-indicator': {
     offset: ['start start', 'end start'],
+    offsetMobile: ['start start', 'end start'],
     progressRange: [0, 0.15],
     minScale: 0.90,
     blur: false,

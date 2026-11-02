@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   SiCplusplus,
@@ -68,8 +69,39 @@ const skillCategories = [
   },
 ];
 
+/**
+ * Tracks dynamic grid column count for responsive one-by-one sequential stagger calculation
+ */
+function useGridColumns() {
+  const [cols, setCols] = useState(() => {
+    if (typeof window === 'undefined') return 4;
+    const w = window.innerWidth;
+    if (w < 640) return 2;
+    if (w < 768) return 3;
+    return 4;
+  });
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setCols(2);
+      else if (w < 768) setCols(3);
+      else setCols(4);
+    };
+    window.addEventListener('resize', update, { passive: true });
+    window.addEventListener('orientationchange', update, { passive: true });
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('orientationchange', update);
+    };
+  }, []);
+
+  return cols;
+}
+
 export default function Skills() {
   const shouldReduceMotion = useReducedMotion();
+  const gridCols = useGridColumns();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -144,18 +176,22 @@ export default function Skills() {
 
         <div className="space-y-12">
           {skillCategories.map((category) => (
-            <ScrollEliminate key={category.title} preset="card" className="w-full">
-              <motion.h3
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.55, ease: 'easeOut' }}
-                className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mb-5 flex items-center gap-2"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
-                {category.title}
-              </motion.h3>
+            <div key={category.title} className="w-full">
+              {/* Category Heading with smooth text elimination */}
+              <ScrollEliminate preset="text" className="w-fit mb-5">
+                <motion.h3
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.55, ease: 'easeOut' }}
+                  className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] flex items-center gap-2"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
+                  {category.title}
+                </motion.h3>
+              </ScrollEliminate>
 
+              {/* Skills Grid: Badges eliminate one by one instead of all at once */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -163,30 +199,44 @@ export default function Skills() {
                 viewport={{ once: true, amount: 0.05 }}
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3.5"
               >
-                {category.skills.map((skill) => (
-                  <motion.div
-                    key={skill.name}
-                    variants={itemVariants}
-                    whileHover={
-                      shouldReduceMotion
-                        ? false
-                        : { y: -3, scale: 1.02 }
-                    }
-                    transition={{ duration: 0.2 }}
-                    className="group flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-xl sm:rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] shadow-sm shadow-black/5 transition-all duration-200 cursor-default select-none"
-                  >
-                    <skill.icon
-                      size={22}
-                      className="flex-shrink-0 transition-transform duration-200 group-hover:scale-115"
-                      style={{ color: skill.color }}
-                    />
-                    <span className="text-xs sm:text-sm font-medium text-[#2C2C2A] dark:text-[#EEECE6] group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-colors leading-snug">
-                      {skill.name}
-                    </span>
-                  </motion.div>
-                ))}
+                {category.skills.map((skill, index) => {
+                  // Stagger elimination progress across columns so badges eliminate one by one
+                  const col = index % gridCols;
+                  const stagger = col * 0.10;
+                  const fadeStart = Math.min(stagger, 0.35);
+                  const fadeEnd = Math.min(0.60 + stagger, 0.95);
+
+                  return (
+                    <ScrollEliminate
+                      key={skill.name}
+                      preset="badge"
+                      progressRange={[fadeStart, fadeEnd]}
+                      className="w-full h-full"
+                    >
+                      <motion.div
+                        variants={itemVariants}
+                        whileHover={
+                          shouldReduceMotion
+                            ? false
+                            : { y: -3, scale: 1.02 }
+                        }
+                        transition={{ duration: 0.2 }}
+                        className="group h-full flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-xl sm:rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 hover:bg-[#EEECE6] dark:hover:bg-[#292825] shadow-sm shadow-black/5 transition-all duration-200 cursor-default select-none"
+                      >
+                        <skill.icon
+                          size={22}
+                          className="flex-shrink-0 transition-transform duration-200 group-hover:scale-115"
+                          style={{ color: skill.color }}
+                        />
+                        <span className="text-xs sm:text-sm font-medium text-[#2C2C2A] dark:text-[#EEECE6] group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-colors leading-snug">
+                          {skill.name}
+                        </span>
+                      </motion.div>
+                    </ScrollEliminate>
+                  );
+                })}
               </motion.div>
-            </ScrollEliminate>
+            </div>
           ))}
         </div>
       </div>

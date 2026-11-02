@@ -43,7 +43,6 @@
     font-family: 'Noto Serif Ethiopic', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-overflow-scrolling: touch;
     background-color: #F7F6F3;
     color: #5C5A55;
     transition: background-color 0.3s ease, color 0.3s ease;

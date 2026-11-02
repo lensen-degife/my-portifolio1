@@ -1,14 +1,135 @@
-import { useRef, useContext } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { useRef, useContext, useEffect, useLayoutEffect } from 'react';
+import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
 import { ScrollEliminateContext, ELIMINATION_PRESETS } from './scrollEliminateConfig';
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+/**
+ * Global Scroll and Viewport Manager
+ * Coordinates scroll & resize updates across all ScrollEliminate instances
+ * using a single passive event listener batch-scheduled via requestAnimationFrame.
+ * This guarantees 60/120fps fluid tracking on iPhone/Safari without layout thrashing.
+ */
+const activeListeners = new Set();
+let globalRafId = null;
+let isListenersAttached = false;
+
+function tick() {
+  globalRafId = null;
+  activeListeners.forEach((callback) => {
+    try {
+      callback();
+    } catch {
+      // Ignore errors for unmounted elements
+    }
+  });
+}
+
+function scheduleTick() {
+  if (globalRafId !== null) return;
+  globalRafId = requestAnimationFrame(tick);
+}
+
+function attachGlobalListeners() {
+  if (isListenersAttached || typeof window === 'undefined') return;
+  isListenersAttached = true;
+  window.addEventListener('scroll', scheduleTick, { passive: true });
+  window.addEventListener('touchmove', scheduleTick, { passive: true });
+  window.addEventListener('resize', scheduleTick, { passive: true });
+  window.addEventListener('orientationchange', scheduleTick, { passive: true });
+}
+
+function detachGlobalListeners() {
+  if (!isListenersAttached || typeof window === 'undefined') return;
+  if (activeListeners.size === 0) {
+    isListenersAttached = false;
+    window.removeEventListener('scroll', scheduleTick);
+    window.removeEventListener('touchmove', scheduleTick);
+    window.removeEventListener('resize', scheduleTick);
+    window.removeEventListener('orientationchange', scheduleTick);
+    if (globalRafId !== null) {
+      cancelAnimationFrame(globalRafId);
+      globalRafId = null;
+    }
+  }
+}
+
+function registerScrollListener(callback) {
+  activeListeners.add(callback);
+  attachGlobalListeners();
+  return () => {
+    activeListeners.delete(callback);
+    detachGlobalListeners();
+  };
+}
+
+/**
+ * Parses offset edge definitions like 'start', 'end', 'center', '0.16', '100px', '20%'
+ */
+function parseEdge(edgeStr, length) {
+  if (!edgeStr) return 0;
+  const str = String(edgeStr).trim();
+  if (str === 'start') return 0;
+  if (str === 'center') return length * 0.5;
+  if (str === 'end') return length;
+  if (str.endsWith('px')) return parseFloat(str);
+  if (str.endsWith('%')) return (parseFloat(str) / 100) * length;
+  if (str.endsWith('vh')) return (parseFloat(str) / 100) * length;
+  const num = parseFloat(str);
+  if (!isNaN(num)) return length * num;
+  return 0;
+}
+
+function parseOffsetPair(offsetStr) {
+  if (!offsetStr || typeof offsetStr !== 'string') {
+    return { targetEdge: 'start', containerEdge: '0' };
+  }
+  const parts = offsetStr.trim().split(/\s+/);
+  return {
+    targetEdge: parts[0] || 'start',
+    containerEdge: parts[1] || parts[0],
+  };
+}
+
+/**
+ * Computes exact scroll elimination progress from live viewport bounding client rect.
+ * Works universally on iOS Safari, Android, and Desktop, eliminating offsetParent,
+ * momentum scrolling desyncs, and dynamic toolbar bugs.
+ */
+function computeEliminationProgress(rect, offsetDef, vh) {
+  const [startDef, endDef] = offsetDef || ['start 0.16', 'end 0.02'];
+  const startPair = parseOffsetPair(startDef);
+  const endPair = parseOffsetPair(endDef);
+
+  const startTargetOffset = parseEdge(startPair.targetEdge, rect.height);
+  const startContainerY = parseEdge(startPair.containerEdge, vh);
+
+  const endTargetOffset = parseEdge(endPair.targetEdge, rect.height);
+  const endContainerY = parseEdge(endPair.containerEdge, vh);
+
+  // yStart: rect.top at which progress begins (0.0)
+  const yStart = startContainerY - startTargetOffset;
+  // yEnd: rect.top at which progress reaches full elimination (1.0)
+  const yEnd = endContainerY - endTargetOffset;
+
+  const totalTravel = yStart - yEnd;
+  if (totalTravel <= 0.0001) {
+    return rect.top <= yEnd ? 1 : 0;
+  }
+
+  const rawProgress = (yStart - rect.top) / totalTravel;
+  return Math.max(0, Math.min(1, rawProgress));
+}
 
 /**
  * Custom Hook: useScrollElimination
  * Computes opacity, scale, pointerEvents, and optional blur based on scroll progress.
+ * Fully compatible with iPhone (Safari) and PC/Desktop with high-performance RAF sync.
  */
 function useScrollElimination({
   targetRef,
   offset,
+  offsetMobile,
   progressRange,
   minScale = 0.94,
   blur = false,
@@ -18,10 +139,8 @@ function useScrollElimination({
   const internalRef = useRef(null);
   const activeRef = targetRef || internalRef;
 
-  const { scrollYProgress } = useScroll({
-    target: activeRef,
-    offset: offset || ['start 0.16', 'end 0.02'],
-  });
+  // Use MotionValue to drive animations without triggering React re-renders
+  const scrollYProgress = useMotionValue(0);
 
   const [fadeStart, fadeEnd] = progressRange || [0, 0.88];
 
@@ -53,6 +172,37 @@ function useScrollElimination({
 
   const isMotionDisabled = shouldReduceMotion || disabled;
 
+  useIsomorphicLayoutEffect(() => {
+    if (isMotionDisabled || typeof window === 'undefined') return;
+
+    const update = () => {
+      const el = activeRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      const isMobile = window.innerWidth < 768;
+
+      const activeOffset = (isMobile && offsetMobile) ? offsetMobile : (offset || ['start 0.16', 'end 0.02']);
+      const progress = computeEliminationProgress(rect, activeOffset, vh);
+
+      scrollYProgress.set(progress);
+    };
+
+    // Immediate initial sync before paint
+    update();
+
+    // Register with global RAF-debounced scroll & touch listener
+    const unregister = registerScrollListener(update);
+
+    // Re-sync on webfont hydration to handle any layout shifts gracefully
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(update).catch(() => {});
+    }
+
+    return unregister;
+  }, [activeRef, offset, offsetMobile, isMotionDisabled]);
+
   const style = isMotionDisabled
     ? {}
     : {
@@ -83,6 +233,7 @@ function useScrollElimination({
  * - Scales down slightly (1 -> minScale)
  * - Sets pointer-events: none when out of view
  * - Reverses cleanly and smoothly when scrolling back up
+ * - Fully optimized for iPhone Safari and PC/Desktop
  * - Respects prefers-reduced-motion
  */
 export default function ScrollEliminate({
@@ -91,6 +242,7 @@ export default function ScrollEliminate({
   preset = 'default',
   targetRef,
   offset,
+  offsetMobile,
   progressRange,
   minScale,
   blur,
@@ -101,6 +253,7 @@ export default function ScrollEliminate({
   const config = ELIMINATION_PRESETS[preset] || ELIMINATION_PRESETS.default;
 
   const effectiveOffset = offset || config.offset;
+  const effectiveOffsetMobile = offsetMobile || config.offsetMobile;
   const effectiveProgress = progressRange || config.progressRange;
   const effectiveMinScale = minScale ?? config.minScale;
   const effectiveBlur = blur ?? config.blur;
@@ -108,6 +261,7 @@ export default function ScrollEliminate({
   const { ref, scrollYProgress, style, isMotionDisabled } = useScrollElimination({
     targetRef,
     offset: effectiveOffset,
+    offsetMobile: effectiveOffsetMobile,
     progressRange: effectiveProgress,
     minScale: effectiveMinScale,
     blur: effectiveBlur,
