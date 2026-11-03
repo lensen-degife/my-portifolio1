@@ -3,6 +3,7 @@ import { GraduationCap, Calendar, Sparkles } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
+import TiltCard from '../components/TiltCard';
 
 const timelineItems = [
   {
@@ -93,10 +94,11 @@ export default function Timeline() {
                   />
                 </motion.div>
 
-                {/* Content card */}
-                <motion.div
-                  whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.01 }}
-                  transition={{ duration: 0.25 }}
+                {/* Content card with 3D Tilt */}
+                <TiltCard
+                  maxTilt={4}
+                  lift={-4}
+                  scale={1.01}
                   className="bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] p-4 sm:p-8 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300"
                 >
                   <ScrollLayer rate="text">
@@ -119,7 +121,7 @@ export default function Timeline() {
                       {item.description}
                     </p>
                   </ScrollLayer>
-                </motion.div>
+                </TiltCard>
               </motion.div>
             </ScrollEliminate>
           ))}

@@ -177,19 +177,21 @@ export default function Skills() {
         <div className="space-y-12">
           {skillCategories.map((category) => (
             <div key={category.title} className="w-full">
-              {/* Category Heading with smooth text elimination */}
-              <ScrollEliminate preset="text" className="w-fit mb-5">
-                <motion.h3
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.05 }}
-                  transition={{ duration: 0.55, ease: 'easeOut' }}
-                  className="text-lg font-semibold text-[#1A1A18] dark:text-[#FAF9F6] flex items-center gap-2"
-                >
-                  <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
-                  {category.title}
-                </motion.h3>
-              </ScrollEliminate>
+              {/* Category Heading with sticky pin and smooth text elimination */}
+              <div className="sticky top-20 sm:top-24 z-20 w-fit mb-5">
+                <ScrollEliminate preset="text" className="w-fit">
+                  <motion.h3
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.05 }}
+                    transition={{ duration: 0.55, ease: 'easeOut' }}
+                    className="px-3.5 py-1.5 rounded-full bg-[#FAF9F6]/90 dark:bg-[#1C1B18]/90 backdrop-blur-md border border-[#E5E2DB]/80 dark:border-[#2D2C28]/80 text-sm font-semibold text-[#1A1A18] dark:text-[#FAF9F6] flex items-center gap-2 shadow-2xs"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#8A857C] dark:bg-[#B0ABA1]" />
+                    {category.title}
+                  </motion.h3>
+                </ScrollEliminate>
+              </div>
 
               {/* Skills Grid: Badges eliminate one by one instead of all at once */}
               <motion.div

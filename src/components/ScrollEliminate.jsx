@@ -1,14 +1,18 @@
 import { useRef, useContext, useEffect, useLayoutEffect } from 'react';
 import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
-import { ScrollEliminateContext, ELIMINATION_PRESETS } from './scrollEliminateConfig';
+import {
+  ScrollEliminateContext,
+  ELIMINATION_PRESETS,
+  LAYER_DEPTH_CONFIG,
+} from './scrollEliminateConfig';
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 /**
  * Global Scroll and Viewport Manager
- * Coordinates scroll & resize updates across all ScrollEliminate instances
+ * Coordinates scroll & resize updates across all Depth Exit instances
  * using a single passive event listener batch-scheduled via requestAnimationFrame.
- * This guarantees 60/120fps fluid tracking on iPhone/Safari without layout thrashing.
+ * Guarantees 60/120fps fluid tracking on iPhone (Safari) and PC/Desktop without layout thrashing.
  */
 const activeListeners = new Set();
 let globalRafId = null;
@@ -37,6 +41,13 @@ function attachGlobalListeners() {
   window.addEventListener('touchmove', scheduleTick, { passive: true });
   window.addEventListener('resize', scheduleTick, { passive: true });
   window.addEventListener('orientationchange', scheduleTick, { passive: true });
+  if (window.__lenis) {
+    try {
+      window.__lenis.on('scroll', scheduleTick);
+    } catch {
+      // safe fallback
+    }
+  }
 }
 
 function detachGlobalListeners() {
@@ -92,7 +103,7 @@ function parseOffsetPair(offsetStr) {
 }
 
 /**
- * Computes exact scroll elimination progress from live viewport bounding client rect.
+ * Computes exact scroll progress (0.0 -> 1.0) from live viewport bounding client rect.
  * Works universally on iOS Safari, Android, and Desktop, eliminating offsetParent,
  * momentum scrolling desyncs, and dynamic toolbar bugs.
  */
@@ -107,9 +118,9 @@ function computeEliminationProgress(rect, offsetDef, vh) {
   const endTargetOffset = parseEdge(endPair.targetEdge, rect.height);
   const endContainerY = parseEdge(endPair.containerEdge, vh);
 
-  // yStart: rect.top at which progress begins (0.0)
+  // yStart: rect.top at which exit progress begins (0.0)
   const yStart = startContainerY - startTargetOffset;
-  // yEnd: rect.top at which progress reaches full elimination (1.0)
+  // yEnd: rect.top at which exit progress completes (1.0)
   const yEnd = endContainerY - endTargetOffset;
 
   const totalTravel = yStart - yEnd;
@@ -123,15 +134,24 @@ function computeEliminationProgress(rect, offsetDef, vh) {
 
 /**
  * Custom Hook: useScrollElimination
- * Computes opacity, scale, pointerEvents, and optional blur based on scroll progress.
- * Fully compatible with iPhone (Safari) and PC/Desktop with high-performance RAF sync.
+ * Computes smooth, continuous Depth Exit motion values:
+ * - Opacity: 1 -> 0
+ * - Scale: 1 -> minScale (e.g. 0.90 - 0.92)
+ * - 3D Depth (Z): 0 -> depthZ (e.g. -60px to -80px)
+ * - Vertical Sink (Y): 0 -> depthY (e.g. +10px to +16px)
+ * - PointerEvents: 'auto' -> 'none'
  */
 function useScrollElimination({
   targetRef,
+  preset = 'default',
   offset,
   offsetMobile,
   progressRange,
-  minScale = 0.94,
+  minScale,
+  depthZ,
+  depthY,
+  depthRotateX,
+  transformPerspective = 1000,
   blur = false,
   disabled = false,
 } = {}) {
@@ -139,26 +159,58 @@ function useScrollElimination({
   const internalRef = useRef(null);
   const activeRef = targetRef || internalRef;
 
-  // Use MotionValue to drive animations without triggering React re-renders
+  const config = ELIMINATION_PRESETS[preset] || ELIMINATION_PRESETS.default;
+
+  const effectiveOffset = offset || config.offset;
+  const effectiveOffsetMobile = offsetMobile || config.offsetMobile;
+  const effectiveProgress = progressRange || config.progressRange;
+  const effectiveMinScale = minScale ?? config.minScale ?? 0.91;
+  const effectiveDepthZ = depthZ ?? config.depthZ ?? -60;
+  const effectiveDepthY = depthY ?? config.depthY ?? 12;
+  const effectiveDepthRotateX = depthRotateX ?? config.depthRotateX ?? 6;
+  const effectiveBlur = blur ?? config.blur;
+
+  // Use MotionValue to drive hardware-accelerated animations without React re-renders
   const scrollYProgress = useMotionValue(0);
 
-  const [fadeStart, fadeEnd] = progressRange || [0, 0.88];
+  const [fadeStart, fadeEnd] = effectiveProgress;
 
-  // Continuous smooth opacity: 1 -> 0
+  // Smooth continuous fade-out: 1 -> 0
   const opacity = useTransform(
     scrollYProgress,
     [0, fadeStart, fadeEnd],
     [1, 1, 0]
   );
 
-  // Slight scale down: 1 -> minScale (e.g. 0.94)
+  // Smooth continuous scale down: 1 -> minScale (e.g. 0.91)
   const scale = useTransform(
     scrollYProgress,
     [0, fadeStart, fadeEnd],
-    [1, 1, minScale]
+    [1, 1, effectiveMinScale]
   );
 
-  // When element is fully eliminated (opacity 0), disable pointer events
+  // Smooth 3D spatial pushback into depth: 0 -> depthZ (e.g. -60px)
+  const z = useTransform(
+    scrollYProgress,
+    [0, fadeStart, fadeEnd],
+    [0, 0, effectiveDepthZ]
+  );
+
+  // Smooth gentle vertical sinking motion: 0 -> depthY (e.g. +12px)
+  const y = useTransform(
+    scrollYProgress,
+    [0, fadeStart, fadeEnd],
+    [0, 0, effectiveDepthY]
+  );
+
+  // Smooth subtle 3D backward tilt: 0 -> depthRotateX (e.g. 6deg)
+  const rotateX = useTransform(
+    scrollYProgress,
+    [0, fadeStart, fadeEnd],
+    [0, 0, effectiveDepthRotateX]
+  );
+
+  // Disable pointer events when fully eliminated (opacity 0)
   const pointerEvents = useTransform(scrollYProgress, (progress) => {
     return progress >= fadeEnd ? 'none' : 'auto';
   });
@@ -167,7 +219,7 @@ function useScrollElimination({
   const filter = useTransform(
     scrollYProgress,
     [0, fadeStart, fadeEnd],
-    ['blur(0px)', 'blur(0px)', typeof blur === 'string' ? `blur(${blur})` : 'blur(4px)']
+    ['blur(0px)', 'blur(0px)', typeof effectiveBlur === 'string' ? `blur(${effectiveBlur})` : 'blur(4px)']
   );
 
   const isMotionDisabled = shouldReduceMotion || disabled;
@@ -183,7 +235,7 @@ function useScrollElimination({
       const vh = window.innerHeight || document.documentElement.clientHeight || 800;
       const isMobile = window.innerWidth < 768;
 
-      const activeOffset = (isMobile && offsetMobile) ? offsetMobile : (offset || ['start 0.16', 'end 0.02']);
+      const activeOffset = (isMobile && effectiveOffsetMobile) ? effectiveOffsetMobile : effectiveOffset;
       const progress = computeEliminationProgress(rect, activeOffset, vh);
 
       scrollYProgress.set(progress);
@@ -201,15 +253,20 @@ function useScrollElimination({
     }
 
     return unregister;
-  }, [activeRef, offset, offsetMobile, isMotionDisabled]);
+  }, [activeRef, effectiveOffset, effectiveOffsetMobile, isMotionDisabled]);
 
   const style = isMotionDisabled
     ? {}
     : {
         opacity,
         scale,
+        z,
+        y,
+        rotateX,
+        transformPerspective,
+        transformOrigin: 'center top',
         pointerEvents,
-        ...(blur ? { filter } : {}),
+        ...(effectiveBlur ? { filter } : {}),
         willChange: 'transform, opacity',
       };
 
@@ -218,6 +275,9 @@ function useScrollElimination({
     scrollYProgress,
     opacity,
     scale,
+    z,
+    y,
+    rotateX,
     pointerEvents,
     filter,
     style,
@@ -226,14 +286,16 @@ function useScrollElimination({
 }
 
 /**
- * ScrollEliminate Component
+ * ScrollEliminate Component (Depth Exit)
  *
- * Wraps any section, card, text block, or image with a scroll-linked elimination effect:
- * - Fades out (1 -> 0)
- * - Scales down slightly (1 -> minScale)
- * - Sets pointer-events: none when out of view
+ * Wraps any section, card, text block, or image with a smooth 3D Depth Exit:
+ * - Gradually fades out (opacity 1 -> 0)
+ * - Slightly scales down (1 -> 0.90 / 0.92)
+ * - Moves backward in space (translateZ: -60px to -80px)
+ * - Gently sinks into the background plane (translateY: +10px to +16px)
+ * - Subtle backward tilt (rotateX: 4deg to 8deg)
  * - Reverses cleanly and smoothly when scrolling back up
- * - Fully optimized for iPhone Safari and PC/Desktop
+ * - Fully hardware-accelerated for 60/120fps on iPhone (Safari) and PC/Desktop
  * - Respects prefers-reduced-motion
  */
 export default function ScrollEliminate({
@@ -245,26 +307,27 @@ export default function ScrollEliminate({
   offsetMobile,
   progressRange,
   minScale,
+  depthZ,
+  depthY,
+  depthRotateX,
+  transformPerspective = 1000,
   blur,
   disabled = false,
   as: Component = motion.div,
   ...restProps
 }) {
-  const config = ELIMINATION_PRESETS[preset] || ELIMINATION_PRESETS.default;
-
-  const effectiveOffset = offset || config.offset;
-  const effectiveOffsetMobile = offsetMobile || config.offsetMobile;
-  const effectiveProgress = progressRange || config.progressRange;
-  const effectiveMinScale = minScale ?? config.minScale;
-  const effectiveBlur = blur ?? config.blur;
-
   const { ref, scrollYProgress, style, isMotionDisabled } = useScrollElimination({
     targetRef,
-    offset: effectiveOffset,
-    offsetMobile: effectiveOffsetMobile,
-    progressRange: effectiveProgress,
-    minScale: effectiveMinScale,
-    blur: effectiveBlur,
+    preset,
+    offset,
+    offsetMobile,
+    progressRange,
+    minScale,
+    depthZ,
+    depthY,
+    depthRotateX,
+    transformPerspective,
+    blur,
     disabled,
   });
 
@@ -291,18 +354,24 @@ export default function ScrollEliminate({
 }
 
 /**
- * ScrollLayer Component
+ * ScrollLayer Component (Depth Exit Layer)
  *
- * Use inside a ScrollEliminate container to give text or images a distinct elimination rate.
- * - rate="text": Fades out slightly earlier than the container (more layered depth)
- * - rate="image": Fades out slightly later than text, keeping crisp visual weight longer
- * - rate="fast": Rapid fade-out
- * - rate="slow": Delayed fade-out
+ * Use inside a ScrollEliminate container to give text or images a distinct layered depth exit:
+ * - rate="text": Dissolves slightly earlier with a lighter spatial depth pushback
+ * - rate="image": Holds crispness longer with deeper spatial pushback, creating tactile parallax
+ * - rate="fast": Rapid depth exit
+ * - rate="slow": Delayed depth exit
  */
 export function ScrollLayer({
   children,
   rate = 'text',
   className = '',
+  progressRange,
+  minScale,
+  depthZ,
+  depthY,
+  depthRotateX,
+  transformPerspective = 1000,
   as = motion.div,
   ...restProps
 }) {
@@ -323,6 +392,12 @@ export function ScrollLayer({
       scrollYProgress={context.scrollYProgress}
       rate={rate}
       className={className}
+      progressRange={progressRange}
+      minScale={minScale}
+      depthZ={depthZ}
+      depthY={depthY}
+      depthRotateX={depthRotateX}
+      transformPerspective={transformPerspective}
       as={as}
       {...restProps}
     >
@@ -333,34 +408,64 @@ export function ScrollLayer({
 
 function ScrollLayerInner({
   scrollYProgress,
-  rate,
-  className,
+  rate = 'text',
+  className = '',
+  progressRange,
+  minScale,
+  depthZ,
+  depthY,
+  depthRotateX,
+  transformPerspective = 1000,
   children,
   as: Component = motion.div,
   ...restProps
 }) {
-  const rateRanges = {
-    text: [0, 0.65],
-    image: [0.12, 0.94],
-    fast: [0, 0.50],
-    slow: [0.10, 0.98],
-  };
+  const layerConfig = LAYER_DEPTH_CONFIG[rate] || LAYER_DEPTH_CONFIG.text;
 
-  const [layerStart, layerEnd] = rateRanges[rate] || rateRanges.text;
+  const effectiveProgress = progressRange || layerConfig.progressRange;
+  const effectiveMinScale = minScale ?? layerConfig.minScale ?? 0.94;
+  const effectiveDepthZ = depthZ ?? layerConfig.depthZ ?? -40;
+  const effectiveDepthY = depthY ?? layerConfig.depthY ?? 8;
+  const effectiveDepthRotateX = depthRotateX ?? layerConfig.depthRotateX ?? 4;
 
-  const opacity = useTransform(scrollYProgress, [0, layerStart, layerEnd], [1, 1, 0]);
+  const [lStart, lEnd] = effectiveProgress;
+
+  // Layered continuous fade, scale, and 3D pushback
+  const opacity = useTransform(scrollYProgress, [0, lStart, lEnd], [1, 1, 0]);
   const scale = useTransform(
     scrollYProgress,
-    [0, layerStart, layerEnd],
-    [1, 1, rate === 'text' ? 0.96 : 0.93]
+    [0, lStart, lEnd],
+    [1, 1, effectiveMinScale]
   );
-  const pointerEvents = useTransform(scrollYProgress, (v) => (v >= layerEnd ? 'none' : 'auto'));
+  const z = useTransform(
+    scrollYProgress,
+    [0, lStart, lEnd],
+    [0, 0, effectiveDepthZ]
+  );
+  const y = useTransform(
+    scrollYProgress,
+    [0, lStart, lEnd],
+    [0, 0, effectiveDepthY]
+  );
+  const rotateX = useTransform(
+    scrollYProgress,
+    [0, lStart, lEnd],
+    [0, 0, effectiveDepthRotateX]
+  );
+  const pointerEvents = useTransform(scrollYProgress, (progress) =>
+    progress >= lEnd ? 'none' : 'auto'
+  );
 
   return (
     <Component
       style={{
         opacity,
         scale,
+        z,
+        y,
+        rotateX,
+        transformPerspective,
+        transformOrigin: 'center top',
         pointerEvents,
         willChange: 'transform, opacity',
       }}

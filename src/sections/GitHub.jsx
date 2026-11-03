@@ -13,6 +13,7 @@ import SectionHeading from '../components/SectionHeading';
 import { useTheme } from '../context/ThemeContext';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import ScrollEliminate from '../components/ScrollEliminate';
+import TiltCard from '../components/TiltCard';
 
 const GITHUB_USERNAME = 'lensen-degife';
 
@@ -228,34 +229,33 @@ export default function GitHub() {
                 <motion.div
                   key={item.key}
                   variants={statItemVariants}
-                  whileHover={
-                    shouldReduceMotion
-                      ? false
-                      : { y: -3, scale: 1.02 }
-                  }
-                  transition={{ duration: 0.2 }}
-                  className={`p-3.5 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] text-center hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200 cursor-default ${
-                    index === 4 ? 'col-span-2 sm:col-span-1' : ''
-                  }`}
+                  className={`w-full h-full ${index === 4 ? 'col-span-2 sm:col-span-1' : ''}`}
                 >
-                  <div className="inline-flex p-2.5 sm:p-3 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl mb-2 sm:mb-3 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
-                    <Icon size={18} />
-                  </div>
+                  <TiltCard
+                    maxTilt={5}
+                    lift={-4}
+                    scale={1.015}
+                    className="p-3.5 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] text-center hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200 cursor-default h-full"
+                  >
+                    <div className="inline-flex p-2.5 sm:p-3 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl mb-2 sm:mb-3 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
+                      <Icon size={18} />
+                    </div>
 
-                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight">
-                    {loading ? (
-                      <span className="inline-block w-10 h-7 bg-[#EEECE6] dark:bg-[#292825] rounded animate-pulse" />
-                    ) : (
-                      (stats?.[item.key] ?? '—')
-                    )}
-                  </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight">
+                      {loading ? (
+                        <span className="inline-block w-10 h-7 bg-[#EEECE6] dark:bg-[#292825] rounded animate-pulse" />
+                      ) : (
+                        (stats?.[item.key] ?? '—')
+                      )}
+                    </p>
 
-                  <p className="text-xs font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mt-1 leading-tight">
-                    {item.label}
-                  </p>
-                  <p className="text-[10px] sm:text-[11px] text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
-                    {item.sublabel}
-                  </p>
+                    <p className="text-xs font-semibold text-[#1A1A18] dark:text-[#FAF9F6] mt-1 leading-tight">
+                      {item.label}
+                    </p>
+                    <p className="text-[10px] sm:text-[11px] text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
+                      {item.sublabel}
+                    </p>
+                  </TiltCard>
                 </motion.div>
               );
             })}

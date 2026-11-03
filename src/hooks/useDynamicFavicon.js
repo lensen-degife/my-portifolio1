@@ -17,7 +17,7 @@ export function useDynamicFavicon() {
   }, [activeSection]);
 
   useEffect(() => {
-    let currentActive = activeSection;
+    let currentActive = 'hero';
 
     const updateActiveSection = (sectionId) => {
       if (currentActive !== sectionId && SECTION_METADATA[sectionId]) {

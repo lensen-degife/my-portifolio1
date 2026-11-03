@@ -3,6 +3,7 @@ import { Trophy, GitBranch, Award, ExternalLink } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
+import TiltCard from '../components/TiltCard';
 import udacityCert from '../assets/udacity.certificate.pdf';
 import simplilearnCert from '../assets/simplilearnCertificate.pdf';
 
@@ -113,7 +114,7 @@ export default function Achievements() {
           subtitle="Key milestones and recognitions earned through continuous technical pursuit"
         />
 
-        {/* Achievements Grid with Alternating Slide from Left and Right & Scroll Elimination */}
+        {/* Achievements Grid with Alternating Slide & Scroll Elimination + 3D Tilt */}
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-14 overflow-hidden">
           {achievements.map((item, index) => {
             const isLeft = index % 2 === 0;
@@ -128,31 +129,37 @@ export default function Achievements() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.05 }}
                   transition={{ duration: 0.7, ease: 'easeOut', delay: index * 0.12 }}
-                  whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
-                  className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default"
+                  className="w-full h-full"
                 >
-                  <ScrollLayer rate="image">
-                    <div className="p-2.5 sm:p-3.5 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl h-fit flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
-                      <item.icon size={22} />
-                    </div>
-                  </ScrollLayer>
-                  <ScrollLayer rate="text">
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-1.5 sm:mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
-                        {item.description}
-                      </p>
-                    </div>
-                  </ScrollLayer>
+                  <TiltCard
+                    maxTilt={5}
+                    lift={-5}
+                    scale={1.015}
+                    className="flex gap-3.5 sm:gap-5 p-4 sm:p-6 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 cursor-default h-full"
+                  >
+                    <ScrollLayer rate="image">
+                      <div className="p-2.5 sm:p-3.5 bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] rounded-xl h-fit flex-shrink-0 text-[#2C2C2A] dark:text-[#EEECE6] shadow-xs">
+                        <item.icon size={22} />
+                      </div>
+                    </ScrollLayer>
+                    <ScrollLayer rate="text">
+                      <div>
+                        <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-1.5 sm:mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light">
+                          {item.description}
+                        </p>
+                      </div>
+                    </ScrollLayer>
+                  </TiltCard>
                 </motion.div>
               </ScrollEliminate>
             );
           })}
         </div>
 
-        {/* Certificates Section with Scroll Elimination */}
+        {/* Certificates Section with Scroll Elimination & 3D Tilt */}
         <ScrollEliminate preset="card" className="w-full">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
@@ -173,36 +180,37 @@ export default function Achievements() {
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5"
             >
               {certificates.map((cert) => (
-                <motion.div
-                  key={cert.title}
-                  variants={itemVariants}
-                  whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
-                  transition={{ duration: 0.2 }}
-                  className="group p-4 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h4 className="font-semibold text-[#1A1A18] dark:text-[#FAF9F6] text-sm sm:text-base group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors">
-                        {cert.title}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-[#9B9890] dark:text-[#78756E] mt-1">
-                        Issued by {cert.issuer}
-                      </p>
+                <motion.div key={cert.title} variants={itemVariants} className="w-full">
+                  <TiltCard
+                    maxTilt={5}
+                    lift={-4}
+                    scale={1.015}
+                    className="group p-4 sm:p-5 bg-[#FAF9F6] dark:bg-[#1F1E1B] rounded-2xl border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-200 h-full"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <h4 className="font-semibold text-[#1A1A18] dark:text-[#FAF9F6] text-sm sm:text-base group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors">
+                          {cert.title}
+                        </h4>
+                        <p className="text-[11px] sm:text-xs text-[#9B9890] dark:text-[#78756E] mt-1">
+                          Issued by {cert.issuer}
+                        </p>
+                      </div>
+                      {cert.file && (
+                        <motion.a
+                          href={cert.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="text-[#2C2C2A] hover:text-[#1A1A18] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] bg-[#EEECE6] hover:bg-[#E5E2DB] dark:bg-[#292825] dark:hover:bg-[#383632] p-2 rounded-lg border border-[#E5E2DB] dark:border-[#383632] transition-all duration-200 shadow-xs flex-shrink-0"
+                          title="View certificate"
+                        >
+                          <ExternalLink size={14} />
+                        </motion.a>
+                      )}
                     </div>
-                    {cert.file && (
-                      <motion.a
-                        href={cert.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="text-[#2C2C2A] hover:text-[#1A1A18] dark:text-[#EEECE6] dark:hover:text-[#FAF9F6] bg-[#EEECE6] hover:bg-[#E5E2DB] dark:bg-[#292825] dark:hover:bg-[#383632] p-2 rounded-lg border border-[#E5E2DB] dark:border-[#383632] transition-all duration-200 shadow-xs flex-shrink-0"
-                        title="View certificate"
-                      >
-                        <ExternalLink size={14} />
-                      </motion.a>
-                    )}
-                  </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </motion.div>

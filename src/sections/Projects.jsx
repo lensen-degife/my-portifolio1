@@ -1,8 +1,10 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring, useReducedMotion } from 'framer-motion';
 import { Folder, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
+import TiltCard from '../components/TiltCard';
 
 const projects = [
     {
@@ -79,6 +81,14 @@ const projects = [
 
 export default function Projects() {
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+
+  // Section scrub progress tracker (inspired by Eduard Bodak's sticky scrub counters)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 0.85', 'end 0.15'],
+  });
+  const scrubScaleX = useSpring(scrollYProgress, { stiffness: 260, damping: 28 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,6 +117,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
+      ref={sectionRef}
       className="relative w-full py-24 md:py-32 bg-transparent overflow-hidden font-sans text-[#5C5A55] dark:text-[#A8A49C] transition-colors duration-300"
     >
       {/* Technical Background Grid Lines */}
@@ -165,7 +176,7 @@ export default function Projects() {
       {/* --- SECTION CONTENT --- */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
         {/* Header with Scroll Elimination */}
-        <ScrollEliminate preset="header" className="flex flex-col items-center text-center mb-16 md:mb-20">
+        <ScrollEliminate preset="header" className="flex flex-col items-center text-center mb-10 md:mb-14">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +211,30 @@ export default function Projects() {
           </motion.p>
         </ScrollEliminate>
 
-        {/* Projects Grid with Sequential Stagger & Scroll Elimination */}
+        {/* Sticky Scrub Navigation Bar (Eduard Bodak style pinned scrub progress) */}
+        <div className="sticky top-20 sm:top-24 z-30 mb-8 sm:mb-12 py-2.5 px-4 sm:px-6 rounded-2xl bg-[#FAF9F6]/85 dark:bg-[#1A1916]/85 backdrop-blur-md border border-[#E5E2DB]/80 dark:border-[#2D2C28]/80 shadow-xs flex items-center justify-between transition-colors">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#1A1A18] dark:text-[#FAF9F6]">
+            <span className="w-2 h-2 rounded-full bg-[#7A8474] dark:bg-[#8F9C88] animate-pulse" />
+            <span>Curated Index</span>
+            <span className="text-[#8A857C] dark:text-[#B0ABA1] font-mono text-[11px] sm:text-xs">
+              ({projects.length} Works)
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#8A857C] dark:text-[#B0ABA1] font-medium hidden sm:inline">
+              Scroll Progress
+            </span>
+            <div className="w-24 sm:w-36 h-1.5 bg-[#EEECE6] dark:bg-[#292825] rounded-full overflow-hidden">
+              <motion.div
+                style={{ scaleX: scrubScaleX }}
+                className="h-full w-full bg-[#1A1A18] dark:bg-[#FAF9F6] origin-left rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Projects Grid with Sequential Stagger & Scroll Elimination + 3D Tilt */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -210,89 +244,87 @@ export default function Projects() {
         >
           {projects.map((project) => (
             <ScrollEliminate key={project.title} preset="card" className="h-full flex flex-col">
-              <motion.div
-                variants={cardVariants}
-                whileHover={
-                  shouldReduceMotion
-                    ? false
-                    : { y: -6, scale: 1.01 }
-                }
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="group relative bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl overflow-hidden hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex flex-col justify-between h-full"
-              >
-                {/* Card Top Banner / Accent */}
-                <div className="p-5 sm:p-6 pb-3 sm:pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <ScrollLayer rate="image">
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-all duration-300 shadow-xs">
-                        <Folder size={20} />
-                      </div>
-                    </ScrollLayer>
+              <motion.div variants={cardVariants} className="h-full flex flex-col">
+                <TiltCard
+                  maxTilt={5}
+                  lift={-6}
+                  scale={1.012}
+                  className="group bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] rounded-2xl overflow-hidden hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex flex-col justify-between h-full"
+                >
+                  {/* Card Top Banner / Accent */}
+                  <div className="p-5 sm:p-6 pb-3 sm:pb-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <ScrollLayer rate="image">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center text-[#2C2C2A] dark:text-[#EEECE6] group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 group-hover:text-[#1A1A18] dark:group-hover:text-[#FAF9F6] transition-all duration-300 shadow-xs">
+                          <Folder size={20} />
+                        </div>
+                      </ScrollLayer>
 
-                    {project.highlight && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-[#EEECE6] dark:bg-[#292825] text-[#2C2C2A] dark:text-[#EEECE6] border border-[#E5E2DB] dark:border-[#383632] shadow-xs">
-                        <Sparkles size={11} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
-                        {project.highlight}
-                      </span>
-                    )}
-                  </div>
-
-                  <ScrollLayer rate="text">
-                    <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#8A857C] dark:text-[#B0ABA1] mb-1">
-                      {project.category}
+                      {project.highlight && (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-[#EEECE6] dark:bg-[#292825] text-[#2C2C2A] dark:text-[#EEECE6] border border-[#E5E2DB] dark:border-[#383632] shadow-xs">
+                          <Sparkles size={11} className="text-[#8A857C] dark:text-[#B0ABA1] animate-pulse" />
+                          {project.highlight}
+                        </span>
+                      )}
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors mb-2.5 sm:mb-3">
-                      {project.title}
-                    </h3>
+                    <ScrollLayer rate="text">
+                      <div className="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#8A857C] dark:text-[#B0ABA1] mb-1">
+                        {project.category}
+                      </div>
 
-                    <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light mb-4 sm:mb-6">
-                      {project.description}
-                    </p>
-                  </ScrollLayer>
-                </div>
+                      <h3 className="text-lg sm:text-xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors mb-2.5 sm:mb-3">
+                        {project.title}
+                      </h3>
 
-                {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
-                <div className="p-5 sm:p-6 pt-0 mt-auto">
-                  {/* Tech Pills */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-[#EEECE6] dark:bg-[#292825] text-[#5C5A55] dark:text-[#A8A49C] border border-[#E5E2DB] dark:border-[#383632] rounded-full group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-colors"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                      <p className="text-xs sm:text-sm text-[#5C5A55] dark:text-[#A8A49C] leading-relaxed font-light mb-4 sm:mb-6">
+                        {project.description}
+                      </p>
+                    </ScrollLayer>
                   </div>
 
-                  {/* Action Links */}
-                  <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors group/link"
-                      >
-                        <SiGithub size={15} className="text-[#8A857C] dark:text-[#B0ABA1] group-hover/link:text-[#1A1A18] dark:group-hover/link:text-[#FAF9F6] transition-colors" />
-                        <span>Source Code</span>
-                      </a>
-                    )}
+                  {/* Card Footer: Tech Tags (Pill UI) & Action Links */}
+                  <div className="p-5 sm:p-6 pt-0 mt-auto">
+                    {/* Tech Pills */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium bg-[#EEECE6] dark:bg-[#292825] text-[#5C5A55] dark:text-[#A8A49C] border border-[#E5E2DB] dark:border-[#383632] rounded-full group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-colors"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
 
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors ml-auto group/link"
-                      >
-                        <span>Live Preview</span>
-                        <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                      </a>
-                    )}
+                    {/* Action Links */}
+                    <div className="flex items-center justify-between gap-3 pt-3.5 sm:pt-4 border-t border-[#E5E2DB] dark:border-[#2D2C28]">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-[#5C5A55] dark:text-[#A8A49C] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors group/link"
+                        >
+                          <SiGithub size={15} className="text-[#8A857C] dark:text-[#B0ABA1] group-hover/link:text-[#1A1A18] dark:group-hover/link:text-[#FAF9F6] transition-colors" />
+                          <span>Source Code</span>
+                        </a>
+                      )}
+
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] hover:text-[#8A857C] dark:hover:text-[#B0ABA1] transition-colors ml-auto group/link"
+                        >
+                          <span>Live Preview</span>
+                          <ArrowUpRight size={15} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               </motion.div>
             </ScrollEliminate>
           ))}

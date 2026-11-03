@@ -1,5 +1,6 @@
 import { ThemeProvider } from './context/ThemeContext';
 import { useDynamicFavicon } from './hooks/useDynamicFavicon';
+import SmoothScroll from './components/SmoothScroll';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
@@ -19,23 +20,25 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen bg-[#F7F6F3] dark:bg-[#161614] text-[#5C5A55] dark:text-[#A8A49C] selection:bg-[#E5E2DB] selection:text-[#1A1A18] dark:selection:bg-[#383632] dark:selection:text-[#FAF9F6] font-sans transition-colors duration-300">
-        <MatrixRain />
-        <ScrollProgress />
-        <Navbar />
-        <main className="relative">
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <GitHub />
-          <Timeline />
-          <Achievements />
-          <Contact />
-        </main>
-        <Footer />
-        <BackToTop />
-      </div>
+      <SmoothScroll>
+        <div className="relative min-h-screen bg-[#F7F6F3] dark:bg-[#161614] text-[#5C5A55] dark:text-[#A8A49C] selection:bg-[#E5E2DB] selection:text-[#1A1A18] dark:selection:bg-[#383632] dark:selection:text-[#FAF9F6] font-sans transition-colors duration-300">
+          <MatrixRain />
+          <ScrollProgress />
+          <Navbar />
+          <main className="relative">
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <GitHub />
+            <Timeline />
+            <Achievements />
+            <Contact />
+          </main>
+          <Footer />
+          <BackToTop />
+        </div>
+      </SmoothScroll>
     </ThemeProvider>
   );
 }

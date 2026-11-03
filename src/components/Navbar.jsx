@@ -117,11 +117,15 @@ export default function Navbar() {
     const target = document.querySelector(href);
     if (target) {
       const navOffset = 80; // Accounting for floating pill height and comfortable padding
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: 'smooth',
-      });
+      if (typeof window !== 'undefined' && window.__lenis) {
+        window.__lenis.scrollTo(target, { offset: -navOffset, duration: 1.3 });
+      } else {
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({
+          top: Math.max(0, targetPosition),
+          behavior: 'smooth',
+        });
+      }
     }
   };
 

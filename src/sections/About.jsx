@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, FolderGit2, Award, GraduationCap, Terminal, User } from 'lucide-react';
 import { FloatingDiamond, FloatingRing, SparkleStar, GridLines } from '../components/Decorations';
 import ScrollEliminate, { ScrollLayer } from '../components/ScrollEliminate';
+import TiltCard from '../components/TiltCard';
 
 const stats = [
   {
@@ -135,45 +136,52 @@ export default function About() {
           </motion.p>
         </ScrollEliminate>
 
-        {/* 2-Column Content Grid */}
+        {/* 2-Column Content Grid: Left column pinned (Eduard Bodak sticky narrative) */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-start">
-          {/* Left Column: Biography & Tech Stack with Scroll Elimination */}
-          <ScrollEliminate preset="card" className="lg:col-span-7 flex flex-col space-y-6">
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="w-full flex flex-col space-y-6"
-            >
-              <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] shadow-md shadow-black/5 dark:shadow-black/20 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 flex items-center gap-2.5 sm:gap-3">
-                  <Terminal size={22} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0" />
-                  Engineering with Purpose
-                </h3>
+          {/* Left Column: Biography & Tech Stack (sticky on desktop) with Scroll Elimination */}
+          <div className="lg:col-span-7 lg:sticky lg:top-28">
+            <ScrollEliminate preset="card" className="flex flex-col space-y-6">
+              <motion.div
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                className="w-full flex flex-col space-y-6"
+              >
+                <TiltCard
+                  maxTilt={3}
+                  lift={-4}
+                  scale={1.008}
+                  className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] shadow-md shadow-black/5 dark:shadow-black/20 hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 transition-colors duration-300"
+                >
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] mb-4 flex items-center gap-2.5 sm:gap-3">
+                    <Terminal size={22} className="text-[#8A857C] dark:text-[#B0ABA1] flex-shrink-0" />
+                    Engineering with Purpose
+                  </h3>
 
-                <ScrollLayer rate="text">
-                  <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-4">
-                    I am <span className="text-[#1A1A18] dark:text-[#FAF9F6] font-medium">Lensen Degife</span>, a full-stack developer and a{' '}
-                    <span className="text-[#8A857C] dark:text-[#B0ABA1] font-medium">
-                      3rd-year Computer Science student at Addis Ababa University
-                    </span>
-                    . I thrive on translating intricate problems into clean, scalable, and responsive software architectures.
-                  </p>
+                  <ScrollLayer rate="text">
+                    <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-4">
+                      I am <span className="text-[#1A1A18] dark:text-[#FAF9F6] font-medium">Lensen Degife</span>, a full-stack developer and a{' '}
+                      <span className="text-[#8A857C] dark:text-[#B0ABA1] font-medium">
+                        3rd-year Computer Science student at Addis Ababa University
+                      </span>
+                      . I thrive on translating intricate problems into clean, scalable, and responsive software architectures.
+                    </p>
 
-                  <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-4">
-                    My work spans end-to-end web & mobile applications, RESTful microservices, and database optimization. From designing responsive React frontends to architecting robust Node.js and Spring Boot backends, I bring care to every layer of the stack.
-                  </p>
+                    <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-4">
+                      My work spans end-to-end web & mobile applications, RESTful microservices, and database optimization. From designing responsive React frontends to architecting robust Node.js and Spring Boot backends, I bring care to every layer of the stack.
+                    </p>
 
-                  <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light">
-                    Beyond coursework, I am continuously refining my analytical thinking through competitive programming on LeetCode and collaborating on open-source projects.
-                  </p>
-                </ScrollLayer>
-              </div>
-            </motion.div>
-          </ScrollEliminate>
+                    <p className="text-[#5C5A55] dark:text-[#A8A49C] text-sm sm:text-base lg:text-lg leading-relaxed font-light">
+                      Beyond coursework, I am continuously refining my analytical thinking through competitive programming on LeetCode and collaborating on open-source projects.
+                    </p>
+                  </ScrollLayer>
+                </TiltCard>
+              </motion.div>
+            </ScrollEliminate>
+          </div>
 
-          {/* Right Column: Glassmorphic Stat Cards with Layered Elimination */}
+          {/* Right Column: Glassmorphic Stat Cards with Layered Elimination & 3D Tilt */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -185,30 +193,32 @@ export default function About() {
               const Icon = stat.icon;
               return (
                 <ScrollEliminate key={stat.label} preset="card" className="w-full">
-                  <motion.div
-                    variants={statItemVariants}
-                    whileHover={shouldReduceMotion ? false : { y: -4, scale: 1.015 }}
-                    transition={{ duration: 0.2 }}
-                    className="p-4 sm:p-6 rounded-2xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex items-center gap-3.5 sm:gap-5 group cursor-default"
-                  >
-                    <ScrollLayer rate="image">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-all duration-300 shadow-xs">
-                        <Icon size={24} className="text-[#8A857C] dark:text-[#B0ABA1]" />
-                      </div>
-                    </ScrollLayer>
-                    <ScrollLayer rate="text">
-                      <div>
-                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors">
-                          {stat.value}
+                  <motion.div variants={statItemVariants} className="w-full">
+                    <TiltCard
+                      maxTilt={6}
+                      lift={-5}
+                      scale={1.015}
+                      className="p-4 sm:p-6 rounded-2xl bg-[#FAF9F6] dark:bg-[#1F1E1B] border border-[#E5E2DB] dark:border-[#2D2C28] hover:border-[#8A857C]/40 dark:hover:border-[#B0ABA1]/40 shadow-sm shadow-black/5 transition-all duration-300 flex items-center gap-3.5 sm:gap-5 group cursor-default"
+                    >
+                      <ScrollLayer rate="image">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EEECE6] dark:bg-[#292825] border border-[#E5E2DB] dark:border-[#383632] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-[#8A857C]/40 dark:group-hover:border-[#B0ABA1]/40 transition-all duration-300 shadow-xs">
+                          <Icon size={24} className="text-[#8A857C] dark:text-[#B0ABA1]" />
                         </div>
-                        <div className="text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] mt-0.5">
-                          {stat.label}
+                      </ScrollLayer>
+                      <ScrollLayer rate="text">
+                        <div>
+                          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A18] dark:text-[#FAF9F6] tracking-tight group-hover:text-[#8A857C] dark:group-hover:text-[#B0ABA1] transition-colors">
+                            {stat.value}
+                          </div>
+                          <div className="text-xs sm:text-sm font-medium text-[#1A1A18] dark:text-[#FAF9F6] mt-0.5">
+                            {stat.label}
+                          </div>
+                          <div className="text-xs text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
+                            {stat.sub}
+                          </div>
                         </div>
-                        <div className="text-xs text-[#9B9890] dark:text-[#78756E] font-light mt-0.5">
-                          {stat.sub}
-                        </div>
-                      </div>
-                    </ScrollLayer>
+                      </ScrollLayer>
+                    </TiltCard>
                   </motion.div>
                 </ScrollEliminate>
               );

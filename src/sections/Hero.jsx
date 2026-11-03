@@ -350,8 +350,12 @@ export default function Hero() {
                 const target = document.querySelector('#contact');
                 if (target) {
                   const navOffset = 80;
-                  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                  if (typeof window !== 'undefined' && window.__lenis) {
+                    window.__lenis.scrollTo(target, { offset: -navOffset, duration: 1.3 });
+                  } else {
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                  }
                 }
               }}
               className="inline-flex items-center justify-center gap-2 px-4.5 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] text-[#2C2C2A] dark:bg-[#292825] dark:hover:bg-[#383632] dark:text-[#EEECE6] font-semibold text-xs sm:text-sm border border-[#E5E2DB] dark:border-[#383632] shadow-xs transition-all duration-200"
@@ -410,8 +414,12 @@ export default function Hero() {
               const target = document.querySelector('#about');
               if (target) {
                 const navOffset = 80;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                if (typeof window !== 'undefined' && window.__lenis) {
+                  window.__lenis.scrollTo(target, { offset: -navOffset, duration: 1.3 });
+                } else {
+                  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
               }
             }}
             className="flex flex-col items-center gap-1.5 text-xs text-[#9B9890] dark:text-[#78756E] hover:text-[#1A1A18] dark:hover:text-[#FAF9F6] transition-colors"
@@ -543,8 +551,12 @@ export default function Hero() {
                       const target = document.querySelector('#contact');
                       if (target) {
                         const navOffset = 80;
-                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        if (typeof window !== 'undefined' && window.__lenis) {
+                          window.__lenis.scrollTo(target, { offset: -navOffset, duration: 1.3 });
+                        } else {
+                          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+                          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }
                       }
                     }}
                     className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#EEECE6] hover:bg-[#E5E2DB] text-[#2C2C2A] dark:bg-[#292825] dark:hover:bg-[#383632] dark:text-[#EEECE6] font-semibold text-xs border border-[#E5E2DB] dark:border-[#383632] shadow-xs transition-all duration-200"
