@@ -29,7 +29,7 @@ const socialLinks = [
   },
   {
     icon: FaLinkedin,
-    href: 'https://www.linkedin.com/in/lensen-degife-60661b3b2/',
+    href: 'https://www.linkedin.com/in/lensen-degife/',
     label: 'LinkedIn',
   },
   {
